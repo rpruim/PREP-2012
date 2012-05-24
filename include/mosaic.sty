@@ -1,0 +1,213 @@
+
+\ProvidesPackage{mosaic}
+\RequirePackage{amsmath}
+\RequirePackage{ifthen}
+\RequirePackage{amsmath}
+\RequirePackage{bm}
+\RequirePackage{xcolor}
+\RequirePackage{fancyvrb}
+\RequirePackage{fancyhdr}
+\RequirePackage{xstring}
+
+\RequirePackage[margin=.7in,bottom=.4in,top=.4in,includefoot,includehead]{geometry}
+
+\newboolean{longExp}
+\setboolean{longExp}{false}
+\DeclareOption{longExp}{\setboolean{longExp}{true}}
+\DeclareOption{shortExp}{\setboolean{longExp}{false}}
+
+\ProcessOptions*
+
+\def\title#1{%
+\gdef\thetitle{#1}%
+\makeatletter%
+\gdef\@title{#1}%
+\makeatother%
+}
+
+\pagestyle{fancy}
+\lhead{}
+\chead{\sf \Large \thetitle}
+\rhead{\sf \thepage}
+\cfoot{}
+\lfoot{\sf 2012 MAA PREP Workshop}
+\rfoot{\sf Modeling in Calculus: Early and Often}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% for resuming enumeration
+%
+\newcounter{myenumi}
+\newcommand{\saveenumi}{\setcounter{myenumi}{\value{enumi}}}
+\newcommand{\reuseenumi}{\setcounter{enumi}{\value{myenumi}}}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newcommand{\term}[1]{\textbf{#1}}
+
+\newlength{\cwidth}
+\newcommand{\cents}{\settowidth{\cwidth}{c}%
+\divide\cwidth by2
+\advance\cwidth by-.1pt
+c\kern-\cwidth
+\vrule width .1pt depth.2ex height1.2ex
+\kern\cwidth}
+
+%% basic probability stuff
+\newcommand{\E}{\operatorname{E}}
+\newcommand{\Prob}{\operatorname{P}}
+\def\evProb#1{\Prob(\mbox{#1})}
+\newcommand{\Var}{\operatorname{Var}}
+\newcommand{\coVar}{\operatorname{Cov}}
+\newcommand{\Cov}{\operatorname{Cov}}
+\newcommand{\covar}{\operatorname{Cov}}
+\newcommand{\argmax}{\operatorname{argmax}}
+\newcommand{\argmin}{\operatorname{argmin}}
+
+\newcommand\simiid{\stackrel{\tiny \operatorname{iid}}{\sim}}
+
+\newcommand{\distribution}[1]{{\textsf{#1}}}
+\gdef\Bin{\distribution{Binom}}
+\gdef\Binom{\distribution{Binom}}
+\gdef\Multinom{\distribution{Multinom}}
+\gdef\NBinom{\distribution{NBinom}}
+\gdef\Geom{\distribution{Geom}}
+\gdef\Norm{\distribution{Norm}}
+\gdef\Hyper{\distribution{Hyper}}
+\gdef\Unif{\distribution{Unif}}
+\ifthenelse{\boolean{longExp}}{%
+	\gdef\Exponential{\distribution{Exp}}%
+	}{%
+	\gdef\Exp{\distribution{Exp}}%
+	}
+\gdef\Poisson{\distribution{Pois}}
+\gdef\Pois{\distribution{Pois}}
+\gdef\Gam{\distribution{Gamma}}
+\gdef\Gamm{\distribution{Gamma}}
+\gdef\Beta{\distribution{Beta}}
+\gdef\Weibull{\distribution{Weibull}}
+\gdef\Chisq{\distribution{Chisq}}
+\gdef\Tdist{\distribution{T}}
+\gdef\Fdist{\distribution{F}}
+
+
+\def\mean#1{\overline{#1}}
+
+\def\Prob{\operatorname{P}}
+
+\ifthenelse{\boolean{longExp}}{%
+	\def\Exp{\operatorname{E}}
+	}{%
+	\def\E{\operatorname{E}}
+	}
+\def\Var{\operatorname{Var}}
+\def\SD{\operatorname{SD}}
+
+
+%% sets of numbers
+
+\def\WholeNumbers{\mbox{$\mathbb W$}}
+\def\WholeNums{\mbox{$\mathbb W$}}
+\def\Naturals{\mbox{$\mathbb N$}}
+\def\NatNums{\mbox{$\mathbb N$}}
+\def\natNums{\mbox{$\mathbb N$}}
+\def\natNumbers{\mbox{$\mathbb N$}}
+\def\NatNumbers{\mbox{$\mathbb N$}}
+\def\Reals{\mbox{$\mathbb R$}}
+\def\reals{\mbox{$\mathbb R$}}
+\def\Jset{\mbox{$\mathbb J$}}
+\def\Integers{\mbox{$\mathbb Z$}}
+\def\integers{\mbox{$\mathbb Z$}}
+\def\rationals{\mbox{$\mathbb Q$}}
+\def\Rationals{\mbox{$\mathbb Q$}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% misc
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\gdef\makemath#1{\ifmmode #1 \else $ #1 $\fi}
+\def\ignore[1]{\relax}
+\def\abs#1{{\mid #1 \mid}}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 'function-like' defs
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\def\floor#1{\lfloor #1 \rfloor}
+\def\ceiling#1{\lceil #1 \rceil}
+\def\falling#1#2{#1^{\underline{#2}}}
+\def\rising#1#2{#1^{\overline{#2}}}
+\def\pair#1{\langle #1 \rangle }
+\def\Pair#1{\left\langle #1 \right\rangle }
+\def\tuple#1{{\langle {#1} \rangle}}
+\def\length#1{\vert #1 \vert}
+\def\boolval#1{\lbrack\!\lbrack #1 \rbrack\!\rbrack}
+\def\set#1{\{#1\}}
+\def\ctblset#1#2{\set{ #1_{#2} \mid #2 \in \omega }}
+\def\card#1{\vert #1 \vert}
+\def\size#1{\vert #1 \vert}
+\def\norm#1{\| #1 \|}
+\def\ket#1{{|{#1} \rangle}}
+\def\bra#1{{\langle {#1}|}}
+\def\braket#1#2{{\langle {#1} \mid {#2} \rangle}}
+\newcommand{\complement}[1]{\makemath{#1^{c}}}
+%\newcommand{\comp}[1]{{#1}^{c}}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% symbols for manipulating strings, sets and functions
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\def\powerset{\mbox{$\cal P$}}
+\def\powerSet{\mbox{$\cal P$}}
+\def\EmptySet{\emptyset}
+\def\emptySet{\emptyset}
+\def\emptystring{\lambda}
+\def\emptyString{\emptystring}
+\def\concat{^\frown}
+\def\substring{\sqsubset}
+\def\supstring{\sqsupset}
+\def\substringeq{\sqsubseteq}
+\def\supstringeq{\sqsupseteq}
+%\def\substringnoteq{{\sqsubset \atop \not=}}
+%\def\supstringnoteq{{\sqsupset \atop \not=}}
+%\def\subsetnoteq{{\subset \atop \not=}}
+%\def\supsetnoteq{{\supset \atop \not=}}
+\def\substringnoteq{\substring}
+\def\supstringnoteq{\substring}
+\def\subsetnoteq{\subset}
+\def\supsetnoteq{\supset}
+
+\def\intersect{\cap}
+\def\Intersect{\bigcap}
+\def\union{\cup}
+\def\Union{\bigcup}
+\def\symdif{\bigtriangleup}
+\def\setminus{-}
+
+\def\compose{\circ}
+\def\restricted{\makemath{|\!\grave{\;}}}
+\def\restrictedto{{|\!\grave{\;}}}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% logic stuff
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\def\proves{\vdash}
+\def\provedby{\dashv}
+
+\def\implies{\Longrightarrow}
+
+\def\succ{{\rm succ}}
+\def\divg{{\!\uparrow}}
+\def\conv{{\!\downarrow}}
+\def\domain{{\rm domain}}
+\def\range{{\rm range}}
+
+\def\setof#1{{\left\{{#1}\right\}}}
+
+\newcommand{\tand}{\mbox{\ and\ }}
+\newcommand{\tor}{\mbox{\ or\ }}
+
