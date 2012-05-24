@@ -1,2 +1,4 @@
 PREP-2012
 =========
+
+This repository will be used for collaboritive development of materials for the MAA PREP workshop to be held at Calvin College in July, 2012.
