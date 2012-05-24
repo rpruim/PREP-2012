@@ -1,0 +1,257 @@
+
+\documentclass{article}
+
+% things for all PREP workshop materials
+\usepackage{mosaic}   % mosaic defaults and macros
+\usepackage{sfsect}   % san serif font for section titles
+\usepackage{language} % consistent formatting of languages elements
+
+% Stuff particular to this document
+
+\usepackage[version=3]{mhchem}   % chemistry stuff
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%  Misc macros 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newcommand{\Partial}[1]{\frac{\partial}{\partial #1}}%
+\newcommand{\Partialfrac}[2]{\frac{\partial #2}{\partial #1}}%
+\newcommand{\SecondPartial}[1]{\frac{\partial^2}{\partial #1^2}}%
+
+\newcommand{\sfrac}[2]{{#1/#2}}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%   Begin Main Document
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+\SweaveOpts{
+tidy=TRUE,
+dev="pdf",
+fig.path="figures/modeling-",  
+fig.width=4.5, fig.height=3,
+out.width=".47\\textwidth",
+fig.align="center",
+fig.show="hold",
+comment=NA
+}
+
+
+<<setup,echo=FALSE,resuts="hide",message=FALSE,warning=FALSE>>=
+set.seed(12345)
+require(fastR)
+options(show.signif.stars=FALSE)
+require(Hmisc)
+require(mosaic)
+require(vcd)
+require(rms)
+trellis.par.set(theme=col.fastR(bw=TRUE))
+options(scipen=1,digits=3)
+@
+
+
+
+\title{\large \sf The Michaelis-Menton Model}
+
+In biochemistry, Michaelis–Menten kinetics is one of the simplest and
+best-known models of enzyme kinetics. It is named after German biochemist
+Leonor Michaelis and Canadian physician Maud Menten. 
+The model can be illustrated as
+\[
+\ce{
+E + S <=>C[k_f][k_r] ES ->C[k_{cat}] E + P
+}
+\]
+Where $E$ is the enzime, $S$ is the substrate, $ES$ is the enzyme binding to
+the substrate, and $P$ is a product.
+
+This leads to the following system of differential equations:
+
+\begin{align}
+	\frac{d[S]}{dt} & = -k_f [E] [S] + k_r [ES] ]
+	\label{dSdt}
+	\\
+	\frac{d[E]}{dt} & = -k_f [E] [S] + k_r [ES] + k_{cat} [ES]
+	\label{dEdt}
+	\\
+	\frac{d[ES]}{dt} & = \phantom{-}k_f [E] [S] - k_r [ES] - k_{cat} [ES]
+	\label{dESdt}
+	\\
+	\frac{d[P]}{dt} & = \phantom{-k_f [E] [S] + k_r [ES] + \;} k_{cat} [ES]
+	\label{dPdt}
+	\\
+\end{align}
+
+Now we make some simplifications:
+\begin{itemize}
+	\item
+		If the enzyme is conserved, then $[E] + [ES] = [E]_0$ is a constant.
+	\item
+In situations where $\frac{d[P]}{dt}$ is constant (or nearly constant), 
+(\ref{dESdt}) and (\ref{dPdt}) imply that $\frac{d[ES]}{dt} = 0$.
+
+\item
+	From this it follows that 
+	\begin{align*}
+	k_f [E] [S] & = ( k_r + k_{cat} ) [ES] 
+	\\
+	k_f ([E]_0 - [ES]) [S] & = ( k_r + k_{cat} ) [ES] 
+	\\
+	([E]_0 - [ES]) [S] & =  \frac{k_r + k_{cat}}{k_f}  [ES] 
+	\\
+	[E]_0 [S] & = \left( \frac{k_r + k_{cat}}{k_f} + [S] \right)  [ES] 
+	\\
+	[ES] & = \frac{ [E]_0 [S] }{ \frac{k_r + k_{cat}}{k_f} + [S] }  
+	\\
+	k_{cat} [ES] & = \frac{k_{cat} [E]_0 [S]}{ \frac{k_r + k_{cat}}{k_f} + [S]}  
+	\\
+	v = \frac{d[P]}{dt}& = \frac{k_{cat} [E]_0 [S]}{\frac{k_r + k_{cat}}{k_f} + [S]}  
+	\end{align*}
+\item
+	Ignoring the meaning of the constants (for the moment) 
+	and focusing on the form, we now have 
+	the following sort of relationship between $v$ and $[S]$
+	\begin{align}
+	v = \frac{ \alpha [S] }{ \beta + [S] }
+	\label{eq:MichMent}
+\end{align}
+    That is, the ``velocity'' of the reaction (rate at which the product is produced)
+	is determined by the concentration of the substrate and constants that do 
+	not depend on $v$ or $[S]$.
+\end{itemize}
+
+Equation (\ref{eq:MichMent}) is not in our favorite linear form, but we can
+use transforamtions to get into a linear form:
+\[
+\frac{1}v
+= \frac {\beta + [S] }{ \alpha [S] } 
+= \frac{1}{\alpha} + \frac{\beta}{\alpha} \frac{1}{[S]} 
+\]
+
+This now provides an experimental way to estimate the constants $\alpha$ and
+$\beta$ (and from them to infer things about $k_{f}$, $k_r$, and $k_{cat}$.) We
+can gather data providing values of $v$ and $[S]$ and fit $\frac{1}{v}$ as a 
+linear function of $\frac{1}{[S]}$.
+Let's do that using some data from a lab conducted by students at Calvin
+college.
+
+<<>>=
+mm <- read.csv('http://www.calvin.edu/~rpruim/data/calvin/michaelis-menten.csv')
+summary(mm)
+@
+
+The measurements are a bit indirect.  The amount of product is inferred from the 
+absorbance, and $v$ is inferred by the rate of change in absorbance, which should be 
+a roughly linear function of \variable{time} (in minutes) for each value of $[S]$ 
+(\variable{substrate}, mM peroxide) if our assumptions are true.  
+Notice too that the experiment was run with and without an inhibitor.
+
+Our first step is to estimate the values of $v$ for each level of \variable{substrate}
+by fitting a simple linear model and determining the slope.
+We begin by plotting the data to confirm that our linearity assumptions seem
+appropriate.
+<<out.width=".75\\textwidth", fig.width=8,fig.height=5>>=
+xyplot( absorbance ~ time|inhibitor, data=mm, groups=factor(substrate), type=c('p','l') )
+@
+\noindent
+Not bad for student-collected data.
+
+Now we need to estimate all those slopes.  We can do this all at once with a clever
+choice of model.  For the following analysis, we'll use only the data without 
+the inhibitor.
+<<slope.model>>=
+mm$S <- factor(mm$substrate)
+mmno <- subset(mm, inhibitor=='no')
+slope.model <- lm( absorbance ~ time * S, data=mmno )
+summary(slope.model)
+coef(slope.model)
+@
+
+<<mmSlopes>>=
+mmSlopes <- data.frame(S=as.numeric(levels(mmno$S)), 
+		   v = coef(slope.model)["time"] + 
+		  		 c("time:S0.1" = 0, 
+					 coef(slope.model)[paste("time:S",levels(mmno$S)[-1], sep="")])
+)
+mmSlopes
+@
+
+Now we can fit our Michaelis-Menton model:
+<<mmModel,out.width=".47\\textwidth">>=
+mmModel <- lm( (1/v) ~ I(1/S), mmSlopes)
+summary(mmModel)
+alpha.hat <- 1 / coef(mmModel)[1]
+beta.hat <-  coef(mmModel)[2] * alpha.hat
+c(alpha.hat=alpha.hat, beta.hat=beta.hat)
+f <- makeFun(mmModel)
+xyplot(1/v ~ 1/S, mmSlopes, main="1/v vs. 1/S (as fit)")
+g <- makeFun( f(1/x) ~ x )
+plotFun( g(x) ~ x, add=TRUE,col='navy',alpha=.4)
+xyplot( v ~ S, mmSlopes, ylim=c(0,0.30), main="v vs. S (as desired)")
+plotFun(1/f(S) ~ S, add=TRUE,col='navy',alpha=.4)
+@
+
+Doing this we see some issues.  Although there is a nice tight fit of the transformed 
+data to the least squares regression line, the fit doesn't look nearly as good after 
+back-transforming to the original scales.  In particular, errors are much larger for larger
+values of $S$.  Or thought about the other way around, the way we have fit the model 
+has forced the fit to be extremely good for small values of $S$ at the cost of allowing
+much poorer fits for larger values of $S$.  This is becuase the transformations
+transform the scale for the residuals as well as for the inputs.  Note too that the distribution of values of $1/S$ is not nearly as uniform as it is for $S$.
+
+We can do better if we use nonlinear least squares instead of tranforming and using least
+squares.  In non-linear least squares we fit a parameterized function of arbitrary form
+by determining (well, estimating anyway) the values of the parameters that 
+minimize the sum of the squares of the residuals
+\[
+SS(\alpha, \beta) = \sum_{i=1}^n ( v_i - f(\alpha, \beta; S_i) )^2
+\]
+This approach will be less forgiving of such large residuals for large values of $S$.
+We lose something in the exchange, however.  It is not longer the case that simple
+closed-form formulas exist for the estimates.  This means that we will need to rely
+on numerical estimation.  
+Furthermore the estimators are not guaranteed to be
+unbiased.
+
+<<nls>>=
+# we provide nls() with our estimates from above as a starting point.
+model.nls <-  nls( v ~ alpha * S / ( beta + S ), 
+				  data=mmSlopes, start=list(alpha=alpha.hat, beta=beta.hat ) )
+summary(model.nls)
+xyplot( v ~ S, mmSlopes, ylim=c(0,0.35))
+ladd( panel.xyplot( mmSlopes$S, predict( model.nls), type='l',col='navy',alpha=.4 ) )
+@
+As expected, the fit is much better for larger values of $S$ and we've lost very little for smaller values of $S$.
+
+Now that we have (two sets of) estimates for $\alpha$ and $\beta$, we should
+pause a moment to see what these parameters tell us about the chemistry.
+Recall Equation (\ref{eq:MichMent})
+	\begin{align*}
+	v = \frac{ \alpha [S] }{ \beta + [S] }
+	\end{align*}
+As $[S]$ increases,
+\[
+	\frac{ \alpha [S] }{ \beta + [S] } \nearrow \alpha
+\]
+so $\alpha$ gives the horizontal asymptote representing the maximum velocity.
+And if $[S] = \beta$, we get
+\[
+v = \frac{ \alpha [S] }{ [S] + [S] } = \frac{\alpha}{2} \; ,
+\]
+so $\beta$ is the value of $[S]$ that gives half the maximum velocity.
+
+<<>>=
+xyplot( v ~ S, mmSlopes, ylim=c(0,1.1*alpha.hat),main='linear least squares fit')
+plotFun(1/f(S) ~ S, add=TRUE,col='navy',alpha=.4)
+ladd( panel.abline( h=alpha.hat, col='red', alpha=.4) )
+ladd( panel.abline( v=beta.hat, col='darkgreen', alpha=.4) )
+xyplot( v ~ S, mmSlopes, ylim=c(0,1.1*alpha.hat),main='non-linear least squares fit')
+ladd( panel.xyplot( mmSlopes$S, predict( model.nls), type='l',col='navy',alpha=.4 ) )
+ladd( panel.abline( h=coef(model.nls)[1], col='red', alpha=.4) )
+ladd( panel.abline( v=coef(model.nls)[2], col='darkgreen', alpha=.4) )
+@
+
+
+\end{document}
