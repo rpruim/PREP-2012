@@ -48,7 +48,7 @@ options(scipen=1,digits=3)
 
 
 
-\title{\large \sf The Michaelis-Menton Model}
+\title{\large \sf The Michaelis-Menten Model}
 
 \section{The Model}
 In biochemistry, Michaelis–Menten kinetics is one of the simplest and
@@ -180,7 +180,7 @@ mmSlopes
 @
 
 \subsection{Fitting with Ordinary Least Squares}
-Now we can fit our Michaelis-Menton model:
+Now we can fit our Michaelis-Menten model:
 <<mmModel,out.width=".47\\textwidth">>=
 mmModel <- lm( (1/v) ~ I(1/S), mmSlopes)
 summary(mmModel)
