@@ -6,14 +6,10 @@
 \usepackage{sfsect}   % san serif font for section titles
 \usepackage{language} % consistent formatting of languages elements
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Stuff particular to this document
 
 \usepackage[version=3]{mhchem}   % chemistry stuff
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%  Misc macros 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \newcommand{\Partial}[1]{\frac{\partial}{\partial #1}}%
 \newcommand{\Partialfrac}[2]{\frac{\partial #2}{\partial #1}}%
@@ -27,6 +23,9 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{document}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Standard Sweave Set-up
 \SweaveOpts{
 tidy=TRUE,
 dev="pdf",
@@ -38,16 +37,12 @@ fig.show="hold",
 comment=NA
 }
 
-
+% Standard R setup
 <<setup,echo=FALSE,resuts="hide",message=FALSE,warning=FALSE>>=
 set.seed(12345)
-require(fastR)
 options(show.signif.stars=FALSE)
-require(Hmisc)
 require(mosaic)
-require(vcd)
-require(rms)
-trellis.par.set(theme=col.fastR(bw=TRUE))
+trellis.par.set(theme=col.mosaic())
 options(scipen=1,digits=3)
 @
 
@@ -55,6 +50,7 @@ options(scipen=1,digits=3)
 
 \title{\large \sf The Michaelis-Menton Model}
 
+\section{The Model}
 In biochemistry, Michaelis–Menten kinetics is one of the simplest and
 best-known models of enzyme kinetics. It is named after German biochemist
 Leonor Michaelis and Canadian physician Maud Menten. 
@@ -84,13 +80,16 @@ This leads to the following system of differential equations:
 	\\
 \end{align}
 
+\section{Simplifying the Model}
 Now we make some simplifications:
 \begin{itemize}
 	\item
 		If the enzyme is conserved, then $[E] + [ES] = [E]_0$ is a constant.
 	\item
-In situations where $\frac{d[P]}{dt}$ is constant (or nearly constant), 
+In situations where $\frac{d[P]}{dt}$ is constant 
 (\ref{dESdt}) and (\ref{dPdt}) imply that $\frac{d[ES]}{dt} = 0$.
+This is often used as an approximation when $\frac{d[P]}{dt}$ 
+is nearly constant.
 
 \item
 	From this it follows that 
@@ -130,6 +129,7 @@ use transforamtions to get into a linear form:
 = \frac{1}{\alpha} + \frac{\beta}{\alpha} \frac{1}{[S]} 
 \]
 
+\section{Using Data to Fit the Model}
 This now provides an experimental way to estimate the constants $\alpha$ and
 $\beta$ (and from them to infer things about $k_{f}$, $k_r$, and $k_{cat}$.) We
 can gather data providing values of $v$ and $[S]$ and fit $\frac{1}{v}$ as a 
@@ -142,10 +142,11 @@ mm <- read.csv('http://www.calvin.edu/~rpruim/data/calvin/michaelis-menten.csv')
 summary(mm)
 @
 
-The measurements are a bit indirect.  The amount of product is inferred from the 
-absorbance, and $v$ is inferred by the rate of change in absorbance, which should be 
-a roughly linear function of \variable{time} (in minutes) for each value of $[S]$ 
-(\variable{substrate}, mM peroxide) if our assumptions are true.  
+\subsection{Dealing with Indirect Measurements}
+The measurements are a bit indirect.  The amount of product is inferred from
+the absorbance, and $v$ is inferred by the rate of change in absorbance, which
+should be a roughly linear function of \variable{time} (in minutes) for each
+value of $[S]$ (\variable{substrate}, mM peroxide) if our assumptions are true.
 Notice too that the experiment was run with and without an inhibitor.
 
 Our first step is to estimate the values of $v$ for each level of \variable{substrate}
@@ -178,6 +179,7 @@ mmSlopes <- data.frame(S=as.numeric(levels(mmno$S)),
 mmSlopes
 @
 
+\subsection{Fitting with Ordinary Least Squares}
 Now we can fit our Michaelis-Menton model:
 <<mmModel,out.width=".47\\textwidth">>=
 mmModel <- lm( (1/v) ~ I(1/S), mmSlopes)
@@ -201,6 +203,7 @@ has forced the fit to be extremely good for small values of $S$ at the cost of a
 much poorer fits for larger values of $S$.  This is becuase the transformations
 transform the scale for the residuals as well as for the inputs.  Note too that the distribution of values of $1/S$ is not nearly as uniform as it is for $S$.
 
+\subsection{Fitting with Nonlinear Least Squares}
 We can do better if we use nonlinear least squares instead of tranforming and using least
 squares.  In non-linear least squares we fit a parameterized function of arbitrary form
 by determining (well, estimating anyway) the values of the parameters that 
