@@ -80,7 +80,7 @@ $$\widehat{df/dt} = \frac{f(t+h)-f(t)}{h} + \frac{\epsilon_1-\epsilon_2}{h}.$$
 
 In practice, $\epsilon_1 - \epsilon_2 \neq 0$.  Making $h$ big helps to reduce the influence of measurement error on the result, even if it introduces a systematic bias into the value of $\frac{f(t+h)-f(t)}{h}$ compared to the theoretical derivative based on the limit.
 
-In the context of computer arithmetic, the errors of rounding in floating point calculations introduce non-zero $\epsilon_1$ and $\epsilon_2$.  The result is that numerical calculations of finite-difference derivatives are done with an $h$ of moderate size: proportional to $\sqrt{|epsilon_1|}$.  
+In the context of computer arithmetic, the errors of rounding in floating point calculations introduce non-zero $\epsilon_1$ and $\epsilon_2$.  The result is that numerical calculations of finite-difference derivatives are done with an $h$ of moderate size: proportional to $\sqrt{|\epsilon_1|}$.  
 
 In the context of measurements made in the field or lab, there are additional sources of error.  These argue for a finite $h$.  Why emphasize the limit to the exclusion of teaching some sensible about defining "small".
 
@@ -191,12 +191,92 @@ The above paragraph is an analysis of a model of the gambling session.  Like all
 
 The process can't go out to infinity because either you will run out of money or the casino will step in.  The probability of losing is small.  How small? It depends on the amount of money you have and the house limit on bets.  But it is not zero.  And if you lose, you may lose big.  So the guaranteed win is really nothing of the kind.  The idealization of an infinite process misses the essential feature that causes the strategy to fail.
 
+#### Where Series Fit in Calculus
+
+The best-selling calculus textbook is Stewart.  Here's the table of contents for the 2nd edition, often used as the single text for a three-semester sequence of calculus.
+1. Functions and Models
+2. Limits and Derivatives
+3. Differentiation Rules
+4. Applications of Differentiation
+5. Integrals
+6. Applications of Integration
+7. Differential Equations 
+8. **Infinite Sequences and Series**
+9. Vectors and the Geometry of Space
+10. Vector Functions
+11. Partial Derivatives
+12. Multiple Integrals
+13. Vector Calculus
+
+Note that "Infinite Sequences and Series" comes after differential and integral calculus, suggesting that the material is not needed to introduce differentiation and integration.  Anecdotally, instructors often report not being able to reach sequences and series in the first year of calculus.  More than three quarters of students who study calculus never reach past the first year, suggesting that the point of sequences and series is not to illuminate integration and differentiation.
+
+Are there applications of sequences and series that are important? Economists rightly point to the concept of "net present value," the equivalent in today's money of a stream of income and expenditure in the future.  A mathematically similar problem is that of the distance travelled by a bouncing ball: a ball that bounces each time to a fixed fraction of its peak height on the last bounce.  Both of these examples relate to exponentials and sums of exponentials.
 
 #### Net Present Value
 
+In March 2012, a group of investors, including basketball star Magic Johnson, bought the Los Angeles Dodgers at auction for $2 billion. A news commentator, trying to give an idea of how much money this is, calculated that this is enough to buy season tickets for 308,000 years. 
 
+It's easy to see where this estimate comes from.  The Dodger's web site lists the most expensive season ticket at \$80 per game; the least expensive is \$5 per game.  Given that there are 81 home games in a season, the season ticket cost \$6480 in the expensive seats and \$405 in the cheap seats.  So with two billion dollars, one could buy 308,642 expensive tickets or 4,938,272 cheap season tickets.
+
+But this is the wrong calculation.  It ignores several important factors:
+* The interest that the money can earn.
+* Inflation
+As of this writing, 30-year US treasury bonds are earning approximately 3% per year.  Inflation runs at about 2%.  Taken together, a dollar this year will buy goods worth about 1.01 dollars next year, and so on cumulatively.  Put another way, buying a season ticket in $n$ years will cost roughly $1.01^{-n}6480$ dollars in today's money.  To put aside enough money to fund the purchase of a season ticket each year for 300,000 years will involve about \$648,000. $$\sum_{n=1}^{300000} 6480 \frac{1}{1.01}^n \approx 648000 .$$
+A substantial sum, but not close to \$2 billion.  Actually, the \$648000 will buy season tickets not just for 300,000 years, but for an infinite time in the future. Season tickets far in the future are very cheap in today's money.  Based on the interest and inflation rates assumed here, to buy an infinite sequence of season tickets starting just 2000 years in the future costs less than a quarter of a cent in today's money.
+
+The important mathematics here is not that the sequence of present values of future season tickets converges.  What's important is the time scale on which the present value becomes trivial.  At 1\% discount per year, the half-life is about 72 years.  Ten half lives corresponds to a decrease by a factor of 1000.  So an estimate that's good to 0.1\% need not look forward more than 1000 years.
+
+Indeed, there's little point in worrying about what it's going to cost after even 100 years.  The assumptions about interest yields and inflation rates, to say nothing of the very existence of a baseball season or the Dodgers themselves, introduce a much larger error.
+
+The exponential process guarantees convergence.  It's the time scale of the process that needs emphasis.
+
+Let's turn the problem around and imaging that Magic Johnson and his co-investors decided to use the two-billion dollars fund college tuition for one person each year until the money runs out.  College tuition has, for the past 60 years, been rising at an average rate of about 6% per year.  Currently, for the most expensive colleges, it's rising at about 4.5% per year.  Given the 3% return on long-term treasury bonds, paying for a year of college far in the future will cost *more* in today's money than paying for a sooner year.  Using \$50,000 per year as the cost of an elite college, the money will run out when
+$$ 50,000 \times \sum_{n=1}^{k} 1.015^k = 2,000,000,000.$$
+Solving for $k$ involves looking at finite sums, not the convergence of the series.  Trial and error works reasonably well:
+```{r}
+50000*sum(1.015^(1:500)) # more than 2 billion
+50000*sum(1.015^(1:250)) # less than 2 billion
+50000*sum(1.015^(1:400)) # less than 2 billion
+50000*sum(1.015^(1:450)) # more than 2 billion
+50000*sum(1.015^(1:425)) # Close!
+```
+
+So, the two-billion dollars will pay for one student to attend college each year for the next roughly 425 years.  There's no point in worrying about the solution more precisely, since the inflation and interest rates influence the calculation sensitively.  For instance, if the two-billion dollars can be invested in a way that earns 4% yearly rather than the assumed 3%, the money will pay for 1060 years of college.  On the other hand, if tuition costs rise at 5% in face of 3% investment returns, the two-billion dollars will cover only 185 years of college.  
+
+Of course, nobody who understands exponential growth believes that the college tuition system can continue this way.  Even 20 years is beyond the tuition and investment planning horizon of administrators in higher education.
 
 #### Approximation with Polynomials
+
+Another topic encountered is Taylor polynomials and other, related approximations.[^1]
+
+Representation of arbitrary functions with polynomials.  Low order ... things work well.[^3]  High order ... pathologies:
+
+[^1]: 
+  testing a footnote
+
+[^3]:
+  Another footnote.
+  
+  And a table:
+| Item      | Value |
+| --------- | -----:|
+| Computer  | $1600 |
+| Phone     |   $12 |
+| Pipe      |    $1 |
+
+* quadratic or higher runs off to $\pm \infty$ very quickly.  Not useful for extrapolation.
+* Estimation becomes hard with high-order polynomials, due to non-orthogonality.  
+* Selection of model order: use anova, so that you look at the incremental improvement of adding a new term
+* Parameter estimation: variance inflation due to collinearity.
+
+The general lessons of experience in science is: 
+* Use first or at most second order.  
+* Use multiple variables rather than high-order in a single variable.  
+* Try to make the multiple variables orthogonal (by randomization or orthogonal assignment) to avoid variance inflation.  
+The important concept is orthogonality, not convergence.
+
+
+
 
 `` You stole my net present value example."
 
