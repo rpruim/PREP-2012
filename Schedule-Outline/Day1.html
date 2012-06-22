@@ -1,0 +1,245 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0014)about:internet -->
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+<title>Topics for PREP 2012 Workshop</title>
+
+<base target="_blank"/>
+
+<style type="text/css">
+body, td {
+   font-family: sans-serif;
+   background-color: white;
+   font-size: 12px;
+   margin: 8px;
+}
+
+tt, code, pre {
+   font-family: 'DejaVu Sans Mono', 'Droid Sans Mono', 'Lucida Console', Consolas, Monaco, monospace;
+}
+
+h1 { 
+   font-size:2.2em; 
+}
+
+h2 { 
+   font-size:1.8em; 
+}
+
+h3 { 
+   font-size:1.4em; 
+}
+
+h4 { 
+   font-size:1.0em; 
+}
+
+h5 { 
+   font-size:0.9em; 
+}
+
+h6 { 
+   font-size:0.8em; 
+}
+
+a:visited {
+   color: rgb(50%, 0%, 50%);
+}
+
+pre {	
+   margin-top: 0;
+   max-width: 95%;
+   border: 1px solid #ccc;
+}
+
+pre code {
+   display: block; padding: 0.5em;
+}
+
+code.r {
+   background-color: #F8F8F8;
+}
+
+table, td, th {
+  border: none;
+}
+
+blockquote {
+   color:#666666;
+   margin:0;
+   padding-left: 1em;
+   border-left: 0.5em #EEE solid;
+}
+
+hr {
+   height: 0px;
+   border-bottom: none;
+   border-top-width: thin;
+   border-top-style: dotted;
+   border-top-color: #999999;
+}
+
+@media print {
+   * { 
+      background: transparent !important; 
+      color: black !important; 
+      filter:none !important; 
+      -ms-filter: none !important; 
+   }
+
+   body { 
+      font-size:12pt; 
+      max-width:100%; 
+   }
+       
+   a, a:visited { 
+      text-decoration: underline; 
+   }
+
+   hr { 
+      visibility: hidden;
+      page-break-before: always;
+   }
+
+   pre, blockquote { 
+      padding-right: 1em; 
+      page-break-inside: avoid; 
+   }
+
+   tr, img { 
+      page-break-inside: avoid; 
+   }
+
+   img { 
+      max-width: 100% !important; 
+   }
+
+   @page :left { 
+      margin: 15mm 20mm 15mm 10mm; 
+   }
+     
+   @page :right { 
+      margin: 15mm 10mm 15mm 20mm; 
+   }
+
+   p, h2, h3 { 
+      orphans: 3; widows: 3; 
+   }
+
+   h2, h3 { 
+      page-break-after: avoid; 
+   }
+}
+
+</style>
+
+
+
+<!-- MathJax scripts -->
+<script type="text/javascript" src="https://c328740.ssl.cf1.rackcdn.com/mathjax/2.0-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+
+</head>
+
+<body>
+<p>% Draft Schedule for the PREP 2012 workshop<br/>
+% Danny Kaplan<br/>
+% 2012/06/21</p>
+
+<h1>Topics for PREP 2012 Workshop</h1>
+
+<ul>
+<li>Day 1: Single Variable</li>
+<li>Day 2: Multiple Variable</li>
+<li>Day 3: Differential Equations and Dynamics</li>
+<li>Day 4: Polishing and Sharing </li>
+</ul>
+
+<h2>Day 1: Single Variable</h2>
+
+<h1>Introduction</h1>
+
+<h2>Objectives</h2>
+
+<ol>
+<li>Associate modeling settings with calculus topics</li>
+<li>Evaluate calculus topics in terms of how they contribute to modeling</li>
+<li>Create and share materials for teaching calculus with modeling</li>
+<li>Learn a computational infrastructure to support modeling</li>
+</ol>
+
+<h2>Associate model settings with calculus topics</h2>
+
+<p>We&#39;ll follow a somewhat conventional sequence &ndash; 1 variable, multiple variables, differential equations &ndash; even though this may not be an appropriate way to organize a modeling-based course.  For instance, in Macalester&#39;s Math 135, functions of multiple variables are introduced from the very beginning and partial derivatives are introduced from the start of differentiation.</p>
+
+<p>We&#39;re doing this in order to facilitate modeling topics being used in conventional courses.  We don&#39;t want to impose on you a requirement that you do the first calc as a multivariable course.</p>
+
+<h2>Evaluate calculus topics</h2>
+
+<p>The conventional set of topics doesn&#39;t always support modeling well.  Insofar as a main goal of teaching calculus is to teach modeling, some new topics need to be introduced (e.g. parameters, fitting).  Some calculus topics (e.g. limits, algebraic rules for integration) have very little to do with modeling</p>
+
+<h2>Create and share materials</h2>
+
+<p>We want everyone to </p>
+
+<h2>Learn a computational infrastructure</h2>
+
+<p>Many of the techniques needed for modeling, e.g. parameter estimation, require computation.  At the same time, having an appropriate computational infrastructure allows calculus to be taught in new ways.  </p>
+
+<hr/>
+
+<h1>Functions</h1>
+
+<p>I thought we would lead the participants through this material, so that there is a common basis for later.</p>
+
+<h2>What are the inputs?</h2>
+
+<p>Models should be intended for a purpose.  So it matters what is the input and what is the output, since you typically want to transform a particular quantity into another type of quantity.<br/>
+Snow Tree Cricket (from Chapter 1 of Hughes-Hallett).  See Math 135 notes from 25 Jan. 2012</p>
+
+<h2>Difference between traditional math and computer notation for functions.</h2>
+
+<p>\( y = mx + b \), \( f(x) = mx + b \), \( \int x dx \), \( \sin(x) \), \( \sqrt{x} \), and so on.</p>
+
+<h2>Parameters.</h2>
+
+<p>Where do parameters get introduced in Stewart?  Why would we ever write \( \sin x \)?</p>
+
+<h2>Specific Functions for Modeling</h2>
+
+<h3>Straight-Line functions \( f(x) = mx + b \)</h3>
+
+<h3>Exponentials</h3>
+
+<h4>Proportional versus constant change</h4>
+
+<ol>
+<li>Atmosphere pressure, water pressure</li>
+<li>Population of Mexico (Math 135 27 Jan 2012)</li>
+<li>Exponential models of data <a href="http://dl.dropbox.com/u/5098197/Exercises/HTML/AC-Income-and-Housing/AC-Income-and-Housing-A.html?access=AC7">Income and housing variables</a></li>
+</ol>
+
+<h4>Parameterization of exponentials</h4>
+
+<ol>
+<li>Half-life, interest rate, exponential time constant.  Which is best depends on what information you have.</li>
+<li>Conversion: Rule of 72.</li>
+</ol>
+
+<h4>Models</h4>
+
+<ol>
+<li>Half-lives of meds.  How often should you take the pill to keep the drug level within 10% over the long run?</li>
+<li><a href="http://dl.dropbox.com/u/5098197/Math135/In-Class/doubling-activity.pdf">Activity on doubling and half-lives</a> </li>
+<li>Sums of exponentials.  Why is cooling not a simple exponential?  <a href="http://rpubs.com/dtkaplan/558">Fitting Stan&#39;s data</a> &ndash; link to internal file <a href="../Topics/Cooling/CoolingCoffee.html">Fitting Stan&#39;s data</a></li>
+</ol>
+
+</body>
+
+</html>
+

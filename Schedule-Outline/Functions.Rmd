@@ -1,0 +1,83 @@
+Functions Functions for Modeling
+================================
+
+Strategy for presentation: 
+I thought we would lead the participants through this material, so that there is a common basis for later.
+
+General Features of Functions
+-----------------------------
+## What are the inputs?
+Models should be intended for a purpose.  So it matters what is the input and what is the output, since you typically want to transform a particular quantity into another type of quantity.
+Snow Tree Cricket (from Chapter 1 of Hughes-Hallett).  See Math 135 notes from 25 Jan. 2012
+
+## Difference between traditional math and computer notation for functions.
+$y = mx + b$, $f(x) = mx + b$, $\int x dx$, $\sin(x)$, $\sqrt{x}$, and so on.
+
+## Parameters.  
+Where do parameters get introduced in Stewart?  Why would we ever write $\sin x$?
+
+Specific Functions for Modeling
+-------------------------------
+
+### Straight-Line functions $f(x) = mx + b$
+
+#### Parameterization
+Students already know a lot about these: slope and intercept.  Emphasize that these are parameters.  The parameters specify a particular function out of the whole set of functions.
+
+Other parameterizations (e.g. point-slope, two-points, point-angle) can be converted to slope-intercept.
+
+#### Applications
+This is the general purpose modeling function.  All simple relationships can and are represented this way.
+1. World record swim times versus year. ```swim100m.csv```
+2. Wage versus education. ```cps.csv```
+3. Natural gas usage versus temperature. ```utilities.csv```
+See [more details on these examples](http://rpubs.com/dtkaplan/577)
+
+
+### Exponentials 
+#### Proportional versus constant change
+1. Atmosphere pressure, water pressure
+2. Population of Mexico (Math 135 27 Jan 2012)
+3. Exponential models of data [Income and housing variables](http://dl.dropbox.com/u/5098197/Exercises/HTML/AC-Income-and-Housing/AC-Income-and-Housing-A.html?access=AC7)
+
+#### Parameterization of exponentials
+1. Half-life, interest rate, exponential time constant.  Which is best depends on what information you have.
+2. Conversion: Rule of 72.
+
+#### Models
+1. Half-lives of meds.  How often should you take the pill to keep the drug level within 10% over the long run?
+2. [Activity on doubling and half-lives](http://dl.dropbox.com/u/5098197/Math135/In-Class/doubling-activity.pdf) 
+3. Sums of exponentials.  Why is cooling not a simple exponential?  [Fitting Stan's data](http://rpubs.com/dtkaplan/558) 
+
+### Logarithms
+
+#### Examples
+1. [Happiness on a log scale](http://test.causeweb.org/wiki/mosaic/index.php/File:Happiness-and-log-scale.jpg) 
+2. [Profanity and log axes](http://xkcd.com/798/)
+
+#### Activities
+1. Log axes --- how to interpret.  [Example of log axes](http://dl.dropbox.com/u/5098197/Math135/In-Class/LogAxes.pdf). Activity: Plot intervals on these scale to indicate absolute and relative precision on both log and linear axes, for instance, 10% precision on measurements of 1 and of 100 on a log axis.
+
+#### Modeling project
+1. Prices versus log prices in the stock market.  Which generates a better simulation of stock variation: a random walk on $\Delta$ prices or a random walk on $\Delta$ log prices?
+
+#### Other resources
+* [John Verzani's notes on logarithms](http://www.rpubs.com/jverzani/278)
+
+### Splines
+1. Squeezing Orange Juice ... measuring the cumulative.  (Make a video of the scale when squeezing orange juice.)
+
+### Power Laws
+1. Random walks.  How does the typical distance scale?  Explanation in terms of random vectors being perpendicular.  (Later application: Explaining the power law: integration of the square distance compared to integration of the absolute distance)
+2. Chest circumference versus weight, tree height and thickness.  (Later example in multivariate: relationships in the internal combustion engine)
+
+### Sines and Cosines
+
+#### Parameterization
+Amplitude, time lag, offset.
+
+#### Models
+1. Day length as a function of the day of the year.  (For later example, as a function of longitude.)  Where does the model break down (near the arctic circle)?
+2. Tone and period.  Model a musical scale.  How does the period change from note to note?  Model a chord.
+3. Modeling tide data.  Example on [Hawaiian tides](http://rpubs.com/dtkaplan/540)
+4. Kepler and the planets.  (See ```kepler.Rnw```)

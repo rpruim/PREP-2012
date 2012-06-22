@@ -1,0 +1,29 @@
+Optimization in One Variable
+========================================================
+
+```{r echo=FALSE,results="hide",label="options"}
+require(knitr, quietly=TRUE)
+opts_chunk$set(fig.width=3,fig.height=3,out.width="3in")
+```
+
+```{r warning=FALSE,error=FALSE,message=FALSE,results="hide"}
+library(mosaic,quietly=TRUE)
+trellis.par.set(theme=col.mosaic())
+```
+
+Methods
+--------
+Ascent and the Newton step.  How the second derivative scales the first derivative.
+
+Settings
+--------
+### Cobb-Douglas Production with a Budget Constraint
+
+### Paddling upstream.
+Model effort against velocity, for instance effort goes as the square of velocity. Energy is effort time time.  Current is carrying you downstream.  Is there an optimal effort to minimize total energy?
+
+### Airline Pricing and Capacity
+[Original problem statement](http://www.macalester.edu/~kaplan/Math135/HTML/cost-curves1.html?access=AC3) See ```cost-curves.Rnw```
+
+### Fitting 
+Finding parameters in functions. (Note that this is really about finding optima in two or more variables, so return to the subject on Wednesday.)

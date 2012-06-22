@@ -1,0 +1,74 @@
+Integration
+========================================================
+
+```{r echo=FALSE,results="hide",label="options"}
+require(knitr, quietly=TRUE)
+opts_chunk$set(fig.width=3,fig.height=3,out.width="3in")
+```
+
+```{r warning=FALSE,error=FALSE,message=FALSE,results="hide"}
+library(mosaic,quietly=TRUE)
+trellis.par.set(theme=col.mosaic())
+```
+
+## Function/derivative pairs. 
+
+### Physics
+* Position/Velocity
+* Velocity/Acceleration
+* Work/Force
+* Volume/Flow
+* Charge/Current
+
+### Probability
+* Cumulative/Density.  Explain where the cumulative comes from (e.g., with income percentiles, the 99%) and that the cumulative is a non-decreasing function on 0 to 1.  The density is the derivative of this with respect to the variable.  What densities are good for: you can see where most of the stuff is, easily.  
+
+### Chemistry:
+* Amount of substance/reaction rate
+* Energy-Entropy/Temperature  -- temperature is the change in Entropy divided by the change in Energy
+
+### Economics:
+* Debt/Deficit
+* Workforce/Newjobs-Retirements
+* Total cost/Marginal cost
+* Assets/Cash Flow 
+* Total tax/Marginal tax
+* Prices/Inflation.Watch out: they report some changes over a year (seasonally adjusted --- the change from last year), but it would be best if they reported a rate and used a sine model to do the seasonal adjustment.
+
+### Biology
+* Population/Births-Deaths
+* Height/Growth --- or mass or volume, etc.
+
+### Historical
+* longitude problem and dead reckoning at sea.
+
+### Generic:
+* "Stock" / "Flow"
+* "Amount" / "Density"
+
+### Weather:
+* Air pressure / Front
+
+### Everyday:
+* How long has the bathtub been filling VERSUS how much water is in the tub.
+* How long has the food been in the oven.  Heat is flowing into the food.   VERSUS How much heat is in the food.
+* Changes in salary versus salary itself.
+
+Modeling Settings
+-----------------
+
+### Popcorn versus time.  
+From a sound recording of popcorn (to be made), sketch qualitatively and subjectively the rate of popping against time.  Integrate this to get the total subjective amount, then normalize to the actual amount, then differentiate to get the actual rate of popping.
+
+### Net present value of divident streams.
+Discount future dividends at a rate that decreases to zero to account for the subjective belief that the company will be obsolete in 10 years.
+
+### Models of car distance
+How much difference does the precise model of velocity versus time make?
+
+### Fun on the slide.
+Integrate up the instantaneous fun.
+
+### Monte Carlo integration
+How close is the Monte Carlo method to the actual integral?  
+
