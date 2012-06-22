@@ -1,0 +1,7 @@
+Solving
+========================================================
+
+Examples
+------------
+Monthly payment that amortizes a mortgage of principal $P$, interest rate $r$, and duration $D$.  
+* A [differential equations approach](http://rpubs.com/dtkaplan/581).  (This could also be done symbolically.)

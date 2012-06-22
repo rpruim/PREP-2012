@@ -1,0 +1,6 @@
+Differentiation
+========================================================
+1. A car's distance travelled after starting up.  How far does it get in $T$ seconds?
+2. Rate of orange juice production. (Video: record weight versus time and differentiate it to get the flow.)
+3. Modeling instantaneous fun: speed, slope, curvature. [SuperSlide project](http://dl.dropbox.com/u/5098197/Math135/Projects/SuperSlideProject-2011-11-06.pdf)
+
