@@ -1,5 +1,12 @@
 ### PREP 2012 - Modeling Based Calculus
 
+``` {r test-python, engine="python"}
+x = 'hello, python world!'
+print x
+print x.split(' ')
+```
+
+
 Draft Schedule and Resources
 ============================
 

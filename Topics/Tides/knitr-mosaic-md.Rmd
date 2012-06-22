@@ -1,0 +1,4 @@
+```{r test-child}
+library(mosaic,quietly=TRUE)
+trellis.par.set(theme=col.mosaic())
+```

@@ -1,0 +1,54 @@
+How much should the mortgage be?
+========================================================
+
+```{r echo=FALSE,results="hide",label="options",warning=FALSE,error=FALSE,message=FALSE,cache=FALSE}
+opts_chunk$set(fig.width=3,fig.height=3,out.width="3in",cache=TRUE)
+require(mosaic)
+```
+You're going to be paying down a mortgage.
+* $P$ the principal --- the amount that owe at any given time
+* $r$ the interest rate (per month)
+* $M$ the monthly payment
+* $D$ the duration of the payments.
+
+Question, how much does $M$ have to be for a given $P$ and $r$ as a function of $D$?
+
+This could be a good topic for a dynamics class, since it involves discrete time.  But let's model it continuously, as a differential equation in the amount remaining, $P$.  If we know the interest rate, monthly payment, and principal, we can find the amount owing at any time.  For example:
+```{r}
+p = integrateODE( dP ~ r*P-M, r=0.05/12, M=100, P=10000, tdur=500)
+```
+Now there is a function.  We can find how long we need to pay to bring the function to zero:
+```{r}
+findZeros( p$P(t)~t, t.lim=c(0,500))
+```
+This tells us the number of months that the loan would have to be paid to reach zero.
+
+The question, however, was how much the monthly payment needs to be to bring the amount to zero at time $D$.  To set this up, let's integrate to time $D$ and see how much money is owing.
+```{r}
+left.at.D = function(M,D=30*12){
+  p = integrateODE( dP ~ r*P-M, r=0.05/12, M=M, P=10000, tdur=D)
+  return(p$P(D))
+}
+```
+
+We can solve this by trial and error, say for a 15-year mortage:
+```{r}
+left.at.D( M=100,D=15*12 ) # paid too much
+left.at.D( M=50, D=15*12 ) # not enough!
+left.at.D( M=75, D=15*12 )
+left.at.D( M=85, D=15*12 )
+left.at.D( M=80, D=15*12 )
+```
+
+Or, automatically:
+```{r}
+res = uniroot( left.at.D, lower=50,upper=100, D=15*12)
+res
+```
+
+If you pay `r res$root` per month for 15 years, you'll pay off the \$10,000 principle, given an interest rate of 5 percent per year.
+
+WARNING: The ```left.at.D``` function isn't working within ```findZeros```.  Figure out why.
+
+
+

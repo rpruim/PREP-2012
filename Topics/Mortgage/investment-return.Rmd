@@ -1,0 +1,14 @@
+Expectation Value of an Uncertain Investment
+========================================================
+```{r echo=FALSE,results="hide",label="options",warning=FALSE,error=FALSE,message=FALSE}
+opts_chunk$set(fig.width=6,fig.height=3,out.width="3in")
+require(mosaic)
+```
+
+Investment returns are typically presented as multiplicative, in percent.  A common model of the uncertainty in a return in a Gaussian distribution, parameterized by the mean and the standard deviation.  The standard deviation reflects the uncertainty, the mean the typical return.
+
+It's obvious that there should be a relationship between the mean return and the expectation value of the investment.  Less clear, is there a relationship between the standard deviation of the return and the expectation value of the investment.
+
+Suppose the investment return over the period of interest has a mean return of $r$ and a standard deviation of $s$
+```{r}
+returns = makeFun()

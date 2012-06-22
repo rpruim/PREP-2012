@@ -1,0 +1,100 @@
+Modeling with Series 
+========================================================
+Danny Kaplan
+
+```{r echo=FALSE,results="hide",label="options"}
+require(knitr, quietly=TRUE)
+opts_chunk$set(fig.width=3,fig.height=3,out.width="3in")
+```
+
+```{r warning=FALSE,error=FALSE,message=FALSE,results="hide"}
+library(mosaic,quietly=TRUE)
+trellis.par.set(theme=col.mosaic())
+```
+
+Series
+------
+
+Sequences and series are often motivated by Zeno's paradoxes.  
+The problem with this motivation is that, when the interest is in describing the world, the paradoxes not very motivating.  Everyone knows from childhood that the quicker runner will overtake the slower and that the arrow will reach its target.
+Similarly, everyone knows that a circle has an area and that it's sensible to speak of the slope of a curve or the area under a curve. Proving such things is not on the modeler's agenda.
+
+Reserve Zeno's paradoxes for demonstrating that there are situations where simple logic that sounds compelling is wrong and where a formal and precise approach is needed to avoid error.  Zeno provides a cautionary lesson in critical thinking, but calculus has more important uses than demonstrating errors in informal logic.  If you want an example where wrong thinking leads to trouble, you need not appeal to the arrows and races of antiquity but to current reasoning about money and debt and the tempting logic that a country's finances are similar to a family's. 
+
+Much of modeling concerns approximation.  The relationship to series does not involve infinite series but *finite* series.  The concern is not whether the infinite series will converge but whether the finite series is close enough.
+
+The modeling goals of teaching series might be considered to be:
+1. You can usefully break things into components, and it can happen that considering only a few of the components is enough to get the job done.
+2. Mastering the most common general techniques for dividing things into parts, e.g. polynomial approximation.
+3. In refining the understanding of (2), knowing that there are situations where taking just a few parts doesn't accomplish what's wanted. 
+
+To illustrate the difference between convergence of series and modeling, consider a gambler heading off to a casino to play roulette.  The gambler has decided on a simple play --- always bet on red --- and is seeking a strategy that will guarantee this. Reading the literature, the gambler is tempted by the doubling-down strategy:
+<blockquote>
+When you win, walk away a winner.  Until then, when you lose, double your bet in the next round.
+</blockquote>
+
+A single bet on red will win 10 out of 21 times, giving an expectation value of $-0.053$ for every dollar bet.  But the doubling-down strategy is a sure win.  If you lose \$1 in the first round, your bet of \$2 in the second will yield a net win of $1 if you win.  If you happen to lose the second round, your doubled bet of \$4 in the third round will yield a net win of \$1 --- the 4 dollars you win in that round minus the 3 you lost in the two previous rounds.  And so on, ad infinitum.  Eventually the ball must land on red. When it does, you will clear \$1.  A sure win!  Indeed, if rather than betting on red, the gambler always bet on number 7, the sure win would be \$35.
+
+The above paragraph is an analysis of a model of the gambling session.  Like all models, it leaves some things out.  Sensibly, the model neglects the possibility that the casino will be hit by an asteroid, wiping out your potential win.  Not so sensibly, the model assumes that you can always double-down, which requires your having access to an infinite amount of money.  It also assumes that there is no cap by the casino on the amount of a bet, that the casino is willing to accept a bet of an arbitrary amount of money.
+
+The process can't go out to infinity because either you will run out of money or the casino will step in.  The probability of losing is small.  How small? It depends on the amount of money you have and the house limit on bets.  But it is not zero.  And if you lose, you may lose big.  So the guaranteed win is really nothing of the kind.  The idealization of an infinite process misses the essential feature that causes the strategy to fail.
+
+#### Where Series Fit in Calculus
+
+The best-selling calculus textbook is Stewart.  Here's the table of contents for the 2nd edition, often used as the single text for a three-semester sequence of calculus.
+1. Functions and Models
+2. Limits and Derivatives
+3. Differentiation Rules
+4. Applications of Differentiation
+5. Integrals
+6. Applications of Integration
+7. Differential Equations 
+8. **Infinite Sequences and Series**
+9. Vectors and the Geometry of Space
+10. Vector Functions
+11. Partial Derivatives
+12. Multiple Integrals
+13. Vector Calculus
+
+Note that "Infinite Sequences and Series" comes after differential and integral calculus, suggesting that the material is not needed to introduce differentiation and integration.  Anecdotally, instructors often report not being able to reach sequences and series in the first year of calculus.  More than three quarters of students who study calculus never reach past the first year, suggesting that the point of sequences and series is not to illuminate integration and differentiation.
+
+Are there applications of sequences and series that are important? Economists rightly point to the concept of "net present value," the equivalent in today's money of a stream of income and expenditure in the future.  A mathematically similar problem is that of the distance travelled by a bouncing ball: a ball that bounces each time to a fixed fraction of its peak height on the last bounce.  Both of these examples relate to exponentials and sums of exponentials.
+
+#### Net Present Value
+
+In March 2012, a group of investors, including basketball star Magic Johnson, bought the Los Angeles Dodgers at auction for $2 billion. A news commentator, trying to give an idea of how much money this is, calculated that this is enough to buy season tickets for 308,000 years. 
+
+It's easy to see where this estimate comes from.  The Dodger's web site lists the most expensive season ticket at \$80 per game; the least expensive is \$5 per game.  Given that there are 81 home games in a season, the season ticket cost \$6480 in the expensive seats and \$405 in the cheap seats.  So with two billion dollars, one could buy 308,642 expensive tickets or 4,938,272 cheap season tickets.
+
+But this is the wrong calculation.  It ignores several important factors:
+* The interest that the money can earn.
+* Inflation
+As of this writing, 30-year US treasury bonds are earning approximately 3% per year.  Inflation runs at about 2%.  Taken together, a dollar this year will buy goods worth about 1.01 dollars next year, and so on cumulatively.  Put another way, buying a season ticket in $n$ years will cost roughly $1.01^{-n}6480$ dollars in today's money.  To put aside enough money to fund the purchase of a season ticket each year for 300,000 years will involve about \$648,000. $$\sum_{n=1}^{300000} 6480 \frac{1}{1.01}^n \approx 648000 .$$
+A substantial sum, but not close to \$2 billion.  Actually, the \$648000 will buy season tickets not just for 300,000 years, but for an infinite time in the future. Season tickets far in the future are very cheap in today's money.  Based on the interest and inflation rates assumed here, to buy an infinite sequence of season tickets starting just 2000 years in the future costs less than a quarter of a cent in today's money.
+
+The important mathematics here is not that the sequence of present values of future season tickets converges.  What's important is the time scale on which the present value becomes trivial.  At 1\% discount per year, the half-life is about 72 years.  Ten half lives corresponds to a decrease by a factor of 1000.  So an estimate that's good to 0.1\% need not look forward more than 1000 years.
+
+Indeed, there's little point in worrying about what it's going to cost after even 100 years.  The assumptions about interest yields and inflation rates, to say nothing of the very existence of a baseball season or the Dodgers themselves, introduce a much larger error.
+
+The exponential process guarantees convergence.  It's the time scale of the process that needs emphasis.
+
+Let's turn the problem around and imaging that Magic Johnson and his co-investors decided to use the two-billion dollars fund college tuition for one person each year until the money runs out.  College tuition has, for the past 60 years, been rising at an average rate of about 6% per year.  Currently, for the most expensive colleges, it's rising at about 4.5% per year.  Given the 3% return on long-term treasury bonds, paying for a year of college far in the future will cost *more* in today's money than paying for a sooner year.  Using \$50,000 per year as the cost of an elite college, the money will run out when
+$$ 50,000 \times \sum_{n=1}^{k} 1.015^k = 2,000,000,000.$$
+Solving for $k$ involves looking at finite sums, not the convergence of the series.  Trial and error works reasonably well:
+```{r}
+50000*sum(1.015^(1:500)) # more than 2 billion
+50000*sum(1.015^(1:250)) # less than 2 billion
+50000*sum(1.015^(1:400)) # less than 2 billion
+50000*sum(1.015^(1:450)) # more than 2 billion
+50000*sum(1.015^(1:425)) # Close!
+```
+
+So, the two-billion dollars will pay for one student to attend college each year for the next roughly 425 years.  There's no point in worrying about the solution more precisely, since the inflation and interest rates influence the calculation sensitively.  For instance, if the two-billion dollars can be invested in a way that earns 4% yearly rather than the assumed 3%, the money will pay for 1060 years of college.  On the other hand, if tuition costs rise at 5% in face of 3% investment returns, the two-billion dollars will cover only 185 years of college.  
+
+Of course, nobody who understands exponential growth believes that the college tuition system can continue this way.  Even 20 years is beyond the tuition and investment planning horizon of administrators in higher education.
+
+#### Function Approximation with Polynomials
+Taylor Series is a standard topic in calculus courses.  It brings together functions, derivatives, and series in a nice way.  But convergence isn't really the issue when using Taylor Series --- usually the approximation is taken just to first- or second-order.
+
+The idea of constructing a polynomial by matching derivatives at a single point is interesting, but doesn't reflect many of the important ideas of approximation.  Rather than shoehorning polynomial approximation into an example of series, we'll look at it as a modeling technology and consider it as a separate topic.
+

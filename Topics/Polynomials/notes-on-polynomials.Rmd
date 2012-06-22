@@ -1,0 +1,28 @@
+Approximation with Polynomials
+==============================
+
+```{r echo=FALSE,results="hide",label="options"}
+require(knitr, quietly=TRUE)
+opts_chunk$set(fig.width=3,fig.height=3,out.width="3in")
+```
+
+```{r warning=FALSE,error=FALSE,message=FALSE,results="hide"}
+library(mosaic,quietly=TRUE)
+trellis.par.set(theme=col.mosaic())
+```
+
+#### Approximation with Polynomials
+Representation of arbitrary functions (or patterns in data) with polynomials.  Low order ... things work well.
+* quadratic or higher runs off to $\pm \infty$ very quickly.  Not useful for extrapolation.
+* Estimation becomes hard with high-order polynomials, due to non-orthogonality.  
+* Selection of model order: use anova, so that you look at the incremental improvement of adding a new term
+* Parameter estimation: variance inflation due to collinearity.
+
+The general lessons of experience in science is: 
+* Use first or at most second order.  
+* Use multiple variables rather than high-order in a single variable.  
+* Try to make the multiple variables orthogonal (by randomization or orthogonal assignment) to avoid variance inflation.  
+The important concept is orthogonality, not convergence.
+
+
+

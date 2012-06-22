@@ -1,0 +1,52 @@
+Cobb-Douglas Production Function
+========================================================
+
+```{r echo=FALSE,results="hide",label="options",warning=FALSE,error=FALSE,message=FALSE}
+opts_chunk$set(fig.width=3,fig.height=3,out.width="3in")
+require(mosaic)
+```
+
+Production is a function of capital $K$ and labor $L$: 
+$$P(K,L) =  \gamma K^{\alpha} L^{1-\alpha}, $$ 
+a form that gives constant returns to scale.
+```{r fig.keep='high'}
+cd = makeFun(K^a * L^(1-a)~ K & L, a=.3)
+cd.dK = D(cd(K,L)~K)
+cd.dL = D(cd(K,L)~L)
+plotFun(cd(K=K,L=L)~K&L, K.lim=range(0,100),L.lim=range(0,100))
+plotFun(cd.dK(K=K,L=L)~K&L, K.lim=range(0,100),L.lim=range(0,100))
+plotFun(cd.dL(K=K,L=L)~K&L, K.lim=range(0,100),L.lim=range(0,100))
+```
+
+Often, there is a budget constraint.  We'll come to that later.
+
+
+## Treat this as a modeling problem.  
+* How to operationalize capital, labor and output?
+** labor: hours or person hours or money spent
+** capital: tons of equipment or money spent
+** output: unicycles produced or dollar value of unicycles produced.  (But if we're interested in setting the values of labor and capital, maybe best not to worry about the market price for unicycles.)
+* Look at the units.  
+** Why is it permissible to take dollars to the 0.3 power?  Ordinarily not, but in this case the units will work out when we combine capital with labor.  
+** $\gamma$ converts \$ to unicycles.
+* In what ways does the Cobb-Douglas capture what we know about production?  Why does this particular function form match that?
+ 
+## Diminishing marginal returns.  
+Suppose we increase capital but hold labor constant.  How will output increase?  Fast at first, then slower.  Same for labor.  These are partial derivatives (one way to look at things) but we can also just plot out P against K for constant L.  Ask students to do that.
+
+```{r fig.keep="high"}
+plotFun( cd(K=K, L=50) ~ K, K.lim=range(0,100))
+plotFun( cd(K=30,L=L) ~ L, L.lim=range(0,100))
+```
+
+## Constant returns to scale.  
+Double both capital and labor, e.g. build a new factory.  This should double output. NOTE: It is __not__ a partial derivative.
+```{r}
+plotFun( cd(K=inc,L=inc) ~ inc, inc.lim=range(0,100))
+plotFun( cd(K=inc,L=2*inc) ~ inc, inc.lim=range(0,100))   ## spend twice as much on labor as on capital
+```
+
+## The value of labor and of capital
+The value of labor can be thought of as the number of bicycles produced per unit of labor.  Similarly for capital.
+* Should this be an average or a marginal rate?  Which one is best to use for production-level decisions?
+* Does the value of labor depend on the level of capital?
