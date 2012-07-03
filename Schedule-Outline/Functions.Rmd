@@ -8,7 +8,10 @@ General Features of Functions
 -----------------------------
 ## What are the inputs?
 Models should be intended for a purpose.  So it matters what is the input and what is the output, since you typically want to transform a particular quantity into another type of quantity.
-Snow Tree Cricket (from Chapter 1 of Hughes-Hallett).  See Math 135 notes from 25 Jan. 2012
+
+![Snowy Tree Cricket excerpt](figures/SnowyTreeCricket.png)
+
+Snow Tree Cricket (from Chapter 1 of Hughes-Hallett).  See Math 135 notes from 25 Jan. 2012 and ```figure/SnowyTreeCricket.png```
 
 ## Difference between traditional math and computer notation for functions.
 $y = mx + b$, $f(x) = mx + b$, $\int x dx$, $\sin(x)$, $\sqrt{x}$, and so on.
@@ -81,3 +84,4 @@ Amplitude, time lag, offset.
 2. Tone and period.  Model a musical scale.  How does the period change from note to note?  Model a chord.
 3. Modeling tide data.  Example on [Hawaiian tides](http://rpubs.com/dtkaplan/540)
 4. Kepler and the planets.  (See ```kepler.Rnw```)
+

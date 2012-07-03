@@ -1,12 +1,12 @@
 Integration
 ========================================================
 
-```{r echo=FALSE,results="hide",label="options"}
+```{r echo=FALSE,results="hide",label="options",echo=FALSE}
 require(knitr, quietly=TRUE)
 opts_chunk$set(fig.width=3,fig.height=3,out.width="3in")
 ```
 
-```{r warning=FALSE,error=FALSE,message=FALSE,results="hide"}
+```{r warning=FALSE,error=FALSE,message=FALSE,results="hide",echo=FALSE}
 library(mosaic,quietly=TRUE)
 trellis.par.set(theme=col.mosaic())
 ```
@@ -72,3 +72,7 @@ Integrate up the instantaneous fun.
 ### Monte Carlo integration
 How close is the Monte Carlo method to the actual integral?  
 
+
+
+## Exercises
+1. Using ```D()``` to answer questions about integrals. [Rmd](../Topics/Integration/Integration-problem201.Rmd)
