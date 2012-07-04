@@ -3,7 +3,7 @@ Modeling with Limits and Series
 
 Danny Kaplan
 
-```{r echo=FALSE,results="hide",warnings=FALSE}
+```{r echo=FALSE,results="hide",warning=FALSE,message=FALSE}
 require(mosaic)
 ```
 
@@ -72,8 +72,9 @@ Since we can't define the derivative using $h=0$, we need to choose some other v
 But the practical reason to define the derivative in terms of the limit $h \rightarrow 0$ is to be able to leave $h$ out of the conversation entirely.  By using the limit, we get the advantages of making $h$ small without the need to define what "small"" means.
 
 From a modeling perspective, the meaning of "small" is important and we should engage it directly when teaching about derivatives.  Why?
-*Often, the purpose for which a derivative is used is to indicate the rate of change of a quantity --- how the output changes as the input is changed.  In practice, the input will always be changed by a finite amount and so the output will change accordingly.  Using the derivative defined in terms of the limit will give only an approximation to the change over a necessarily finite change in the input.
-*Measurements of derivatives are often made from discrete measurements.  How fast does the grass grow?  The sensible thing is to measure the length one day, then come back the next day.  Would you ever want to measure the length one instant and then measure it again after one second or one millisecond, etc?  Each measurement invariably has error.  The derivative you measure is really
+
+  * Often the purpose for which a derivative is used is to indicate the rate of change of a quantity --- how the output changes as the input is changed.  In practice, the input will always be changed by a finite amount and so the output will change accordingly.  Using the derivative defined in terms of the limit will give only an approximation to the change over a necessarily finite change in the input. 
+  * Measurements of derivatives are often made from discrete measurements.  How fast does the grass grow?  The sensible thing is to measure the length one day, then come back the next day.  Would you ever want to measure the length one instant and then measure it again after one second or one millisecond, etc?  Each measurement invariably has error.  The derivative you measure is really
 $$\widehat{df/dt} = f(t+h)+\epsilon_1 - (f(t)+\epsilon_2)/h$$
 where $\epsilon_1$ and $\epsilon_2$ are random errors.  Re-arranging shows the problem:
 $$\widehat{df/dt} = \frac{f(t+h)-f(t)}{h} + \frac{\epsilon_1-\epsilon_2}{h}.$$
@@ -85,7 +86,7 @@ In the context of computer arithmetic, the errors of rounding in floating point 
 In the context of measurements made in the field or lab, there are additional sources of error.  These argue for a finite $h$.  Why emphasize the limit to the exclusion of teaching some sensible about defining "small".
 
 <blockquote>
-* Body temperature varies slowly and systematically by about $\pm 1$ F over the course of the day: a so-called "circadian rhythm."  Suppose you wanted to measure the rate of change of body temperature at 6am.  What factors would influence your choice of $h$?  
+  * Body temperature varies slowly and systematically by about $\pm 1$ F over the course of the day: a so-called "circadian rhythm."  Suppose you wanted to measure the rate of change of body temperature at 6am.  What factors would influence your choice of $h$?  
 
 ANS: Precision of the thermometer.  Typically, you can measure body temperature to a precision of about 0.1 F.  So in choosing $h$ you would want to have a time interval over which the change in body temperature is bigger than 0.1 F.
 </blockquote>
@@ -150,18 +151,18 @@ manipulate(
 The traditional way to show that the surge function goes to zero as $t \rightarrow \infty$ is by l'Hospital's rule.  First published in 1696, the Rule seems mainly to provide a mechanism, a pseudo-application, for having students take derivatives of a variety of functions and spotting singularities, places where the input to a function would cause a violation of the no-division-by-zero rule.  Whether this is a help to students or a distraction is a matter of dispute, but the textbook cases are appropriately handled by the rules for computer arithmetic and the conventions of the plotting program.
 
 #### Exercises: Functions at zero and infinity
-* $\lim_{x \rightarrow 1} \frac{\ln x}{x-1}$
-* $\lim_{x \rightarrow 1} \frac{x^2-1}{2*x^2+1}$
-* $\lim_{x \rightarrow \infty} \frac{e^x}{x^2}$
-* $\lim_{x \rightarrow \infty} \frac{\ln x}{\sqrt[3]{x}}$
-* $\lim_{x \rightarrow 0^+} \frac{x}{1/\ln x}$
-* A counter-example from Stewart where l'Hospital's rule shouldn't be applied: $\lim_{x \right \pi^-} \frac{sin x}{1 - \cos x}$
+  * $\displaystyle \lim_{x \to 1} \frac{\ln x}{x-1}$
+  * $\displaystyle \lim_{x \to 1} \frac{x^2-1}{2*x^2+1}$
+  * $\displaystyle \lim_{x \to \infty} \frac{e^x}{x^2}$
+  * $\displaystyle \lim_{x \to \infty} \frac{\ln x}{\sqrt[3]{x}}$
+  * $\displaystyle \lim_{x \to 0^+} \frac{x}{1/\ln x}$
+  * A counter-example from Stewart where l'Hospital's rule shouldn't be applied: $latex \displaystyle \lim_{x \to \pi^-} \frac{\sin x}{1 - \cos x}$
 
 Show that in each of these cases, the computer arithmetic results in ```NaN``` at the singularity, but the plot shows the limit reasonably.
 
 #### Summary: Teaching limits in a modeling-based way:
-* When introducing the derivative, $h \rightarrow 0$ means that $h$ should be small.  Discuss what "small" means and how it depends on context.  Two important contexts: the length scale over which the function shows visible curvature; the amount of measurement (or round-off) noise in an evaluation of the function.
-* The idea that division by zero is prohibited and how the computer deals with a division by zero.  Quantities that make sense near zero (or near infinity) are reasonably interpreted in the limit.
+  * When introducing the derivative, $h \rightarrow 0$ means that $h$ should be small.  Discuss what "small" means and how it depends on context.  Two important contexts: the length scale over which the function shows visible curvature; the amount of measurement (or round-off) noise in an evaluation of the function.
+  * The idea that division by zero is prohibited and how the computer deals with a division by zero.  Quantities that make sense near zero (or near infinity) are reasonably interpreted in the limit.
 
 
 Series
@@ -176,9 +177,9 @@ Reserve Zeno's paradoxes for demonstrating that there are situations where simpl
 Much of modeling concerns approximation.  The relationship to series does not involve infinite series but *finite* series.  The concern is not whether the infinite series will converge but whether the finite series is close enough.
 
 The modeling goals of teaching series might be considered to be:
-1. You can usefully break things into components, and it can happen that considering only a few of the components is enough to get the job done.
-2. Mastering the most common general techniques for dividing things into parts, e.g. polynomial approximation.
-3. In refining the understanding of (2), knowing that there are situations where taking just a few parts doesn't accomplish what's wanted. 
+  1. You can usefully break things into components, and it can happen that considering only a few of the components is enough to get the job done.
+  2. Mastering the most common general techniques for dividing things into parts, e.g. polynomial approximation.
+  3. In refining the understanding of (2), knowing that there are situations where taking just a few parts doesn't accomplish what's wanted. 
 
 To illustrate the difference between convergence of series and modeling, consider a gambler heading off to a casino to play roulette.  The gambler has decided on a simple play --- always bet on red --- and is seeking a strategy that will guarantee this. Reading the literature, the gambler is tempted by the doubling-down strategy:
 <blockquote>
@@ -194,19 +195,19 @@ The process can't go out to infinity because either you will run out of money or
 #### Where Series Fit in Calculus
 
 The best-selling calculus textbook is Stewart.  Here's the table of contents for the 2nd edition, often used as the single text for a three-semester sequence of calculus.
-1. Functions and Models
-2. Limits and Derivatives
-3. Differentiation Rules
-4. Applications of Differentiation
-5. Integrals
-6. Applications of Integration
-7. Differential Equations 
-8. **Infinite Sequences and Series**
-9. Vectors and the Geometry of Space
-10. Vector Functions
-11. Partial Derivatives
-12. Multiple Integrals
-13. Vector Calculus
+  1. Functions and Models
+  2. Limits and Derivatives
+  3. Differentiation Rules
+  4. Applications of Differentiation
+  5. Integrals
+  6. Applications of Integration
+  7. Differential Equations 
+  8. **Infinite Sequences and Series**
+  9. Vectors and the Geometry of Space
+  10. Vector Functions
+  11. Partial Derivatives
+  12. Multiple Integrals
+  13. Vector Calculus
 
 Note that "Infinite Sequences and Series" comes after differential and integral calculus, suggesting that the material is not needed to introduce differentiation and integration.  Anecdotally, instructors often report not being able to reach sequences and series in the first year of calculus.  More than three quarters of students who study calculus never reach past the first year, suggesting that the point of sequences and series is not to illuminate integration and differentiation.
 
@@ -257,22 +258,23 @@ Representation of arbitrary functions with polynomials.  Low order ... things wo
 [^3]:
   Another footnote.
   
-  And a table:
-| Item      | Value |
-| --------- | -----:|
-| Computer  | $1600 |
-| Phone     |   $12 |
-| Pipe      |    $1 |
+And a table:
 
-* quadratic or higher runs off to $\pm \infty$ very quickly.  Not useful for extrapolation.
-* Estimation becomes hard with high-order polynomials, due to non-orthogonality.  
-* Selection of model order: use anova, so that you look at the incremental improvement of adding a new term
-* Parameter estimation: variance inflation due to collinearity.
+   Item      | Value 
+   --------- | ------
+   Computer  | $1600 
+   Phone     |   $12 
+   Pipe      |    $1 
+
+  * quadratic or higher runs off to $\pm \infty$ very quickly.  Not useful for extrapolation.
+  * Estimation becomes hard with high-order polynomials, due to non-orthogonality.  
+  * Selection of model order: use anova, so that you look at the incremental improvement of adding a new term
+  * Parameter estimation: variance inflation due to collinearity.
 
 The general lessons of experience in science is: 
-* Use first or at most second order.  
-* Use multiple variables rather than high-order in a single variable.  
-* Try to make the multiple variables orthogonal (by randomization or orthogonal assignment) to avoid variance inflation.  
+  * Use first or at most second order.  
+  * Use multiple variables rather than high-order in a single variable.  
+  * Try to make the multiple variables orthogonal (by randomization or orthogonal assignment) to avoid variance inflation.  
 The important concept is orthogonality, not convergence.
 
 
