@@ -1,0 +1,108 @@
+
+\documentclass{article}
+
+\usepackage[margin=.5in, includehead, includefoot]{geometry}
+
+\begin{document}
+\SweaveOpts{
+  fig.width=7, fig.height=4,
+  out.width=".9\\textwidth",
+  fig.keep="hold",
+  comment=NA
+}
+
+<<echo=FALSE,message=FALSE>>=
+require(mosaic)
+require(reshape2)
+require(plyr)
+trellis.par.set(theme=col.mosaic())
+read.csv('PreSurvey.csv') -> survey
+options(width=90)
+@
+<<>>=
+softwareI <- head( grep("software\\.",names(survey)), -1)
+obstaclesI <- grep("obstacles\\.",names(survey))
+implementI <- grep("incorporate\\.",names(survey))
+learnI <- grep("learn\\.",names(survey))
+communicateI <- grep("communicate\\.",names(survey))
+@
+<<>>=
+msurvey <- melt(survey, id=c("name"))
+msurvey <- subset(msurvey, !is.na(value) & (value != "") )
+@
+
+
+<<oneItem>>=
+oneItem <- function(item, data, levels) {
+	new <- subset(msurvey, grepl(item, variable))
+	new$value <- factor(new$value, levels=levels, ordered=TRUE)
+	new$variable <- sub(item, '', new$variable)
+	tally( ~ variable & value, data=new)
+	xhistogram( ~value|variable, new, width=1 ,type='count', xlab="")
+	return(new)
+}
+@
+
+\newpage
+\section{How do you see incorporating modeling in your courses?}
+
+<<incorporate>>=
+incorporate <- oneItem('incorporate\\.', msurvey, c('Not at all', 'a little', 'moderate', 'a lot', "Very much"))
+tally( ~ value + variable, incorporate)
+xhistogram( ~ value | variable, incorporate, xlab="less -> more", scales=list(draw=FALSE) )
+@
+
+\newpage
+\section{Obstacles to teaching modeling-based calculus}
+<<obstacle>>=
+obstacle <- oneItem("obstacles\\.", msurvey, 
+                      c('No obstacle', 'a little', 'sigificant obstacle', 'huge obstacle') )
+tally( ~ variable & value, data=obstacle)
+xhistogram( ~value|variable, obstacle, width=1 ,type='count', xlab="less -> more", scales=list(draw=FALSE))
+@
+
+\newpage
+\section{Software familiarity}
+<<software>>=
+software <- oneItem('^software\\.', msurvey, c('Never used it',"Tried, but it didn't take", "Use infrequently", 'Use regularly','Can help others learn'))
+tally( ~ value + variable, software)
+xhistogram( ~ value | variable, software, xlab="less -> more", scales=list(draw=FALSE) ) 
+@
+
+\newpage
+\section{Interest in leanring about software}
+<<learn>>=
+learn <- oneItem('learn\\.', msurvey, c('Basic intro', 'How to use it in my classes', "I'll show the workshop participants how to work with it.", 'Not interested at all'))
+tally( ~ value + variable, learn)
+xhistogram( ~ value | variable, learn, xlab="less -> more", scales=list(draw=FALSE) )
+@
+
+\newpage
+\section{Tools you use in your teaching}
+
+<<tools>>=
+tools <- oneItem('tools\\.', msurvey, c('Absolutely not', 'Not likely', 'Possible', 'Very attractive', 'Already use'))
+tally( ~ value + variable, tools)
+xhistogram( ~ value | variable, tools, xlab="less -> more", scales=list(draw=FALSE) )
+@
+
+\newpage
+\section{How do you like to communicate?}
+
+<<communicate>>=
+communicate <- oneItem('communicate\\.', msurvey, c('not interested', 
+'tell me more',
+'interested',
+'comfortable',
+'very comfortable'))
+tally( ~ value + variable, communicate)
+xhistogram( ~ value | variable, communicate, xlab="less -> more", scales=list(draw=FALSE) )
+@
+
+\newpage
+\section{Comments}
+<<comments>>=
+ind <- which(survey$comments != "")
+cat(paste(survey$comments[ind], survey$name[ind], sep="\n\t", collapse="\n**********************\n"))
+@
+\end{document}
