@@ -1,0 +1,155 @@
+Constrained Optimization Intro
+========================================================
+```{r echo=FALSE,results="hide",label="options",echo=FALSE}
+require(knitr, quietly=TRUE)
+opts_chunk$set(fig.width=5,fig.height=5,out.width="5in")
+```
+
+```{r warning=FALSE,error=FALSE,message=FALSE,results="hide",echo=FALSE}
+library(mosaic,quietly=TRUE)
+trellis.par.set(theme=col.mosaic())
+```
+
+Optimization is important for modeling the world; nature and man often  maximize or minimize some quantity: physical systems adopt conformations that minimize potential energy, economic actors seek to maximize profits (or at least to minimize costs), model fitting involves finding the parameters that bring a function form as close as possible to the data.
+
+It often happens that there is some constraint to be satisfied.  This might be because only certain configurations are physically possible, or because when fitting a function a parameter might not be able to take on any value (example: a standard deviation can't be negative).
+
+Sometimes the constraints are really the result of trying to do two things at once.  For instance, in designing a health-care intervention such as an immunization, one might try simultaneously to reduce the burden of illness but also to keep costs low.  The units of one objective (e.g., lives saved or lost) cannot be directly translated into the units of the other objective (e.g., money spent).  The resulting problem is often cast as an optimization (save as many lives as possible) subject to a constraint (without going over your budget).  
+
+The solutions to such constrained optimization problems are of interest both because they indicate the best configuration of the system and because they can suggest whether the constraints themselves make sense.  (Perhaps instead of spending the entire budget on immunization, it would be better to save some for pre-natal health care.)
+
+The usual form of an optimization problem is a single "objective function", $f( x, y, \ldots)$ to be maximized along with zero or more "equality constraint functions", $g_j ( x, y, \ldots ) $  and zero or more "inequality constraint functions", $h_k (x, y, \ldots ) $. The difference between the equality and inequality constraint functions is suggested by the names: equality constraint functions are satisfied for those inputs $x, y, \ldots$ such that the value $g_j( x, y, \ldots ) = 0$.  Inequality constraint functions are satisfied when the inputs $x, y, \ldots$ are such that $h_k( x, y, \ldots) \leq 0$.  (If you're wondering why it's maximization instead of minimization, or why it's $\leq$ and not $\geq$, remember that you can choose the sign on your objective and constraint functions, to turn them ``upside down'' so that maximization effectively becomes minimization and a $\geq$ constraint becomes $\leq$.)
+
+
+The purpose of this essay is to show you how to graph objective and constraint functions of two variables, so that you can visualize the solutions.  Then, once you have an intuition about what's going on, you'll be better positioned to understand the formal methods, involving gradients, for solving problems with more than two inputs. (It's not uncommon for real-world optimization problems to have dozens or hundreds or even thousands of inputs.)
+
+To illustrate, consider the following optimization problem, stated abstractly in mathematical terms:
+
+#### Problem Statement
+Maximize $f(x,y) =  xy$ such that $4 x^2 + y^2 = 8$ and $y \geq 1$.
+
+
+The first step is to express the objective function
+```{r}
+f = makeFun( x*y ~ x+y )
+```
+
+The constraints in the problem statement weren't given in functional form, but as equations. Translating them to functional form is a matter of bringing everything over to one side of the equation:
+```{r}
+g = makeFun( 4*x^2 + y^2 - 8 ~ x+y )
+h = makeFun( 1-y ~ x+y )
+``` 
+Notice that the inequality constraint function $y \geq 1$ has been arranged so that the value of \texttt{h} will be negative when the constraint is satisfied.  
+
+Ordinarily, you might choose to graph out the function $f$.  But, when there is an equality constraint, a good place to start in visualizing the optimization problem is to plot out $g$.  The reason is that you need to find some range of $x$ and $y$ such that the value of $g(x,y)$ is zero somewhere in that range.  
+
+```{r label="ggraph"}
+plotFun( g(x=x,y=y) ~ x+y, x.lim=c(-3,3), y.lim=c(-3,3), lwd=2, filled=FALSE, col="red" )
+```
+
+In deciding whether your range is adequate, check to make sure that the zero contour shows up in your graph, as it does here.  If it doesn't, you'll have to expand the plotting range appropriately.
+
+Once you have a good range for the equality constraint you can plot out the objective function over that range. Then overplot the constraint itself on it, like this
+```{r label="fgraph"}
+plotFun( f(x=x,y=y)~x+y, x.lim=c(-3,3), y.lim=c(-3,3) )
+plotFun( g(x=x,y=y)~x+y, add=TRUE, filled=FALSE,lwd=2,col="red", levels=0)
+```
+
+At this point, consider the problem while ignoring the inequality constraint $h(x,y)$.  By looking at the graph along the zero contour of $g(x,y)$, you can see that the largest value for the objective function is $f(x,y) = 2$, where the constraint contour is tangent to the contour of the objective function.  This occurs in two places, near $(x=1, y\approx 2)$ and $(x=-1, y\approx -2)$.  If you want a more precise answer, you can zoom in on the region of interest:
+
+```{r label="fgraph2"}
+plotFun( f(x=x,y=y)~x+y, x.lim=c(0,3), y.lim=c(0,3) )
+plotFun( g(x=x,y=y)~x+y, add=TRUE, filled=FALSE,lwd=2,col="red")
+``` 
+
+The location of the optimum is where the constraint function is tangent to a contour of the objective function.  Here, it happens coincidentally that the relevant contour was drawn on the plot, but more often the relevant contour happens not to be one of those drawn in the contour plot.  You'll have to interpolate.
+
+Finally, consider the inequality constraint $h$ which has been ignored until now.  You can add this to the plot using the ```show.constraint``` function with optional argument ```equality=FALSE```.  Inequality constraints typically are satisfied over a region.  In the plot, this region is shaded.
+
+```{r label="fgraph3"}
+plotFun( f(x=x,y=y)~x+y, x.lim=c(0,3), y.lim=c(0,3) )
+plotFun( g(x=x,y=y)~x+y, add=TRUE, filled=FALSE,lwd=2,col="red")
+plotFun( as.numeric(h(x=x,y=y))<0~x+y, add=TRUE)
+```
+
+The plot of $h$ is arranged so that the region where the constraint is **not** satisfied is shaded.  So, look in the lighter region where the constraint is satisfied.
+
+In this case, the inequality constraint doesn't change the answer at all, since the point at $(x=1, y=2)$ is within the region that satisfies the constraint.  However, the optimum at $(x=-1, y=-2)$ is outside of the region satisfied by the constraint, so that point is not a solution to the optimization problem.
+
+
+#### Problem 1
+Consider the above problem as a **minimization** problem.  What's the value of the objective function at the constrained minimum?
+<code> \SelectSetHoriz{-2}{-6,-4,-2,0,2,4,6}</code>
+
+
+
+#### Problem 2
+Set up and solve graphically the problem to find the extremum of $f(x,y) = xy$ subject to the equality constraint $5 x + 2 y = 100$.
+
+Where is the optimum?
+1. $x = $ ```\SelectSetHoriz{10}{5,10,15,25,30,35,40,45,50}```
+2. $y = $ ```\SelectSetHoriz{25}{5,10,15,25,30,35,40,45,50}```
+3. What's the value of the objective function at the optimum?
+   ```\SelectSetHoriz{250}{45,50,200,250,300,450,625}```
+
+<pre>
+\begin{AnswerText}
+\begin{enumerate}
+\item Implement the objective function and the equality constraint:
+
+f = makeFun(x*y ~ x&y )
+g = makeFun(5*x + 2*y - 100 ~ x&y )
+
+\item Choose a plotting range that's suitable to show the zero contour
+  of the constraint function.
+
+plotFun( f(x,y)~x&y, x.lim=c(0,20), y.lim=c(0,50) )
+plotFun( g(x,y)~x&y, add=TRUE, col="red", lwd=2 )
+
+\item Zoom in around the answer to see it more precisely.
+
+plotFun( f(x,y)~x&y, x.lim=c(8,12), y.lim=c(20,30) )
+plotFun( g(x,y)~x&y, add=TRUE, filled=FALSE, col="red", lwd=2 )
+
+  
+The maximum is near $(x=10, y=25)$ and has value $f(10,25)=250$.
+\end{enumerate}
+\end{AnswerText}
+</pre>
+
+#### Problem 3 
+(§9.5 Problem 10 from textbook). Set up and solve graphically the problem to find the maximum of $f(x,y) = x^2 + y^2$ subject to the equality constraint $x^4 + y^4 = 2$.
+
+One of the maximum is somewhere in the range described below.  Where is it, precisely?
+<pre>
+\begin{itemize}
+  \item $x = $ \SelectSetHoriz{1.0}{0.7,0.9,1.0,1.1,1.3}
+  \item $y = $ \SelectSetHoriz{1.0}{0.7,0.9,1.0,1.1,1.3}
+   \item What's the value of the objective function at the maximum?
+   \SelectSetHoriz{2.0}{1, 1.2, 1.6, 1.8, 2.0, 2.2}
+   \item There are several equivalent maxima.  How many maxima are there? \SelectSetHoriz{4}{1,2,4,8}
+\end{itemize}
+
+\begin{AnswerText}
+\begin{enumerate}
+\item Implement the objective function and the equality constraint:
+
+f = makeFun(x^2 + y^2 ~x&y)
+g = makeFun(x^4 + y^4 - 2~x&y)
+
+\item Choose a plotting range that's suitable to show the zero contour
+  of the constraint function.
+
+plotFun( f(x=x,y=y)~x&y, x.lim=c(-2,2), y.lim=c(-2,2) )
+plotFun( g(x=x,y=y)~x&y, add=TRUE, filled=FALSE, col="red", lwd=2)
+
+\item Zoom in around the answer to see it more precisely.
+
+plotFun( f(x=x,y=y)~x&y, x.lim=c(-1.2,-0.8), y.lim=c(0.8,1.2) )
+plotFun( g(x=x,y=y)~x&y, add=TRUE, filled=FALSE, col="red", lwd=2)
+
+  
+The maximum is near $(x=10, y=25)$ and has value $f(10,25)=250$.
+\end{enumerate}
+\end{AnswerText}
+</pre>

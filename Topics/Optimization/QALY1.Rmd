@@ -1,0 +1,47 @@
+QALY Problem 1
+========================================================
+```{r echo=FALSE,results="hide",label="options",echo=FALSE}
+require(knitr, quietly=TRUE)
+opts_chunk$set(fig.width=5,fig.height=5,out.width="5in")
+```
+
+```{r warning=FALSE,error=FALSE,message=FALSE,results="hide",echo=FALSE}
+library(mosaic,quietly=TRUE)
+trellis.par.set(theme=col.mosaic())
+```
+
+In epidemiology, a QALY ([quality-adjusted life year](http://en.wikipedia.org/wiki/Quality-adjusted_life_year)) is a measure of duration of life adjusted for the health condition of the person --- a year of a person in good health is 1 QALY, but a year in a person in very poor health is less than 1 QALY.  
+
+The point of using QALYs is to count the extent to which a health intervention improves health. Interventions that improve the quality of life at the same time as they extend it are more valued than interventions that do not.
+
+The graph shows the number of Quality Adjusted Life Years added by three different interventions --- A, B, C --- as a function of the amount of money spent on each.
+
+```{r label="qaly",echo=FALSE}
+money = seq(0,1000,length=1000)
+A = 500*pnorm(money, mean=300, sd=150) + .05*money
+A = A - min(A)
+B = 350*pnorm(money,mean=0, sd=100) + .05*money
+B = B - min(B)
+C = money/1.6
+plot( money, A, ylim=c(0,700),type="l",lwd=3, xlab="Expenditure ($1000)",
+     ylab="QALYs added")
+lines( money, B, lwd=3,col="red" )
+lines( money, C, lwd=3,col="blue" )
+text( 1000, max(A), "A", xpd=TRUE,pos=4)
+text( 1000, max(B), "B", xpd=TRUE,pos=4,col="red")
+text( 1000, max(C), "C", xpd=TRUE,pos=4, col="blue")
+```
+
+You have \$1,000,000 to allocate among the three interventions.  How much will you spend on each of A, B, and C in order to maximize the number of QALYs produced by the expenditure?
+
+
+### Background:
+
+The graphs are fictitious, but let's pretend they are:
+
+* [A] Surgical treatment of congenital heart defects in newborns.
+* [B] Treatment for hemophilia.
+* [C] In-home health assistance for the disabled.
+
+
+

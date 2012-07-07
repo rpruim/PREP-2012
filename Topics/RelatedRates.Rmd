@@ -1,0 +1,54 @@
+Related Rates
+========================================================
+
+```{r echo=FALSE,results="hide",label="options",echo=FALSE}
+require(knitr, quietly=TRUE)
+opts_chunk$set(fig.width=3,fig.height=3,out.width="3in")
+```
+
+```{r warning=FALSE,error=FALSE,message=FALSE,results="hide",echo=FALSE}
+library(mosaic,quietly=TRUE)
+trellis.par.set(theme=col.mosaic())
+```
+
+Here's a classic related rates problem:
+
+*A ladder 10 ft long rests against a vertical wall.  If the bottom of the ladder slides away from the wall at a rate of 1 ft/s, how fast is the top of te ladder sliding down the wall when the bottom of the ladder is 6 ft from the wall?*
+
+### Algebraic Solution
+
+The standard solution is about algebra. 
+1. Express the relationship between the horizontal $x$ and vertical $y$ positions: $x^2 + y^2 = 10^2$.  
+2. Differentiate the expression with respect to time:
+$2x \frac{dx}{dt} + 2y \frac{dy}{dt} = 0$.  This is perhaps a bit confusing, because there are **four** functions involved: $x(t)$ and $y(t)$, as well as $x^2 + y^2$ and $10$.
+3. Solve with respect to the desired rate: $\frac{dy}{dt} = - \frac{x}{y}\frac{dx}{dt}$.
+4. Plug in the values for $x$ (which is known from the problem statement) and $y$ (which needs to be figured out from the relationship between $x$ and $y$) and find $\frac{dy}{dt}$
+
+### Graphing the relationship
+
+Once students know how to deal with functions of two variables, a different approach is feasible.
+1. Write down the **state** of the system: $x$ and $y$.
+2. Write down the constraint function.  Or, in otherwords, write down the relationship between $x$ and $y$ and the length of the ladder: $x^2 + y^2 = h^2$.
+3. Plot out the constraint function as a function of the state:
+```{r label="constraint"}
+g = makeFun( x^2 + y^2 - h^2 ~ x+y )
+plotFun( g(x,y,h=10 ) ~ x+y, x.lim=c(0,10), y.lim=c(0,10))
+```
+4. The constraint is satisfied when the constraint function 
+Express the relationship between the **state** of the syste
+
+
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring web pages (click the **MD** toolbar button for help on Markdown).
+
+When you click the **Knit HTML** button a web page will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+
+```{r}
+summary(cars)
+```
+
+You can also embed plots, for example:
+
+```{r fig.width=7, fig.height=6}
+plot(cars)
+```
+

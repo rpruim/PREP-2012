@@ -1,6 +1,90 @@
 Differentiation
-========================================================
-1. A car's distance travelled after starting up.  How far does it get in $T$ seconds?
-2. Rate of orange juice production. (Video: record weight versus time and differentiate it to get the flow.)
-3. Modeling instantaneous fun: speed, slope, curvature. [SuperSlide project](http://dl.dropbox.com/u/5098197/Math135/Projects/SuperSlideProject-2011-11-06.pdf)
+================
+
+```{r echo=FALSE,message=FALSE,warning=FALSE,error=FALSE,results="hide",label="options"}
+require(knitr, quietly=TRUE)
+opts_chunk$set(fig.width=5,fig.height=5,out.width="5in")
+library(mosaic,quietly=TRUE)
+trellis.par.set(theme=col.mosaic())
+```
+
+Derivatives and integrals are traditionally introduced as very different things --- slopes versus areas --- with the relationship between them being introduced as if it were a surprise.  
+
+We advocate a different approach
+* **Differentiation** is an operation you perform on a function.  The result of the operation is another function with the same arguments as the input.
+* **Anti-differentiation** is the inverse operation that swaps the roles of the inputs and outputs. 
+
+There are two other important operations that you perform on functions.
+* **Evaluation** --- given the inputs to the function, find the output.  Plotting is a form of evaluation done for a range of inputs.
+* **Solving** --- given the output and perhaps some of the inputs, find the value of inputs that will produce the given output.
+
+Much of what you will do with functions involves picking one of these four operations.  The student needs to know which operation is appropriate for a given task or setting.  Rather than introducing derivatives as ``slopes'' without saying why you would be interested in a slope, give some contexts.  
+
+Important settings for integration and differentiation involve knowing a quantity and wanting to know a related quantity. 
+
+## Some examples of Function/Derivative pairs. 
+
+### Physics
+* Position(t)/Velocity
+* Velocity(t)/Acceleration
+* Volume(t)/Flow
+* Work(x)/Force
+* Energy(t)/Power
+* Charge(t)/Current
+* Momentum(t)/Force
+
+### Probability
+* Cumulative/Density.  Explain where the cumulative comes from (e.g., with income percentiles, the 99%) and that the cumulative is a non-decreasing function on 0 to 1.  The density is the derivative of this with respect to the variable.  What densities are good for: you can see where most of the stuff is, easily.  
+
+### Chemistry:
+* Amount of substance/reaction rate
+* Energy-Entropy/Temperature  -- temperature is the change in Entropy divided by the change in Energy
+
+### Economics:
+* Debt/Deficit
+* Workforce/Newjobs-Retirements
+* Total cost/Marginal cost
+* Assets/Cash Flow 
+* Total tax/Marginal tax
+* Prices/Inflation.Watch out: they report some changes over a year (seasonally adjusted --- the change from last year), but it would be best if they reported a rate and used a sine model to do the seasonal adjustment.
+
+### Biology
+* Population/Births-Deaths
+* Height/Growth --- or mass or volume, etc.
+
+### Historical
+* longitude problem and dead reckoning at sea.
+
+### Generic:
+* "Stock" / "Flow"
+* "Amount" / "Density"
+
+### Weather:
+* Air pressure / Front
+
+### Everyday:
+* How long has the bathtub been filling VERSUS how much water is in the tub.
+* How long has the food been in the oven.  Heat is flowing into the food.   VERSUS How much heat is in the food.
+* Changes in salary versus salary itself.
+
+## The Cognitive Problem of Reading Graphs
+
+You can read off the first and second derivatives easily from a graph of $f(x)$.  Drawing graphs of derivatives is an exercise in translation, taking a quantity that you perceive as a slope or as a curvature and representing that quantity in a different mode: as a height. 
+
+It's much easier for students to answer questions about derivatives from a graph if they are asked about easily perceived quantities: Is it positive, negative, or zero?  Is it big or small in magnitude?  
+
+## Higher-Order Derivatives
+
+An effective metaphor for differentiation and integration is genealogical.  Let
+$f(x)$ be you.  Then $F(x)$ is your child and $f'(x)$ is your mother.  Integrating is like going forward a generation, from mother to child.  Differentiating is like going backward a generation, from child to mother.  
+
+A mother can have many children; they are all similar in many ways.  A child has only one mother.  Similarly, a function has only one derivative, but it can have many different anti-derivatives that are all similar. (They differ only by a constant.)  
+
+The second derivative is like your mother's mother.  There's a third derivative and so on, from generation to generation.  Similarly, you can integrate a function to produce a child function.
+
+Differentiation Modeling Settings
+---------------------------------
+
+1. Rate of orange juice production. [Construct the function](http://rpubs.com/dtkaplan/644) [Questions about flow](http://rpubs.com/dtkaplan/644) 
+2. Modeling instantaneous fun: speed, slope, curvature. [SuperSlide project](http://dl.dropbox.com/u/5098197/Math135/Projects/SuperSlideProject-2011-11-06.pdf)
 

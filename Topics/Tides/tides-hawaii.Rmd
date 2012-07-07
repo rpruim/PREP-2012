@@ -52,3 +52,7 @@ Much better!
 1. What's the relationship between the two periods?
 2. Do you get a much better model with three or more periods?  What should those new periods be?
 3. The model is quite good, yet the fundamental period is not 24 hours.  Why not?
+
+## Resources
+* A source for minute-by-minute data from [NOAA](http://tidesandcurrents.noaa.gov/tsunami/#)
+* A bit of [nomenclature](http://oceanservice.noaa.gov/education/kits/tides/media/supp_tide07a.html)

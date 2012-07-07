@@ -1,0 +1,188 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0014)about:internet -->
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+<title>Traffic light capacity model</title>
+
+<base target="_blank"/>
+
+<style type="text/css">
+body, td {
+   font-family: sans-serif;
+   background-color: white;
+   font-size: 12px;
+   margin: 8px;
+}
+
+tt, code, pre {
+   font-family: 'DejaVu Sans Mono', 'Droid Sans Mono', 'Lucida Console', Consolas, Monaco, monospace;
+}
+
+h1 { 
+   font-size:2.2em; 
+}
+
+h2 { 
+   font-size:1.8em; 
+}
+
+h3 { 
+   font-size:1.4em; 
+}
+
+h4 { 
+   font-size:1.0em; 
+}
+
+h5 { 
+   font-size:0.9em; 
+}
+
+h6 { 
+   font-size:0.8em; 
+}
+
+a:visited {
+   color: rgb(50%, 0%, 50%);
+}
+
+pre {	
+   margin-top: 0;
+   max-width: 95%;
+   border: 1px solid #ccc;
+}
+
+pre code {
+   display: block; padding: 0.5em;
+}
+
+code.r {
+   background-color: #F8F8F8;
+}
+
+table, td, th {
+  border: none;
+}
+
+blockquote {
+   color:#666666;
+   margin:0;
+   padding-left: 1em;
+   border-left: 0.5em #EEE solid;
+}
+
+hr {
+   height: 0px;
+   border-bottom: none;
+   border-top-width: thin;
+   border-top-style: dotted;
+   border-top-color: #999999;
+}
+
+@media print {
+   * { 
+      background: transparent !important; 
+      color: black !important; 
+      filter:none !important; 
+      -ms-filter: none !important; 
+   }
+
+   body { 
+      font-size:12pt; 
+      max-width:100%; 
+   }
+       
+   a, a:visited { 
+      text-decoration: underline; 
+   }
+
+   hr { 
+      visibility: hidden;
+      page-break-before: always;
+   }
+
+   pre, blockquote { 
+      padding-right: 1em; 
+      page-break-inside: avoid; 
+   }
+
+   tr, img { 
+      page-break-inside: avoid; 
+   }
+
+   img { 
+      max-width: 100% !important; 
+   }
+
+   @page :left { 
+      margin: 15mm 20mm 15mm 10mm; 
+   }
+     
+   @page :right { 
+      margin: 15mm 10mm 15mm 20mm; 
+   }
+
+   p, h2, h3 { 
+      orphans: 3; widows: 3; 
+   }
+
+   h2, h3 { 
+      page-break-after: avoid; 
+   }
+}
+
+</style>
+
+
+
+<!-- MathJax scripts -->
+<script type="text/javascript" src="https://c328740.ssl.cf1.rackcdn.com/mathjax/2.0-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+
+</head>
+
+<body>
+<h1>Traffic light capacity model</h1>
+
+<p>Your task: Find the capacity of a traffic light.</p>
+
+<h3>Methodological hint:</h3>
+
+<p>The worst case is a line of cars is standing still at the light when it turns green.  Cars accelerate.  The last car to get through the light is at braking distance from the light when it turns yellow.</p>
+
+<h3>What are the parameters of the system?</h3>
+
+<ul>
+<li>Duty cycle for the light.</li>
+<li>Speed limit for the road.</li>
+</ul>
+
+<h3>What estimates do you need to make?</h3>
+
+<ul>
+<li>Distance between stopped cars, length of cars, etc.<br/></li>
+<li>Lag time between movement of car in front and the car in question.</li>
+<li>How far a car can move during the green-light phase.</li>
+</ul>
+
+<h3>How far does the car go?</h3>
+
+<p>Starting from a dead stop and accelerating up to the speed limit, how far will a car travel at time \( t \)?</p>
+
+<p>Some sources for information about car performance: <a href="http://www.albeedigital.com/supercoupe/articles/0-60times.html">1</a>, <a href="http://www.0-60times.com/">2</a></p>
+
+<p>You may need to translate this information into a form suitable for your calculation.</p>
+
+<h3>Sensitivity and Uncertainty</h3>
+
+<p>What’s the sensitivity of the result to the various assumptions?  How much uncertainty is there in your guesses about the values of variables?  What’s the first thing you would collect some data about?</p>
+
+</body>
+
+</html>
+

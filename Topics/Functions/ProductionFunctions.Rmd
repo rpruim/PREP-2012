@@ -1,0 +1,20 @@
+Modeling Production
+===========================
+
+```{r echo=FALSE,results="hide",label="options",echo=FALSE}
+require(knitr, quietly=TRUE)
+opts_chunk$set(fig.width=3,fig.height=3,out.width="3in")
+```
+
+```{r warning=FALSE,error=FALSE,message=FALSE,results="hide",echo=FALSE}
+library(mosaic,quietly=TRUE)
+trellis.par.set(theme=col.mosaic())
+```
+
+
+
+
+<img src="HH-CD-Explain" width=350>
+
+Source: Hughes-Hallett et al. *Applied Calculus* 4/e, p. 358
+

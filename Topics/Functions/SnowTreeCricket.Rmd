@@ -1,0 +1,27 @@
+The Snowy Tree Cricket
+========================================================
+
+Here's an example from the "What is a Function?" introductory chapter of *Applied Calculus* by Hughes-Hallett et al. 4/e (p.3).
+
+<image src="AppliedCalcSnowCricket.png" width=450>
+
+*Applied Calculus* is a very nice text.  It's exercises are particularly good.  
+
+On the first or second day of class, in discussing the "What is a Function?" chapter with my students, I ask them, "What did you think about the snow cricket example?"  Typical response, "It was fine."  So I push a bit.  "Did you care?  Why would you be interested in the snow cricket?"  At this point, they relax and acknowledge that they don't really care, but are used to this sort of example in textbooks. 
+
+When constructing a model, one should always have in mind what the model is for.  The textbook doesn't say much about this, so the students are left to guess.  Their guess is that it's all about the sort of thing done in textbooks, which they don't really care about.
+
+Two basic possibilities for why one might be interested are these:
+* Given the temperature, calculate the chirping rate.  This is in some sense the cricket's perspective, although it hardly seems reasonable to think that the cricket is doing a calculation of this sort.  
+* Given the chirping rate, calculate the temperature.  The [Wikipedia entry for  Tree Cricket](http://en.wikipedia.org/wiki/Tree_cricket) has a section on "Cultural associations." This includes the following: 
+<blockquote>
+The tree cricket is also known as poor man's thermometer. It is because if you count the number of chirps in 15 seconds and add 37 you get the temperature close to the Farhenheit temperature of outside.
+</blockquote>
+What's clear from the textbook is that *data* are not the issue, the question of whether crickets do indeed "chirp at essentially the same rate if they are at the same temperature."  This is clear because absolutely no data on individual crickets is presented: just the model.
+
+The sort of model you should construct depends on your purpose.  Here, the purpose is to make it easy to estimate the temperature, and the form of the model makes that easy --- just addition, counting for a relatively short 15 seconds rather than a minute.
+
+The textbook model operationalized chirping as "chirps per minute."  If, instead, they had used the more practical "chirps per 15 seconds," the formula would have been simpler: $C_{15} = T - 40$.  But this wouldn't have served the purpose of illustrating the slope parameter in a linear equation.
+
+### QUESTIONS
+1. Suppose you wanted to know how good an estimate one gets from the tree cricket.  How would you find out?
