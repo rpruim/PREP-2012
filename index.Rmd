@@ -9,6 +9,7 @@ This is where we will post materials from our 2012 MAA PREP Workshop.  Stay tune
 
 ### Tuesday
 
+
  * [Tides example](Topics/Tides/tides-hawaii.html)
 
 
