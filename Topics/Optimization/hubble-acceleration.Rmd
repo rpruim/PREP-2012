@@ -1,0 +1,27 @@
+Hubble Acceleration
+========================================================
+```{r echo=FALSE,message=FALSE,warning=FALSE,error=FALSE,results="hide",label="options"}
+require(knitr, quietly=TRUE)
+opts_chunk$set(fig.width=5,fig.height=5,out.width="5in")
+library(mosaic,quietly=TRUE)
+trellis.par.set(theme=col.mosaic())
+```
+```r
+v = makeFun( 0.001302*t^3 - 0.09029*t^2 + 23.61*t - 3.083 ~ t)
+plotFun( v(t)~t, t.lim=range(0,126))
+```
+
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring web pages (click the **MD** toolbar button for help on Markdown).
+
+When you click the **Knit HTML** button a web page will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+
+```{r}
+summary(cars)
+```
+
+You can also embed plots, for example:
+
+```{r fig.width=7, fig.height=6}
+plot(cars)
+```
+
