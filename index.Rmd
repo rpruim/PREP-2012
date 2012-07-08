@@ -16,16 +16,16 @@ This is where we will post materials from our 2012 MAA PREP Workshop.  Stay tune
  
 ### Wednesday
 
- 
+
 ### Longer list of files
 ```{r, results='asis', echo=FALSE}
 directories <- dir('Topics')
 files <- c()
 for (d in directories){
-  cat(paste('####', d, "\n"))
-  files <- dir(d)
+  cat(paste('\n####', d, "\n"))
+  files <- dir(paste('Topics/',d, sep=""))
   for (f in files) {
-    if (TRUE || grepl('.html', f) ) {
+    if (grepl('.html', f) ) {
       cat(paste(' * [',d, "/", f,']', sep=""))
       cat(paste('(',d, "/", f,')\n', sep=""))
       }
