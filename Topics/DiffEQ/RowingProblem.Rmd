@@ -1,0 +1,43 @@
+Rowing with Calculus
+========================================================
+```{r echo=FALSE,message=FALSE,warning=FALSE,error=FALSE,results="hide",label="options"}
+require(knitr, quietly=TRUE)
+opts_chunk$set(fig.width=5,fig.height=5,out.width="5in")
+library(mosaic,quietly=TRUE)
+trellis.par.set(theme=col.mosaic())
+```
+Here's a problem from Stewart, *Calculus: Concepts and Contexts* 2/e p. 311 that is the analog of Pennings's dog-fetch problem.
+
+This problem states parenthetically, "We assume the speed of the water is negligible compared with the speed at which the man rows."
+
+### QUESTIONS
+* What kind of river is 3 km wide?  Over what length do rivers this wide have straight banks?
+* Do a little research about river speeds and rowing speeds.  Is it reasonable to assume that the speed of a river is negligible compared to the rowing speed?
+* What criteria would be appropriate to define negligible.
+
+A New Problem
+-------------
+
+Let's modify the problem a bit to make it about rowing and rivers rather than about the Pythagorean Theorem.  Specifically, suppose the river is 200m wide and the rower wants to cross directly. Suppose that the oarsman has a compass and can maintain a heading of direction $latex \theta$ (with $latex \theta=0$ meaning straight across and $latex \theta=90$deg meaning straight upriver).
+
+Assuming that the oarsman adopts a constant heading, what should it be so that he will reach the other side of the river directly across from his starting point?
+
+HINT: You can solve this simple problem with trigonometry.
+
+More realism
+------------
+
+Now let's make it a bit more realistic.  As everyone who paddles or rows on a river knows, the current is not constant.  It's faster in the middle and slow near the shore.
+
+Construct an appropriate model of the velocity profile as a function of position across the river. 
+
+HINT: Given the river velocity and the rower velocity and heading, you can use trigonometry to find the instantaneous velocity components along and across the river as a function of position.  Then you can integrate this up to find how far down the river the rower will move as a function of $latex \theta$.  That is, let the state be the across- and along-river positions be the state and set up a differential equation.  Solve the equation to find when the across-river position is the width of the river.  Read the along-river position at that time.
+
+Give a specific numerical answer for reasonable guesses about the rowing and river speed.
+
+Extra Credit
+------------
+The oarsman doesn't necessarily have to adopt a constant heading.  Think about what the shape of a sensible function of heading versus position would be and find a way to parameterize it (or an approximation to it) with one or two parameters.  Then find the optimal values of these parameters to minimize the time it takes to cross the river.  Is a constant heading best after all?
+
+
+
