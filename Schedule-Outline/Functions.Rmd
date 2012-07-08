@@ -1,9 +1,6 @@
 Functions Functions for Modeling
 ================================
 
-Strategy for presentation: 
-I thought we would lead the participants through this material, so that there is a common basis for later.
-
 General Features of Functions
 -----------------------------
 ## What are the inputs?
@@ -17,7 +14,7 @@ Snow Tree Cricket (from Chapter 1 of Hughes-Hallett).  See Math 135 notes from 2
 $y = mx + b$, $f(x) = mx + b$, $\int x dx$, $\sin(x)$, $\sqrt{x}$, and so on.
 
 ## Parameters.  
-Where do parameters get introduced in Stewart?  Why would we ever write $\sin x$?
+Why would we ever write $\sin x$?
 
 Specific Functions for Modeling
 -------------------------------
@@ -68,11 +65,11 @@ See [more details on these examples](http://rpubs.com/dtkaplan/577)
 * [John Verzani's notes on logarithms](http://www.rpubs.com/jverzani/278)
 
 ### Splines
-1. Squeezing Orange Juice ... measuring the cumulative.  (Make a video of the scale when squeezing orange juice.)
+1. Squeezing Orange Juice  
 
 ### Power Laws
 1. Random walks.  How does the typical distance scale?  Explanation in terms of random vectors being perpendicular.  (Later application: Explaining the power law: integration of the square distance compared to integration of the absolute distance)
-2. Chest circumference versus weight, tree height and thickness.  (Later example in multivariate: relationships in the internal combustion engine)
+2. [Chest circumference versus weight](https://dl.dropbox.com/u/5098197/PREP2012/Primate-Body-Shape.pdf), [tree height and thickness](https://dl.dropbox.com/u/5098197/PREP2012/Tree-Strength.pdf).  (Later example in multivariate: [relationships in the internal combustion engine](https://dl.dropbox.com/u/5098197/PREP2012/engine-speed.pdf))
 
 ### Sines and Cosines
 
