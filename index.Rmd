@@ -12,16 +12,16 @@ displayFile <- function(path, text=path, type=c('html','Rmd')) {
 
 This is where we will post materials from our 2012 MAA PREP Workshop.  Stay tuned.
 
-### Monday
+### Monday: *Introductions and Overview*
 
-Text
-### Tuesday
-
+### Tuesday: *Calculus in 1 Variable*
 
  * `r I(displayFile("Topic/Tides/tides-hawaii", "Tides in Hawaii"))`
  * `r I(displayFile("Topic/Optimization/Dog-Calculus", "Dog Calculus is Economics"))`
  
-### Wednesday
+### Wednesday: *Calculus in Multiple Variables*
+
+### Thursday: *Dynamics and Differential Equations*
 
 
 <!-- ### Files by topic -->
