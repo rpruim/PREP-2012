@@ -16,7 +16,7 @@
 body{  
   text-width: 940px;
   align: center;
-  background-color: #FEF3DD;
+  background-color: #C7B491;
   }
   
 .main {
@@ -24,6 +24,9 @@ body{
   margin-right: auto;
   align: center;
   width: 940px;
+  background-color: #FEF3DD;
+  padding: 1.5em;
+  border-radius:1em
 }
   
 </style>
@@ -48,7 +51,7 @@ displayFile <- function(path, text=path, type=c('html','Rmd')) {
   }
 ```
 
-This is where we will post materials from our 2012 MAA PREP Workshop.  Stay tuned.  This is where we will post materials from our 2012 MAA PREP Workshop.  Stay tuned.  This is where we will post materials from our 2012 MAA PREP Workshop.  Stay tuned. This is where we will post materials from our 2012 MAA PREP Workshop.  Stay tuned.
+This is where we will post materials from our 2012 MAA PREP Workshop.  Stay tuned for updates.  
 
 
 
