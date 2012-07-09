@@ -13,16 +13,27 @@
 
 <!-- Add your own CSS snippets between the style tags. -->
 <style type="text/css">
-body{
-  text-width: 940;
+body{  
+  text-width: 940px;
   align: center;
   background-color: #FEF3DD;
   }
+  
+.main {
+  margin-left: auto;
+  margin-right: auto;
+  align: center;
+  width: 940px;
+}
+  
 </style>
 
 </head>
 
 <body>
+
+<div class="main">
+
 <img src="http://mosaic-web.org/wp-content/uploads/2012/01/cropped-greek-header.jpg" width="940" height="198" alt="Project MOSAIC" />
 
 Modeling in Calculus: Early and Often
@@ -37,7 +48,9 @@ displayFile <- function(path, text=path, type=c('html','Rmd')) {
   }
 ```
 
-This is where we will post materials from our 2012 MAA PREP Workshop.  Stay tuned.
+This is where we will post materials from our 2012 MAA PREP Workshop.  Stay tuned.  This is where we will post materials from our 2012 MAA PREP Workshop.  Stay tuned.  This is where we will post materials from our 2012 MAA PREP Workshop.  Stay tuned. This is where we will post materials from our 2012 MAA PREP Workshop.  Stay tuned.
+
+
 
 ### Monday: *Introductions and Overview*
 
@@ -69,4 +82,5 @@ for (d in directories){
 }
 ```
 
+<div>
 </body>
