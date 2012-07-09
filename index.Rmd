@@ -57,8 +57,9 @@ This is where we will post materials from our 2012 MAA PREP Workshop.  Stay tune
 
 ### Monday: *Introductions and Overview*
 
-[Campus Map](http://www.calvin.edu/map/)
-
+ * [Campus Map](http://www.calvin.edu/map/)
+ * [Intro Slides](Introductions/Intro.pdf)
+ 
 ### Tuesday: *Calculus in 1 Variable*
 
  * `r I(displayFile("Topics/Tides/tides-hawaii", "Tides in Hawaii"))`
@@ -68,6 +69,9 @@ This is where we will post materials from our 2012 MAA PREP Workshop.  Stay tune
 
 ### Thursday: *Dynamics and Differential Equations*
 
+### Friday: Show and Tell
+
+ * Workshop ends with lunch; the work contintues...
 
 <!-- ### Files by topic -->
 ```{r, results='asis', echo=FALSE, eval=FALSE}

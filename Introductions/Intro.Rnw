@@ -1,0 +1,411 @@
+
+
+% [red], [compress], [draft], [class=article] and see what happens!
+
+\documentclass[slidestop,11pt]{beamer}
+
+%\documentclass{beamer}
+%\usepackage{beamerbasearticle}
+%\usepackage{beamerthemeshadow}
+%\usepackage{mybeamer}
+\usepackage{probstat}
+\usepackage{hyperref}
+\input{/Users/rpruim/public_html/fast/AMSedition1sol/tex/fastMacros}
+\usepackage{fancyvrb}
+\usepackage{graphicx}
+\usepackage{multicol}
+\usepackage{xcolor}
+\usepackage{alltt}
+\usepackage{ifthen}
+\usepackage{amsmath}
+\usepackage{ulem}
+\usepackage{helvet}
+\usepackage{tikz}
+\usetheme{Singapore}
+\usecolortheme{seahorse}
+\usecolortheme{lily}
+
+
+\def\myemph#1{{\emph{#1}}}
+
+\def\cbox#1{\fbox{\phantom{$\mid$}{\ #1\ }}}
+\def\quickcode#1#2{\fbox{\phantom{$\mid$} \ \ #1 \ \ }%
+                   \fbox{\phantom{$\mid$} \ \ #2 \ \ }
+				   }
+	
+\usepackage[utf8]{inputenc}
+\usepackage[nogin]{Sweave}
+
+
+\def\R{{\sf R}}
+\def\Rstudio{{\sf RStudio}}
+\def\RStudio{{\sf RStudio}}
+
+% Looking for a consistent typography for variable names.
+% for consistency, we need to match all the verbatim uses elsewhere 
+% unless someone wants to recode all that.
+\newcommand{\VN}[1]{{\color{green!50!black}\texttt{#1}}}
+\newcommand{\vn}[1]{{\color{green!50!black}\texttt{#1}}}
+\newcommand{\variable}[1]{{\color{green!50!black}\texttt{#1}}}
+\newcommand{\DFN}[1]{{\color{blue!80!black}\texttt{#1}}}
+\newcommand{\dfn}[1]{{\color{blue!80!black}\texttt{#1}}}
+\newcommand{\dataframe}[1]{{\color{blue!80!black}\texttt{#1}}}
+\newcommand{\function}[1]{{\color{purple!75!blue}\texttt{\StrSubstitute{#1}{()}{}()}}}
+\newcommand{\option}[1]{{\color{brown!80!black}\texttt{#1}}}
+\newcommand{\pkg}[1]{{\color{red!80!black}\texttt{#1}}}
+\renewcommand{\code}[1]{{\color{blue!80!black}\texttt{#1}}}
+% and for models
+\newcommand{\model}[2]{{$\,$\hbox{#1}\ \ensuremath{\sim}\ \hbox{#2}}}
+
+
+\newdimen\Rwidth
+\Rwidth=\textwidth
+
+\def\myRuleColor{\color{black!50!white}}
+
+\DefineVerbatimEnvironment{Sinput}{Verbatim} {fontsize=\small,frame=leftline,framerule=.5mm} 
+\DefineVerbatimEnvironment{Sinput}{Verbatim} {fontsize=\small,formatcom=\color{blue!80!black}}
+\DefineVerbatimEnvironment{Soutput}{Verbatim} {fontsize=\small,frame=leftline,framerule=.5mm} 
+\DefineVerbatimEnvironment{Soutput}{Verbatim} {fontsize=\small,formatcom=\color{green!65!black}}
+%\DefineVerbatimEnvironment{Soutput}{Verbatim}{xleftmargin=5em} 
+%\DefineVerbatimEnvironment{Scode}{Verbatim}{xleftmargin=2em} 
+\fvset{listparameters={\setlength{\topsep}{0pt}}} 
+\renewenvironment{Schunk}{\vspace{\topsep}}{\vspace{\topsep}} 
+
+\definecolor{GrayBoxGray}{rgb}{0.94,0.95,0.95}
+\definecolor{GrayBoxGray}{rgb}{0.97,0.98,0.95}
+\colorlet{GrayBoxGray}{blue!10!black!10}
+\colorlet{GrayBoxGray}{blue!7}
+\colorlet{GrayBoxGray}{white}
+\makeatletter\newenvironment{graybox}{%
+   \begin{lrbox}{\@tempboxa}\begin{minipage}{\textwidth}}{\end{minipage}\end{lrbox}%
+   \colorbox{GrayBoxGray}{\usebox{\@tempboxa}}
+}\makeatother
+
+\renewenvironment{Schunk}{
+
+\noindent
+\begin{graybox}}{\end{graybox}
+
+}
+
+
+\newlength{\tempfmlength}
+\newsavebox{\fmbox}
+\newenvironment{fmpage}[1]
+     {
+	 \medskip
+	 \setlength{\tempfmlength}{#1}
+	 \begin{lrbox}{\fmbox}
+	   \begin{minipage}{#1}
+		 \vspace*{.02\tempfmlength}
+		 \hfill
+	   \begin{minipage}{.95 \tempfmlength}}
+		 {\end{minipage}\hfill
+		 \vspace*{.015\tempfmlength}
+		 \end{minipage}\end{lrbox}\fbox{\usebox{\fmbox}}
+	 \medskip
+	 }
+
+
+\newenvironment{boxedText}[1][.98\textwidth]%
+{%
+\begin{center}
+\begin{fmpage}{#1}
+}%
+{%
+\end{fmpage}
+\end{center}
+}
+
+\newenvironment{boxedTable}[2][tbp]%
+{%
+\begin{table}[#1]
+  \refstepcounter{table}
+  \begin{center}
+\begin{fmpage}{.98\textwidth}
+  \begin{center}
+	\sf \large Box~\expandafter\thetable. #2
+\end{center}
+\medskip
+}%
+{%
+\end{fmpage}
+\end{center}
+\end{table}		% need to do something about exercises that follow boxedTable
+}
+
+
+
+\begin{document}
+
+\SweaveOpts{
+	fig.path="figures/fig",
+	dev="pdf",
+	fig.width=1.8,  
+	fig.height=1.2,
+	comment=NA,
+	fig.keep='hold'
+	}  
+
+<<echo=FALSE, results="hide", message=FALSE>>=
+require(mosaic)
+trellis.par.set(theme=col.mosaic())
+trellis.par.set(fontsize=list(text=6))
+options(keep.blank.line=FALSE)
+xyplot <- function(...) { print(lattice::xyplot(...)) }
+bwplot <- function(...) { print(lattice::bwplot(...)) }
+histogram <- function(...) { print(lattice::histogram(...)) }
+xhistogram <- function(...) { print(mosaic::xhistogram(...)) }
+dotPlot <- function(...) { print(mosaic::dotPlot(...)) }
+barchart <- function(...) { print(lattice::barchart(...)) }
+mosaic <- function(...) { print(vcd::mosaic(...)) }
+densityplot <- function(...) { print(lattice::densityplot(...)) }
+@
+
+\setlength{\parskip}{1.0ex plus0.1ex minus0.1ex}
+\bibliographystyle{apalike}
+
+
+\title{Modeling in Calculus: Early and Often}
+
+\hypersetup{%
+pdftitle={},%
+  pdfauthor={Randall Pruim},
+  pdfsubject={R,RStudio,teaching,computation,software,statistics,calculus},
+  pdfkeywords={}%
+  }
+
+\renewcommand{\arraystretch}{1.4}
+
+\author{PREP Workshop}
+
+\date{July, 2012}
+
+\institute{Calvin College}
+
+%\date{slides available at \url{http://www.calvin.edu/~rpruim/talks/}}
+
+
+\frame{\titlepage}
+
+%\frame<beamer>{\frametitle{Outline}\tableofcontents}
+
+%-------------------------------------------------------------------
+
+\begin{frame}
+	\frametitle{Outline of the Week}
+
+\begin{tabular}{rl}
+	Monday & Arrival and Introductions \\
+	Tuesday & 1-variable models \\
+	Wednesday & Multi-variable models \\
+	Thursday & Differential Equations and Dynamics \\
+	Friday & Show and Tell \\
+\end{tabular}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Daily Schedule}
+
+\begin{center}
+\begin{tabular}{rl}
+	\hline
+	?? & Breakfast \\
+	\hline
+	8:30 -- 10:00 & Block 1\\
+	10:00 -- 10:30 & Break \\
+	10:30 -- 12:00 & Block 2\\
+	\hline
+	12:00 -- 1:00 & Lunch 2\\
+	\hline
+	1:00 -- 2:30 & Block 3\\
+	2:30 -- 3:00 & Break \\
+	3:00 -- 5:00 & Block 4 \\
+	\hline
+	5:00 -- 6:30 & Free Time \\
+	6:30 & Dinner
+	\\
+	\hline
+\end{tabular}
+\end{center}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Work + Shop = Workshop}
+
+	Shopping
+	\begin{itemize}
+		\item lots of examples
+		\item big picture discussion (pedagogy, curriculum)
+		\item sources for more materials, examples, etc.
+	\end{itemize}
+
+	Working
+	\begin{itemize}
+		\item time each day for you to work on your own stuff
+		\item We hope everyone will have at least one thing (class demo, student project
+			assignment, curriculum revision, test problems, etc.) to report on Friday.
+	\end{itemize}
+
+\end{frame}
+
+\begin{frame}[label=workplay]
+	\frametitle{All Work and No Play \dots}
+
+	\bigskip
+	\begin{itemize}
+		\item
+			Nature Preserve, Running Trails, Athletic Facilities
+			\medskip
+		\item
+			Mall -- 0.5 to 0.75 miles South on the Beltline
+			\medskip
+		\item
+			Wednesday afternoon/evening -- On your own options
+			\begin{itemize}
+				\item \hyperlink{sunset}{Lake Michigan?}
+					\begin{itemize}
+						\item 45--60 minute drive
+						\item need approx. head count to arrange transportation
+					\end{itemize}
+				\item
+					Other interests?
+			\end{itemize}
+			\medskip
+		\item
+			Thursday evening -- 
+			\hyperlink{popsShell}{Picnic}
+			\hyperlink{popsFireworks}{Pops}
+			\begin{itemize}
+				\item We need to order tickets and meals by 9am tomorrow.
+				\item Sign-up tonight or \emph{first thing} tomorrow.
+				\item Full Program available \href{http://www.grsymphony.org/concerts/dw-fresh-market-picnic-pops/classical-fireworks-0}{online}
+			\end{itemize}
+	\end{itemize}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Information Please}
+
+%	We'll keep information related to the workhop here:
+
+	\begin{center}
+	\url{http://mosaic-web.org/} 
+
+	\includegraphics[width=\textwidth]{mosaic-web}
+	\end{center}
+	
+
+\end{frame}
+
+
+\begin{frame}
+	\frametitle{Pat and Sharon}
+
+	\bigskip
+
+	\begin{center}
+		\begin{tabular}{cc}
+			\includegraphics[height=.45\textheight]{PatBuist} &
+			\includegraphics[height=.45\textheight]{SharonGould}
+			\\
+			Pat Buist & Sharon Gould
+			\\
+		\end{tabular}
+	\end{center}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Julia and Cecylia}
+
+	\bigskip
+
+	\begin{center}
+		\begin{tabular}{cc}
+			\includegraphics[height=.45\textheight]{JuliaVanderMolen} &
+			\includegraphics[height=.45\textheight]{CecyliaBocovich}
+			\\
+			Julia VanderMolen (Calvin) & Cecylia Bocovich (Macalester)
+			\\
+		\end{tabular}
+	\end{center}
+\end{frame}
+
+
+\begin{frame}
+	\frametitle{Eric Marland (Appalachian St.)}
+
+	\begin{center}
+	\includegraphics[width=.95\textwidth]{MarlandFamily}
+	\end{center}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Danny Kaplan (Macalester)}
+	\begin{center}
+	\includegraphics[width=.5\textwidth]{KaplanGif-0}
+	\end{center}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Danny Kaplan (Macalester)}
+	\begin{center}
+	\includegraphics[width=.95\textwidth, trim=2cm 6cm 2cm 0cm, clip=true]{KrazyKaplan}
+	\end{center}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Nick Horton (Smith)}
+	\begin{center}
+	\includegraphics[width=.95\textwidth]{HortonBridge}
+	\end{center}
+\end{frame}
+
+\begin{frame}
+	\frametitle{This is not a picutre of Randy Pruim }
+	\begin{center}
+	\includegraphics[width=.95\textwidth]{InchWormMedium}
+	\end{center}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Inchworm}
+	\begin{center}
+	\includegraphics[trim=4cm 4cm 5cm 4.5cm, clip=true, width=.95\textwidth]{InchWormMedium}
+	\end{center}
+\end{frame}
+
+
+\begin{frame}[label=sunset]
+	\frametitle{Lake Michigan Sunset}
+	\begin{center}
+	\includegraphics[width=.95\textwidth]{LakeMichiganSunset}
+
+	\hyperlink{workplay}{\beamergotobutton{back}}
+	\end{center}
+
+\end{frame}
+
+
+\begin{frame}[label=popsShell]
+	\frametitle{Picnic Pops}
+	\begin{center}
+	\includegraphics[height=.7\textheight]{PicnicPopsShell}
+
+	\hyperlink{workplay}{\beamergotobutton{back}}
+	\end{center}
+\end{frame}
+
+\begin{frame}[label=popsFireworks]
+	\frametitle{Picnic Pops}
+	\begin{center}
+	\includegraphics[height=.8\textheight]{PicnicPopsFireworks}
+
+	\hyperlink{workplay}{\beamergotobutton{back}}
+	\end{center}
+\end{frame}
+
+\end{document}
+
+
