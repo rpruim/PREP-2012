@@ -1,4 +1,4 @@
-The Snowy Tree Cricket
+The Snowy Tree Cricket 
 ========================================================
 
 Here's an example from the "What is a Function?" introductory chapter of *Applied Calculus* by Hughes-Hallett et al. 4/e (p.3).
