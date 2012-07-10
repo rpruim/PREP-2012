@@ -91,8 +91,8 @@ This is where we will post materials from our 2012 MAA PREP Workshop.  Stay tune
   * Missile Accepleration[[pdf]](https://dl.dropbox.com/u/5098197/PREP2012/missile-launch.pdf)
   * `r I(displayFile("Topics/OrangeJuiceFlow/OrangeJuice", "Orange Juice"))`
  * __Notes__
-  * `r I(displayFile("Schedule-Outline/Derivatives", "__Function/Derivative Pairs__"))`
-  * `r I(displayFile("Schedule-Outline/Integrals", "__Integration__"))`
+  * `r I(displayFile("Schedule-Outline/Derivatives", "Function/Derivative Pairs"))`
+  * `r I(displayFile("Schedule-Outline/Integrals", "Integration"))`
  
 #### Block 3: Optimization, Least Squares, Series
  * __Examples__

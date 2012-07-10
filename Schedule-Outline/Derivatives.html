@@ -1,0 +1,269 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0014)about:internet -->
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+<title>Differentiation</title>
+
+<base target="_blank"/>
+
+<style type="text/css">
+body, td {
+   font-family: sans-serif;
+   background-color: white;
+   font-size: 12px;
+   margin: 8px;
+}
+
+tt, code, pre {
+   font-family: 'DejaVu Sans Mono', 'Droid Sans Mono', 'Lucida Console', Consolas, Monaco, monospace;
+}
+
+h1 { 
+   font-size:2.2em; 
+}
+
+h2 { 
+   font-size:1.8em; 
+}
+
+h3 { 
+   font-size:1.4em; 
+}
+
+h4 { 
+   font-size:1.0em; 
+}
+
+h5 { 
+   font-size:0.9em; 
+}
+
+h6 { 
+   font-size:0.8em; 
+}
+
+a:visited {
+   color: rgb(50%, 0%, 50%);
+}
+
+pre {	
+   margin-top: 0;
+   max-width: 95%;
+   border: 1px solid #ccc;
+}
+
+pre code {
+   display: block; padding: 0.5em;
+}
+
+code.r {
+   background-color: #F8F8F8;
+}
+
+table, td, th {
+  border: none;
+}
+
+blockquote {
+   color:#666666;
+   margin:0;
+   padding-left: 1em;
+   border-left: 0.5em #EEE solid;
+}
+
+hr {
+   height: 0px;
+   border-bottom: none;
+   border-top-width: thin;
+   border-top-style: dotted;
+   border-top-color: #999999;
+}
+
+@media print {
+   * { 
+      background: transparent !important; 
+      color: black !important; 
+      filter:none !important; 
+      -ms-filter: none !important; 
+   }
+
+   body { 
+      font-size:12pt; 
+      max-width:100%; 
+   }
+       
+   a, a:visited { 
+      text-decoration: underline; 
+   }
+
+   hr { 
+      visibility: hidden;
+      page-break-before: always;
+   }
+
+   pre, blockquote { 
+      padding-right: 1em; 
+      page-break-inside: avoid; 
+   }
+
+   tr, img { 
+      page-break-inside: avoid; 
+   }
+
+   img { 
+      max-width: 100% !important; 
+   }
+
+   @page :left { 
+      margin: 15mm 20mm 15mm 10mm; 
+   }
+     
+   @page :right { 
+      margin: 15mm 10mm 15mm 20mm; 
+   }
+
+   p, h2, h3 { 
+      orphans: 3; widows: 3; 
+   }
+
+   h2, h3 { 
+      page-break-after: avoid; 
+   }
+}
+
+</style>
+
+
+
+<!-- MathJax scripts -->
+<script type="text/javascript" src="https://c328740.ssl.cf1.rackcdn.com/mathjax/2.0-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+
+</head>
+
+<body>
+<h1>Differentiation</h1>
+
+<p>Derivatives and integrals are traditionally introduced as very different things &mdash; slopes versus areas &mdash; with the relationship between them being introduced as if it were a surprise.  </p>
+
+<p>We advocate a different approach</p>
+
+<ul>
+<li><strong>Differentiation</strong> is an operation you perform on a function.  The result of the operation is another function with the same arguments as the input.</li>
+<li><strong>Anti-differentiation</strong> is the inverse operation that swaps the roles of the inputs and outputs. </li>
+</ul>
+
+<p>There are two other important operations that you perform on functions.</p>
+
+<ul>
+<li><strong>Evaluation</strong> &mdash; given the inputs to the function, find the output.  Plotting is a form of evaluation done for a range of inputs.</li>
+<li><strong>Solving</strong> &mdash; given the output and perhaps some of the inputs, find the value of inputs that will produce the given output.</li>
+</ul>
+
+<p>Much of what you will do with functions involves picking one of these four operations.  The student needs to know which operation is appropriate for a given task or setting.  Rather than introducing derivatives as &ldquo;slopes&#39;&#39; without saying why you would be interested in a slope, give some contexts.  </p>
+
+<p>Important settings for integration and differentiation involve knowing a quantity and wanting to know a related quantity. </p>
+
+<h2>Some examples of Function/Derivative pairs.</h2>
+
+<h3>Physics</h3>
+
+<ul>
+<li>Position(t)/Velocity</li>
+<li>Velocity(t)/Acceleration</li>
+<li>Volume(t)/Flow</li>
+<li>Work(x)/Force</li>
+<li>Energy(t)/Power</li>
+<li>Charge(t)/Current</li>
+<li>Momentum(t)/Force</li>
+</ul>
+
+<h3>Probability</h3>
+
+<ul>
+<li>Cumulative/Density.  Explain where the cumulative comes from (e.g., with income percentiles, the 99%) and that the cumulative is a non-decreasing function on 0 to 1.  The density is the derivative of this with respect to the variable.  What densities are good for: you can see where most of the stuff is, easily.<br/></li>
+</ul>
+
+<h3>Chemistry:</h3>
+
+<ul>
+<li>Amount of substance/reaction rate</li>
+<li>Energy-Entropy/Temperature  &ndash; temperature is the change in Entropy divided by the change in Energy</li>
+</ul>
+
+<h3>Economics:</h3>
+
+<ul>
+<li>Debt/Deficit</li>
+<li>Workforce/Newjobs-Retirements</li>
+<li>Total cost/Marginal cost</li>
+<li>Assets/Cash Flow </li>
+<li>Total tax/Marginal tax</li>
+<li>Prices/Inflation.Watch out: they report some changes over a year (seasonally adjusted &mdash; the change from last year), but it would be best if they reported a rate and used a sine model to do the seasonal adjustment.</li>
+</ul>
+
+<h3>Biology</h3>
+
+<ul>
+<li>Population/Births-Deaths</li>
+<li>Height/Growth &mdash; or mass or volume, etc.</li>
+</ul>
+
+<h3>Historical</h3>
+
+<ul>
+<li>longitude problem and dead reckoning at sea.</li>
+</ul>
+
+<h3>Generic:</h3>
+
+<ul>
+<li>&quot;Stock&rdquo; / &ldquo;Flow&rdquo;</li>
+<li>&ldquo;Amount&rdquo; / &ldquo;Density&rdquo;</li>
+</ul>
+
+<h3>Weather:</h3>
+
+<ul>
+<li>Air pressure / Front</li>
+</ul>
+
+<h3>Everyday:</h3>
+
+<ul>
+<li>How long has the bathtub been filling VERSUS how much water is in the tub.</li>
+<li>How long has the food been in the oven.  Heat is flowing into the food.   VERSUS How much heat is in the food.</li>
+<li>Changes in salary versus salary itself.</li>
+</ul>
+
+<h2>The Cognitive Problem of Reading Graphs</h2>
+
+<p>You can read off the first and second derivatives easily from a graph of \( f(x) \).  Drawing graphs of derivatives is an exercise in translation, taking a quantity that you perceive as a slope or as a curvature and representing that quantity in a different mode: as a height. </p>
+
+<p>It&#39;s much easier for students to answer questions about derivatives from a graph if they are asked about easily perceived quantities: Is it positive, negative, or zero?  Is it big or small in magnitude?  </p>
+
+<h2>Higher-Order Derivatives</h2>
+
+<p>An effective metaphor for differentiation and integration is genealogical.  Let<br/>
+\( f(x) \) be you.  Then \( F(x) \) is your child and \( f'(x) \) is your mother.  Integrating is like going forward a generation, from mother to child.  Differentiating is like going backward a generation, from child to mother.  </p>
+
+<p>A mother can have many children; they are all similar in many ways.  A child has only one mother.  Similarly, a function has only one derivative, but it can have many different anti-derivatives that are all similar. (They differ only by a constant.)  </p>
+
+<p>The second derivative is like your mother&#39;s mother.  There&#39;s a third derivative and so on, from generation to generation.  Similarly, you can integrate a function to produce a child function.</p>
+
+<h2>Differentiation Modeling Settings</h2>
+
+<ol>
+<li>Rate of orange juice production. <a href="http://rpubs.com/dtkaplan/644">Construct the function</a> <a href="http://rpubs.com/dtkaplan/644">Questions about flow</a> </li>
+<li>Modeling instantaneous fun: speed, slope, curvature. <a href="http://dl.dropbox.com/u/5098197/Math135/Projects/SuperSlideProject-2011-11-06.pdf">SuperSlide project</a></li>
+</ol>
+
+</body>
+
+</html>
+
