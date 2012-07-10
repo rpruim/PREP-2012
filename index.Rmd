@@ -102,6 +102,8 @@ This is where we will post materials from our 2012 MAA PREP Workshop.  Stay tune
   * `r I(displayFile("Topics/Optimization/One-Variable-Optimization"))`
   * `r I(displayFile("Topics/Series/notes-on-series", "Series"))`
   * Do Dogs Know Calculus? [[pdf]](http://www.maa.org/features/elvisdog.pdf)
+  * `r I(displayFile("Topics/Optimization/Dog-Calculus", "Commentary"))`
+  * Linear Approximation in Max Heart Rate [[pdf]](https://dl.dropbox.com/u/5098197/PREP2012/max-hr.pdf)
 
 #### Additional Examples
 
