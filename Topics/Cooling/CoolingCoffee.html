@@ -1,0 +1,292 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0014)about:internet -->
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+<title>Is Cooling Exponential?</title>
+
+<base target="_blank"/>
+
+<style type="text/css">
+body, td {
+   font-family: sans-serif;
+   background-color: white;
+   font-size: 12px;
+   margin: 8px;
+}
+
+tt, code, pre {
+   font-family: 'DejaVu Sans Mono', 'Droid Sans Mono', 'Lucida Console', Consolas, Monaco, monospace;
+}
+
+h1 { 
+   font-size:2.2em; 
+}
+
+h2 { 
+   font-size:1.8em; 
+}
+
+h3 { 
+   font-size:1.4em; 
+}
+
+h4 { 
+   font-size:1.0em; 
+}
+
+h5 { 
+   font-size:0.9em; 
+}
+
+h6 { 
+   font-size:0.8em; 
+}
+
+a:visited {
+   color: rgb(50%, 0%, 50%);
+}
+
+pre {	
+   margin-top: 0;
+   max-width: 95%;
+   border: 1px solid #ccc;
+}
+
+pre code {
+   display: block; padding: 0.5em;
+}
+
+code.r {
+   background-color: #F8F8F8;
+}
+
+table, td, th {
+  border: none;
+}
+
+blockquote {
+   color:#666666;
+   margin:0;
+   padding-left: 1em;
+   border-left: 0.5em #EEE solid;
+}
+
+hr {
+   height: 0px;
+   border-bottom: none;
+   border-top-width: thin;
+   border-top-style: dotted;
+   border-top-color: #999999;
+}
+
+@media print {
+   * { 
+      background: transparent !important; 
+      color: black !important; 
+      filter:none !important; 
+      -ms-filter: none !important; 
+   }
+
+   body { 
+      font-size:12pt; 
+      max-width:100%; 
+   }
+       
+   a, a:visited { 
+      text-decoration: underline; 
+   }
+
+   hr { 
+      visibility: hidden;
+      page-break-before: always;
+   }
+
+   pre, blockquote { 
+      padding-right: 1em; 
+      page-break-inside: avoid; 
+   }
+
+   tr, img { 
+      page-break-inside: avoid; 
+   }
+
+   img { 
+      max-width: 100% !important; 
+   }
+
+   @page :left { 
+      margin: 15mm 20mm 15mm 10mm; 
+   }
+     
+   @page :right { 
+      margin: 15mm 10mm 15mm 20mm; 
+   }
+
+   p, h2, h3 { 
+      orphans: 3; widows: 3; 
+   }
+
+   h2, h3 { 
+      page-break-after: avoid; 
+   }
+}
+
+</style>
+
+<!-- Styles for R syntax highlighter -->
+<style type="text/css">
+   pre .operator,
+   pre .paren {
+     color: rgb(104, 118, 135)
+   }
+
+   pre .literal {
+     color: rgb(88, 72, 246)
+   }
+
+   pre .number {
+     color: rgb(0, 0, 205);
+   }
+
+   pre .comment {
+     color: rgb(76, 136, 107);
+   }
+
+   pre .keyword {
+     color: rgb(0, 0, 255);
+   }
+
+   pre .identifier {
+     color: rgb(0, 0, 0);
+   }
+
+   pre .string {
+     color: rgb(3, 106, 7);
+   }
+</style>
+
+<!-- R syntax highlighter -->
+<script type="text/javascript">
+var hljs=new function(){function m(p){return p.replace(/&/gm,"&amp;").replace(/</gm,"&lt;")}function f(r,q,p){return RegExp(q,"m"+(r.cI?"i":"")+(p?"g":""))}function b(r){for(var p=0;p<r.childNodes.length;p++){var q=r.childNodes[p];if(q.nodeName=="CODE"){return q}if(!(q.nodeType==3&&q.nodeValue.match(/\s+/))){break}}}function h(t,s){var p="";for(var r=0;r<t.childNodes.length;r++){if(t.childNodes[r].nodeType==3){var q=t.childNodes[r].nodeValue;if(s){q=q.replace(/\n/g,"")}p+=q}else{if(t.childNodes[r].nodeName=="BR"){p+="\n"}else{p+=h(t.childNodes[r])}}}if(/MSIE [678]/.test(navigator.userAgent)){p=p.replace(/\r/g,"\n")}return p}function a(s){var r=s.className.split(/\s+/);r=r.concat(s.parentNode.className.split(/\s+/));for(var q=0;q<r.length;q++){var p=r[q].replace(/^language-/,"");if(e[p]){return p}}}function c(q){var p=[];(function(s,t){for(var r=0;r<s.childNodes.length;r++){if(s.childNodes[r].nodeType==3){t+=s.childNodes[r].nodeValue.length}else{if(s.childNodes[r].nodeName=="BR"){t+=1}else{if(s.childNodes[r].nodeType==1){p.push({event:"start",offset:t,node:s.childNodes[r]});t=arguments.callee(s.childNodes[r],t);p.push({event:"stop",offset:t,node:s.childNodes[r]})}}}}return t})(q,0);return p}function k(y,w,x){var q=0;var z="";var s=[];function u(){if(y.length&&w.length){if(y[0].offset!=w[0].offset){return(y[0].offset<w[0].offset)?y:w}else{return w[0].event=="start"?y:w}}else{return y.length?y:w}}function t(D){var A="<"+D.nodeName.toLowerCase();for(var B=0;B<D.attributes.length;B++){var C=D.attributes[B];A+=" "+C.nodeName.toLowerCase();if(C.value!==undefined&&C.value!==false&&C.value!==null){A+='="'+m(C.value)+'"'}}return A+">"}while(y.length||w.length){var v=u().splice(0,1)[0];z+=m(x.substr(q,v.offset-q));q=v.offset;if(v.event=="start"){z+=t(v.node);s.push(v.node)}else{if(v.event=="stop"){var p,r=s.length;do{r--;p=s[r];z+=("</"+p.nodeName.toLowerCase()+">")}while(p!=v.node);s.splice(r,1);while(r<s.length){z+=t(s[r]);r++}}}}return z+m(x.substr(q))}function j(){function q(x,y,v){if(x.compiled){return}var u;var s=[];if(x.k){x.lR=f(y,x.l||hljs.IR,true);for(var w in x.k){if(!x.k.hasOwnProperty(w)){continue}if(x.k[w] instanceof Object){u=x.k[w]}else{u=x.k;w="keyword"}for(var r in u){if(!u.hasOwnProperty(r)){continue}x.k[r]=[w,u[r]];s.push(r)}}}if(!v){if(x.bWK){x.b="\\b("+s.join("|")+")\\s"}x.bR=f(y,x.b?x.b:"\\B|\\b");if(!x.e&&!x.eW){x.e="\\B|\\b"}if(x.e){x.eR=f(y,x.e)}}if(x.i){x.iR=f(y,x.i)}if(x.r===undefined){x.r=1}if(!x.c){x.c=[]}x.compiled=true;for(var t=0;t<x.c.length;t++){if(x.c[t]=="self"){x.c[t]=x}q(x.c[t],y,false)}if(x.starts){q(x.starts,y,false)}}for(var p in e){if(!e.hasOwnProperty(p)){continue}q(e[p].dM,e[p],true)}}function d(B,C){if(!j.called){j();j.called=true}function q(r,M){for(var L=0;L<M.c.length;L++){if((M.c[L].bR.exec(r)||[null])[0]==r){return M.c[L]}}}function v(L,r){if(D[L].e&&D[L].eR.test(r)){return 1}if(D[L].eW){var M=v(L-1,r);return M?M+1:0}return 0}function w(r,L){return L.i&&L.iR.test(r)}function K(N,O){var M=[];for(var L=0;L<N.c.length;L++){M.push(N.c[L].b)}var r=D.length-1;do{if(D[r].e){M.push(D[r].e)}r--}while(D[r+1].eW);if(N.i){M.push(N.i)}return f(O,M.join("|"),true)}function p(M,L){var N=D[D.length-1];if(!N.t){N.t=K(N,E)}N.t.lastIndex=L;var r=N.t.exec(M);return r?[M.substr(L,r.index-L),r[0],false]:[M.substr(L),"",true]}function z(N,r){var L=E.cI?r[0].toLowerCase():r[0];var M=N.k[L];if(M&&M instanceof Array){return M}return false}function F(L,P){L=m(L);if(!P.k){return L}var r="";var O=0;P.lR.lastIndex=0;var M=P.lR.exec(L);while(M){r+=L.substr(O,M.index-O);var N=z(P,M);if(N){x+=N[1];r+='<span class="'+N[0]+'">'+M[0]+"</span>"}else{r+=M[0]}O=P.lR.lastIndex;M=P.lR.exec(L)}return r+L.substr(O,L.length-O)}function J(L,M){if(M.sL&&e[M.sL]){var r=d(M.sL,L);x+=r.keyword_count;return r.value}else{return F(L,M)}}function I(M,r){var L=M.cN?'<span class="'+M.cN+'">':"";if(M.rB){y+=L;M.buffer=""}else{if(M.eB){y+=m(r)+L;M.buffer=""}else{y+=L;M.buffer=r}}D.push(M);A+=M.r}function G(N,M,Q){var R=D[D.length-1];if(Q){y+=J(R.buffer+N,R);return false}var P=q(M,R);if(P){y+=J(R.buffer+N,R);I(P,M);return P.rB}var L=v(D.length-1,M);if(L){var O=R.cN?"</span>":"";if(R.rE){y+=J(R.buffer+N,R)+O}else{if(R.eE){y+=J(R.buffer+N,R)+O+m(M)}else{y+=J(R.buffer+N+M,R)+O}}while(L>1){O=D[D.length-2].cN?"</span>":"";y+=O;L--;D.length--}var r=D[D.length-1];D.length--;D[D.length-1].buffer="";if(r.starts){I(r.starts,"")}return R.rE}if(w(M,R)){throw"Illegal"}}var E=e[B];var D=[E.dM];var A=0;var x=0;var y="";try{var s,u=0;E.dM.buffer="";do{s=p(C,u);var t=G(s[0],s[1],s[2]);u+=s[0].length;if(!t){u+=s[1].length}}while(!s[2]);if(D.length>1){throw"Illegal"}return{r:A,keyword_count:x,value:y}}catch(H){if(H=="Illegal"){return{r:0,keyword_count:0,value:m(C)}}else{throw H}}}function g(t){var p={keyword_count:0,r:0,value:m(t)};var r=p;for(var q in e){if(!e.hasOwnProperty(q)){continue}var s=d(q,t);s.language=q;if(s.keyword_count+s.r>r.keyword_count+r.r){r=s}if(s.keyword_count+s.r>p.keyword_count+p.r){r=p;p=s}}if(r.language){p.second_best=r}return p}function i(r,q,p){if(q){r=r.replace(/^((<[^>]+>|\t)+)/gm,function(t,w,v,u){return w.replace(/\t/g,q)})}if(p){r=r.replace(/\n/g,"<br>")}return r}function n(t,w,r){var x=h(t,r);var v=a(t);var y,s;if(v){y=d(v,x)}else{return}var q=c(t);if(q.length){s=document.createElement("pre");s.innerHTML=y.value;y.value=k(q,c(s),x)}y.value=i(y.value,w,r);var u=t.className;if(!u.match("(\\s|^)(language-)?"+v+"(\\s|$)")){u=u?(u+" "+v):v}if(/MSIE [678]/.test(navigator.userAgent)&&t.tagName=="CODE"&&t.parentNode.tagName=="PRE"){s=t.parentNode;var p=document.createElement("div");p.innerHTML="<pre><code>"+y.value+"</code></pre>";t=p.firstChild.firstChild;p.firstChild.cN=s.cN;s.parentNode.replaceChild(p.firstChild,s)}else{t.innerHTML=y.value}t.className=u;t.result={language:v,kw:y.keyword_count,re:y.r};if(y.second_best){t.second_best={language:y.second_best.language,kw:y.second_best.keyword_count,re:y.second_best.r}}}function o(){if(o.called){return}o.called=true;var r=document.getElementsByTagName("pre");for(var p=0;p<r.length;p++){var q=b(r[p]);if(q){n(q,hljs.tabReplace)}}}function l(){if(window.addEventListener){window.addEventListener("DOMContentLoaded",o,false);window.addEventListener("load",o,false)}else{if(window.attachEvent){window.attachEvent("onload",o)}else{window.onload=o}}}var e={};this.LANGUAGES=e;this.highlight=d;this.highlightAuto=g;this.fixMarkup=i;this.highlightBlock=n;this.initHighlighting=o;this.initHighlightingOnLoad=l;this.IR="[a-zA-Z][a-zA-Z0-9_]*";this.UIR="[a-zA-Z_][a-zA-Z0-9_]*";this.NR="\\b\\d+(\\.\\d+)?";this.CNR="\\b(0[xX][a-fA-F0-9]+|(\\d+(\\.\\d*)?|\\.\\d+)([eE][-+]?\\d+)?)";this.BNR="\\b(0b[01]+)";this.RSR="!|!=|!==|%|%=|&|&&|&=|\\*|\\*=|\\+|\\+=|,|\\.|-|-=|/|/=|:|;|<|<<|<<=|<=|=|==|===|>|>=|>>|>>=|>>>|>>>=|\\?|\\[|\\{|\\(|\\^|\\^=|\\||\\|=|\\|\\||~";this.ER="(?![\\s\\S])";this.BE={b:"\\\\.",r:0};this.ASM={cN:"string",b:"'",e:"'",i:"\\n",c:[this.BE],r:0};this.QSM={cN:"string",b:'"',e:'"',i:"\\n",c:[this.BE],r:0};this.CLCM={cN:"comment",b:"//",e:"$"};this.CBLCLM={cN:"comment",b:"/\\*",e:"\\*/"};this.HCM={cN:"comment",b:"#",e:"$"};this.NM={cN:"number",b:this.NR,r:0};this.CNM={cN:"number",b:this.CNR,r:0};this.BNM={cN:"number",b:this.BNR,r:0};this.inherit=function(r,s){var p={};for(var q in r){p[q]=r[q]}if(s){for(var q in s){p[q]=s[q]}}return p}}();hljs.LANGUAGES.cpp=function(){var a={keyword:{"false":1,"int":1,"float":1,"while":1,"private":1,"char":1,"catch":1,"export":1,virtual:1,operator:2,sizeof:2,dynamic_cast:2,typedef:2,const_cast:2,"const":1,struct:1,"for":1,static_cast:2,union:1,namespace:1,unsigned:1,"long":1,"throw":1,"volatile":2,"static":1,"protected":1,bool:1,template:1,mutable:1,"if":1,"public":1,friend:2,"do":1,"return":1,"goto":1,auto:1,"void":2,"enum":1,"else":1,"break":1,"new":1,extern:1,using:1,"true":1,"class":1,asm:1,"case":1,typeid:1,"short":1,reinterpret_cast:2,"default":1,"double":1,register:1,explicit:1,signed:1,typename:1,"try":1,"this":1,"switch":1,"continue":1,wchar_t:1,inline:1,"delete":1,alignof:1,char16_t:1,char32_t:1,constexpr:1,decltype:1,noexcept:1,nullptr:1,static_assert:1,thread_local:1,restrict:1,_Bool:1,complex:1},built_in:{std:1,string:1,cin:1,cout:1,cerr:1,clog:1,stringstream:1,istringstream:1,ostringstream:1,auto_ptr:1,deque:1,list:1,queue:1,stack:1,vector:1,map:1,set:1,bitset:1,multiset:1,multimap:1,unordered_set:1,unordered_map:1,unordered_multiset:1,unordered_multimap:1,array:1,shared_ptr:1}};return{dM:{k:a,i:"</",c:[hljs.CLCM,hljs.CBLCLM,hljs.QSM,{cN:"string",b:"'\\\\?.",e:"'",i:"."},{cN:"number",b:"\\b(\\d+(\\.\\d*)?|\\.\\d+)(u|U|l|L|ul|UL|f|F)"},hljs.CNM,{cN:"preprocessor",b:"#",e:"$"},{cN:"stl_container",b:"\\b(deque|list|queue|stack|vector|map|set|bitset|multiset|multimap|unordered_map|unordered_set|unordered_multiset|unordered_multimap|array)\\s*<",e:">",k:a,r:10,c:["self"]}]}}}();hljs.LANGUAGES.r={dM:{c:[hljs.HCM,{cN:"number",b:"\\b0[xX][0-9a-fA-F]+[Li]?\\b",e:hljs.IMMEDIATE_RE,r:0},{cN:"number",b:"\\b\\d+(?:[eE][+\\-]?\\d*)?L\\b",e:hljs.IMMEDIATE_RE,r:0},{cN:"number",b:"\\b\\d+\\.(?!\\d)(?:i\\b)?",e:hljs.IMMEDIATE_RE,r:1},{cN:"number",b:"\\b\\d+(?:\\.\\d*)?(?:[eE][+\\-]?\\d*)?i?\\b",e:hljs.IMMEDIATE_RE,r:0},{cN:"number",b:"\\.\\d+(?:[eE][+\\-]?\\d*)?i?\\b",e:hljs.IMMEDIATE_RE,r:1},{cN:"keyword",b:"(?:tryCatch|library|setGeneric|setGroupGeneric)\\b",e:hljs.IMMEDIATE_RE,r:10},{cN:"keyword",b:"\\.\\.\\.",e:hljs.IMMEDIATE_RE,r:10},{cN:"keyword",b:"\\.\\.\\d+(?![\\w.])",e:hljs.IMMEDIATE_RE,r:10},{cN:"keyword",b:"\\b(?:function)",e:hljs.IMMEDIATE_RE,r:2},{cN:"keyword",b:"(?:if|in|break|next|repeat|else|for|return|switch|while|try|stop|warning|require|attach|detach|source|setMethod|setClass)\\b",e:hljs.IMMEDIATE_RE,r:1},{cN:"literal",b:"(?:NA|NA_integer_|NA_real_|NA_character_|NA_complex_)\\b",e:hljs.IMMEDIATE_RE,r:10},{cN:"literal",b:"(?:NULL|TRUE|FALSE|T|F|Inf|NaN)\\b",e:hljs.IMMEDIATE_RE,r:1},{cN:"identifier",b:"[a-zA-Z.][a-zA-Z0-9._]*\\b",e:hljs.IMMEDIATE_RE,r:0},{cN:"operator",b:"<\\-(?!\\s*\\d)",e:hljs.IMMEDIATE_RE,r:2},{cN:"operator",b:"\\->|<\\-",e:hljs.IMMEDIATE_RE,r:1},{cN:"operator",b:"%%|~",e:hljs.IMMEDIATE_RE},{cN:"operator",b:">=|<=|==|!=|\\|\\||&&|=|\\+|\\-|\\*|/|\\^|>|<|!|&|\\||\\$|:",e:hljs.IMMEDIATE_RE,r:0},{cN:"operator",b:"%",e:"%",i:"\\n",r:1},{cN:"identifier",b:"`",e:"`",r:0},{cN:"string",b:'"',e:'"',c:[hljs.BE],r:0},{cN:"string",b:"'",e:"'",c:[hljs.BE],r:0},{cN:"paren",b:"[[({\\])}]",e:hljs.IMMEDIATE_RE,r:0}]}};
+hljs.initHighlightingOnLoad();
+</script>
+
+
+<!-- MathJax scripts -->
+<script type="text/javascript" src="https://c328740.ssl.cf1.rackcdn.com/mathjax/2.0-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+
+</head>
+
+<body>
+<h1>Is Cooling Exponential?</h1>
+
+<p>We often model temperature change as an exponential process: the object temperature approaches the ambient temperature (room temperature) exponentially.  </p>
+
+<p>Stan Wagon examined the temperature of a cup of coffee over time.  Heated initially to near boiling, it gradually cooled to room temperature.</p>
+
+<pre><code class="r">library(mosaic, quietly = TRUE)
+trellis.par.set(theme = col.mosaic())
+coffee = fetchData(&quot;stan-data.csv&quot;)
+xyplot(temp ~ time, data = coffee)
+</code></pre>
+
+<p><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAANgAAADYCAMAAAC+/t3fAAAAZlBMVEUAAAAAADoAAGYAOpAAZrYcHI46AAA6AGY6OpA6kNtmAABmADpmAGZmOjpmZmZmtv+QOgCQOjqQOmaQkGaQkLaQ2/+2ZgC225C2///bkDrbtmbb/7bb////tmb/25D//7b//9v///860u8gAAAACXBIWXMAAAsSAAALEgHS3X78AAAE+UlEQVR4nO3di3LaMBAFUJfgECdtIW2h0MZg/f9P1pKBUPRAz12tZ+9k0pkIKZzKcrBly42YaRrsN1AqDKMWhlELw6iFYdTCMGphGLUwjFoYRi0MoxaGUQvDqIVh1MIwamFYeANQJXleH9AAwxJL8rw+oAGGJZbkeX1AA1RhDXpKwaJrZgrDDDl93Quxa75sL9+9awIkAdY3i73onz6uX/7tAiQeNvwafuzFoZMdN30/17kZu23bZnqfwXHvQtxsBVvLf6bvWs22xZOljDFzj93UpAxzjjHKMPdeEXOMJZSWqZkphWE0N8XHNREHGcOi2p0tbLZjDFFWvseQZAyLa5dh2cOwuHZnCxOzhqHIGBbZLsNyh2GR7c4WhiZjWGy7DMucZNijaSSqsIfTSC2SLBV2fPnol8I2jSSDBUuYRlLpm7GrLNNIKkR77LAUx5VtGkmFKkyRXFO1RGHDpmnWzsl1pL0HwDQSw7KGYfHt4gwyiKlahuUMwxLaRRlkIJdDMCxjvGHys1OzjGsXY1v0hQ2bTqjP8jHt1gybjkrujk28260YNnVWZI9hdJl3j72ej7UXfn1GBpbYbsWwPqS/zDBQmfem+LZ1vO5huxXDvPeH5narhcmzNintgneZPyxpjNULSxxj8DKoMVYtLHWMge8+Aj956GPsoD7ze9yNBNxlydNIUrX2uhuJFuzwXfaYaxrpGtgu855GGg80n/7qu8bd2GOHtWsa6RpgmGfpeKAp5/j+396ERI2bY+eaRvoMqCxgdz/C9J1+r3rM746/KmFTjx20HpN7xc73Hk1IWdjJHN0V1G4LKAM60DwHUAZzMuea2mDXMx7e26KtXTAZ2Ifgc8A2RtgxJuC6DAlWXgYOg5LBw4BkCDCYYYYHKyzDgIHIUGAQMhwYgAwJVl6GDCsnw4IVl6HBSsvwYIVliLCrrAgNE1ZUhgorKcOFFRxo2LBinZYBdvA+YWpMIVk6rG86kbSoXVuElgw7vvzp/KaR7CkhS70bSd7Y0jnvRvJJgU5LnviT/y2e00iuZKdl2Hn0iWNsSpuZlgeWY6nPts1qQ/87dpOstJpgWWl1wTLSaoPd0eJt9cEy0WqE3dOicHXCdFqwrVaYSLVVDDPQAnRVw4TZ5oWrHSYThaMAExabU0cEJqw2G48OTMaO03i0YDIu3I2QHkzlsYwoTMYtIww7Z7awKbOFXTODMZbyBhiWsWamMCy0XfQUgj1sAKokz+sDGmBYYkme1wc0wLDEkjyvD2iAOKzWMIxaGEYtDKOWRJh2kcTlx/LneqH9SarnEq2avCP26cO2bLYjaTD9spbp3bxvjYX2J6mqElO125UOLL/NnDSYfiGSyunb893yBCq2J6leSizV5IIAlmd5OpII0y4dU+kXe+PyBI4nqaondpqryZXALU9fdaRIj6m3Y7iuzPEk1cs71qupRRyge8yy1ctrr0zLEziepKpKDNWGzVrYl6Z3pNhe0XRdmeNJqucSrdpOntzowPeKFYdh1MIwamEYtTCMWhhGLQzLkuNqP36B/CpwGNSvAoWdXpvF79V+eP85Hor06hhF/qgIFmNTHDZLcXxWz5ISuy5gXfOQoMDet+qM1OltK5e6DV0Qyy/YMLmAmf9hcUCwYUV6SwYZJseY/wmakMDChs20V/yEjdtikS2RP3mQC8OohWHUwjBqYRi1MIxa/gFfi4zaNKmuiQAAAABJRU5ErkJggg==" alt="plot of chunk unnamed-chunk-1"/> </p>
+
+<p>You can see that the function is roughly exponential and can estimate the ambient temperature directly from the graph, as well as the initial temperature near 100 C.</p>
+
+<p>To check how close the function is to being exponential, we can find the parameters of an exponential function that are a close match and plot the fitted function along with the data.  Note that the guess for the numerical value of the exponential time constant \( k \) is based on an eye-balled half-life of 40 minutes.</p>
+
+<pre><code class="r">mod = fitModel(temp ~ A + B * exp(-k * time), data = coffee, start = list(A = 70, 
+    B = 30, k = log(2)/40))
+</code></pre>
+
+<p>The <code>start</code> list gives some guessed values for the parameters.  Having such a guess makes it easier for the computer to find the optimal parameters.  Here they are, along with a new plot:</p>
+
+<pre><code class="r">mod
+</code></pre>
+
+<pre><code>## function (time, A = 27.0044582029391, B = 62.13545433946, k = 0.0209644103144356) 
+## A + B * exp(-k * time)
+## &lt;environment: 0x0000000005b3df98&gt;
+## attr(,&quot;coefficients&quot;)
+##        A        B        k 
+## 27.00446 62.13545  0.02096 
+</code></pre>
+
+<pre><code class="r">xyplot(temp ~ time, data = coffee)
+plotFun(mod(time) ~ time, add = TRUE, col = &quot;red&quot;)
+</code></pre>
+
+<p><img src="data:image/png;base64,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" alt="plot of chunk unnamed-chunk-3"/> </p>
+
+<h4>QUESTION:</h4>
+
+<ol>
+<li>What&#39;s the ambient temperature according to the model?</li>
+<li>How would describe the quality of the fit of the model?</li>
+</ol>
+
+<p>Plotting the difference between the data and the model can highlight deficiencies in the model:</p>
+
+<pre><code class="r">xyplot(I(temp - mod(time)) ~ time, data = coffee, ylab = &quot;Difference from model&quot;)
+plotFun(0 ~ time, add = TRUE, col = &quot;red&quot;)
+</code></pre>
+
+<p><img src="data:image/png;base64,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" alt="plot of chunk unnamed-chunk-4"/> </p>
+
+<p>If the model were right on, the points would fall on the zero line.  They differ systematically, which suggests that there is a systematic process that isn&#39;t being captured with the model.</p>
+
+<h4>QUESTION:</h4>
+
+<p>What about the process of pouring nearly boiling coffee in a mug not produce an exactly exponential form?</p>
+
+<h2>Sums of Exponentials</h2>
+
+<p>The failure of the model to capture the rapid temperature change at early times suggests that there is a fast cooling process that lasts for only a little while.  Perhaps the coffee is cooling in two different ways.  We can try out a sum of exponentials to model this.</p>
+
+<pre><code class="r">mod2 = fitModel(temp ~ A + B * exp(-k * time) + C * exp(-kfast * 
+    time), data = coffee, start = list(A = 70, B = 30, k = log(2)/40, kfast = log(2)/5))
+mod2
+</code></pre>
+
+<pre><code>## function (time, A = 23.5873734763293, B = 48.061045217898, k = 0.0135075238186446, 
+##     kfast = 0.0816543088258576, C = 25.2092492519609) 
+## A + B * exp(-k * time) + C * exp(-kfast * time)
+## &lt;environment: 0x0000000007c0bd70&gt;
+## attr(,&quot;coefficients&quot;)
+##        A        B        k    kfast        C 
+## 23.58737 48.06105  0.01351  0.08165 25.20925 
+</code></pre>
+
+<pre><code class="r">xyplot(temp ~ time, data = coffee)
+plotFun(mod2(time) ~ time, add = TRUE, col = &quot;red&quot;)
+</code></pre>
+
+<p><img src="data:image/png;base64,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" alt="plot of chunk unnamed-chunk-6"/> </p>
+
+<pre><code class="r">xyplot(I(temp - mod2(time)) ~ time, data = coffee, ylab = &quot;Difference from model&quot;)
+plotFun(0 ~ time, add = TRUE, col = &quot;red&quot;)
+</code></pre>
+
+<p><img src="data:image/png;base64,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" alt="plot of chunk unnamed-chunk-6"/> </p>
+
+<h4>QUESTIONS:</h4>
+
+<ol>
+<li>What&#39;s the ambient temperature according to the sum-of-exponentials model?</li>
+<li>In what ways is the sum-of-exponentials model better?  In what ways worse?</li>
+<li>How would you quantify the quality of the fit?</li>
+<li>How would you decide whether the improved fit is worthwhile?  Propose a method.</li>
+<li>If you were to add in a third exponential, what would you choose as the half-life?</li>
+</ol>
+
+</body>
+
+</html>
+

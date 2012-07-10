@@ -1,0 +1,276 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0014)about:internet -->
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+<title>Linear Models of Relationships</title>
+
+<base target="_blank"/>
+
+<style type="text/css">
+body, td {
+   font-family: sans-serif;
+   background-color: white;
+   font-size: 12px;
+   margin: 8px;
+}
+
+tt, code, pre {
+   font-family: 'DejaVu Sans Mono', 'Droid Sans Mono', 'Lucida Console', Consolas, Monaco, monospace;
+}
+
+h1 { 
+   font-size:2.2em; 
+}
+
+h2 { 
+   font-size:1.8em; 
+}
+
+h3 { 
+   font-size:1.4em; 
+}
+
+h4 { 
+   font-size:1.0em; 
+}
+
+h5 { 
+   font-size:0.9em; 
+}
+
+h6 { 
+   font-size:0.8em; 
+}
+
+a:visited {
+   color: rgb(50%, 0%, 50%);
+}
+
+pre {	
+   margin-top: 0;
+   max-width: 95%;
+   border: 1px solid #ccc;
+}
+
+pre code {
+   display: block; padding: 0.5em;
+}
+
+code.r {
+   background-color: #F8F8F8;
+}
+
+table, td, th {
+  border: none;
+}
+
+blockquote {
+   color:#666666;
+   margin:0;
+   padding-left: 1em;
+   border-left: 0.5em #EEE solid;
+}
+
+hr {
+   height: 0px;
+   border-bottom: none;
+   border-top-width: thin;
+   border-top-style: dotted;
+   border-top-color: #999999;
+}
+
+@media print {
+   * { 
+      background: transparent !important; 
+      color: black !important; 
+      filter:none !important; 
+      -ms-filter: none !important; 
+   }
+
+   body { 
+      font-size:12pt; 
+      max-width:100%; 
+   }
+       
+   a, a:visited { 
+      text-decoration: underline; 
+   }
+
+   hr { 
+      visibility: hidden;
+      page-break-before: always;
+   }
+
+   pre, blockquote { 
+      padding-right: 1em; 
+      page-break-inside: avoid; 
+   }
+
+   tr, img { 
+      page-break-inside: avoid; 
+   }
+
+   img { 
+      max-width: 100% !important; 
+   }
+
+   @page :left { 
+      margin: 15mm 20mm 15mm 10mm; 
+   }
+     
+   @page :right { 
+      margin: 15mm 10mm 15mm 20mm; 
+   }
+
+   p, h2, h3 { 
+      orphans: 3; widows: 3; 
+   }
+
+   h2, h3 { 
+      page-break-after: avoid; 
+   }
+}
+
+</style>
+
+<!-- Styles for R syntax highlighter -->
+<style type="text/css">
+   pre .operator,
+   pre .paren {
+     color: rgb(104, 118, 135)
+   }
+
+   pre .literal {
+     color: rgb(88, 72, 246)
+   }
+
+   pre .number {
+     color: rgb(0, 0, 205);
+   }
+
+   pre .comment {
+     color: rgb(76, 136, 107);
+   }
+
+   pre .keyword {
+     color: rgb(0, 0, 255);
+   }
+
+   pre .identifier {
+     color: rgb(0, 0, 0);
+   }
+
+   pre .string {
+     color: rgb(3, 106, 7);
+   }
+</style>
+
+<!-- R syntax highlighter -->
+<script type="text/javascript">
+var hljs=new function(){function m(p){return p.replace(/&/gm,"&amp;").replace(/</gm,"&lt;")}function f(r,q,p){return RegExp(q,"m"+(r.cI?"i":"")+(p?"g":""))}function b(r){for(var p=0;p<r.childNodes.length;p++){var q=r.childNodes[p];if(q.nodeName=="CODE"){return q}if(!(q.nodeType==3&&q.nodeValue.match(/\s+/))){break}}}function h(t,s){var p="";for(var r=0;r<t.childNodes.length;r++){if(t.childNodes[r].nodeType==3){var q=t.childNodes[r].nodeValue;if(s){q=q.replace(/\n/g,"")}p+=q}else{if(t.childNodes[r].nodeName=="BR"){p+="\n"}else{p+=h(t.childNodes[r])}}}if(/MSIE [678]/.test(navigator.userAgent)){p=p.replace(/\r/g,"\n")}return p}function a(s){var r=s.className.split(/\s+/);r=r.concat(s.parentNode.className.split(/\s+/));for(var q=0;q<r.length;q++){var p=r[q].replace(/^language-/,"");if(e[p]){return p}}}function c(q){var p=[];(function(s,t){for(var r=0;r<s.childNodes.length;r++){if(s.childNodes[r].nodeType==3){t+=s.childNodes[r].nodeValue.length}else{if(s.childNodes[r].nodeName=="BR"){t+=1}else{if(s.childNodes[r].nodeType==1){p.push({event:"start",offset:t,node:s.childNodes[r]});t=arguments.callee(s.childNodes[r],t);p.push({event:"stop",offset:t,node:s.childNodes[r]})}}}}return t})(q,0);return p}function k(y,w,x){var q=0;var z="";var s=[];function u(){if(y.length&&w.length){if(y[0].offset!=w[0].offset){return(y[0].offset<w[0].offset)?y:w}else{return w[0].event=="start"?y:w}}else{return y.length?y:w}}function t(D){var A="<"+D.nodeName.toLowerCase();for(var B=0;B<D.attributes.length;B++){var C=D.attributes[B];A+=" "+C.nodeName.toLowerCase();if(C.value!==undefined&&C.value!==false&&C.value!==null){A+='="'+m(C.value)+'"'}}return A+">"}while(y.length||w.length){var v=u().splice(0,1)[0];z+=m(x.substr(q,v.offset-q));q=v.offset;if(v.event=="start"){z+=t(v.node);s.push(v.node)}else{if(v.event=="stop"){var p,r=s.length;do{r--;p=s[r];z+=("</"+p.nodeName.toLowerCase()+">")}while(p!=v.node);s.splice(r,1);while(r<s.length){z+=t(s[r]);r++}}}}return z+m(x.substr(q))}function j(){function q(x,y,v){if(x.compiled){return}var u;var s=[];if(x.k){x.lR=f(y,x.l||hljs.IR,true);for(var w in x.k){if(!x.k.hasOwnProperty(w)){continue}if(x.k[w] instanceof Object){u=x.k[w]}else{u=x.k;w="keyword"}for(var r in u){if(!u.hasOwnProperty(r)){continue}x.k[r]=[w,u[r]];s.push(r)}}}if(!v){if(x.bWK){x.b="\\b("+s.join("|")+")\\s"}x.bR=f(y,x.b?x.b:"\\B|\\b");if(!x.e&&!x.eW){x.e="\\B|\\b"}if(x.e){x.eR=f(y,x.e)}}if(x.i){x.iR=f(y,x.i)}if(x.r===undefined){x.r=1}if(!x.c){x.c=[]}x.compiled=true;for(var t=0;t<x.c.length;t++){if(x.c[t]=="self"){x.c[t]=x}q(x.c[t],y,false)}if(x.starts){q(x.starts,y,false)}}for(var p in e){if(!e.hasOwnProperty(p)){continue}q(e[p].dM,e[p],true)}}function d(B,C){if(!j.called){j();j.called=true}function q(r,M){for(var L=0;L<M.c.length;L++){if((M.c[L].bR.exec(r)||[null])[0]==r){return M.c[L]}}}function v(L,r){if(D[L].e&&D[L].eR.test(r)){return 1}if(D[L].eW){var M=v(L-1,r);return M?M+1:0}return 0}function w(r,L){return L.i&&L.iR.test(r)}function K(N,O){var M=[];for(var L=0;L<N.c.length;L++){M.push(N.c[L].b)}var r=D.length-1;do{if(D[r].e){M.push(D[r].e)}r--}while(D[r+1].eW);if(N.i){M.push(N.i)}return f(O,M.join("|"),true)}function p(M,L){var N=D[D.length-1];if(!N.t){N.t=K(N,E)}N.t.lastIndex=L;var r=N.t.exec(M);return r?[M.substr(L,r.index-L),r[0],false]:[M.substr(L),"",true]}function z(N,r){var L=E.cI?r[0].toLowerCase():r[0];var M=N.k[L];if(M&&M instanceof Array){return M}return false}function F(L,P){L=m(L);if(!P.k){return L}var r="";var O=0;P.lR.lastIndex=0;var M=P.lR.exec(L);while(M){r+=L.substr(O,M.index-O);var N=z(P,M);if(N){x+=N[1];r+='<span class="'+N[0]+'">'+M[0]+"</span>"}else{r+=M[0]}O=P.lR.lastIndex;M=P.lR.exec(L)}return r+L.substr(O,L.length-O)}function J(L,M){if(M.sL&&e[M.sL]){var r=d(M.sL,L);x+=r.keyword_count;return r.value}else{return F(L,M)}}function I(M,r){var L=M.cN?'<span class="'+M.cN+'">':"";if(M.rB){y+=L;M.buffer=""}else{if(M.eB){y+=m(r)+L;M.buffer=""}else{y+=L;M.buffer=r}}D.push(M);A+=M.r}function G(N,M,Q){var R=D[D.length-1];if(Q){y+=J(R.buffer+N,R);return false}var P=q(M,R);if(P){y+=J(R.buffer+N,R);I(P,M);return P.rB}var L=v(D.length-1,M);if(L){var O=R.cN?"</span>":"";if(R.rE){y+=J(R.buffer+N,R)+O}else{if(R.eE){y+=J(R.buffer+N,R)+O+m(M)}else{y+=J(R.buffer+N+M,R)+O}}while(L>1){O=D[D.length-2].cN?"</span>":"";y+=O;L--;D.length--}var r=D[D.length-1];D.length--;D[D.length-1].buffer="";if(r.starts){I(r.starts,"")}return R.rE}if(w(M,R)){throw"Illegal"}}var E=e[B];var D=[E.dM];var A=0;var x=0;var y="";try{var s,u=0;E.dM.buffer="";do{s=p(C,u);var t=G(s[0],s[1],s[2]);u+=s[0].length;if(!t){u+=s[1].length}}while(!s[2]);if(D.length>1){throw"Illegal"}return{r:A,keyword_count:x,value:y}}catch(H){if(H=="Illegal"){return{r:0,keyword_count:0,value:m(C)}}else{throw H}}}function g(t){var p={keyword_count:0,r:0,value:m(t)};var r=p;for(var q in e){if(!e.hasOwnProperty(q)){continue}var s=d(q,t);s.language=q;if(s.keyword_count+s.r>r.keyword_count+r.r){r=s}if(s.keyword_count+s.r>p.keyword_count+p.r){r=p;p=s}}if(r.language){p.second_best=r}return p}function i(r,q,p){if(q){r=r.replace(/^((<[^>]+>|\t)+)/gm,function(t,w,v,u){return w.replace(/\t/g,q)})}if(p){r=r.replace(/\n/g,"<br>")}return r}function n(t,w,r){var x=h(t,r);var v=a(t);var y,s;if(v){y=d(v,x)}else{return}var q=c(t);if(q.length){s=document.createElement("pre");s.innerHTML=y.value;y.value=k(q,c(s),x)}y.value=i(y.value,w,r);var u=t.className;if(!u.match("(\\s|^)(language-)?"+v+"(\\s|$)")){u=u?(u+" "+v):v}if(/MSIE [678]/.test(navigator.userAgent)&&t.tagName=="CODE"&&t.parentNode.tagName=="PRE"){s=t.parentNode;var p=document.createElement("div");p.innerHTML="<pre><code>"+y.value+"</code></pre>";t=p.firstChild.firstChild;p.firstChild.cN=s.cN;s.parentNode.replaceChild(p.firstChild,s)}else{t.innerHTML=y.value}t.className=u;t.result={language:v,kw:y.keyword_count,re:y.r};if(y.second_best){t.second_best={language:y.second_best.language,kw:y.second_best.keyword_count,re:y.second_best.r}}}function o(){if(o.called){return}o.called=true;var r=document.getElementsByTagName("pre");for(var p=0;p<r.length;p++){var q=b(r[p]);if(q){n(q,hljs.tabReplace)}}}function l(){if(window.addEventListener){window.addEventListener("DOMContentLoaded",o,false);window.addEventListener("load",o,false)}else{if(window.attachEvent){window.attachEvent("onload",o)}else{window.onload=o}}}var e={};this.LANGUAGES=e;this.highlight=d;this.highlightAuto=g;this.fixMarkup=i;this.highlightBlock=n;this.initHighlighting=o;this.initHighlightingOnLoad=l;this.IR="[a-zA-Z][a-zA-Z0-9_]*";this.UIR="[a-zA-Z_][a-zA-Z0-9_]*";this.NR="\\b\\d+(\\.\\d+)?";this.CNR="\\b(0[xX][a-fA-F0-9]+|(\\d+(\\.\\d*)?|\\.\\d+)([eE][-+]?\\d+)?)";this.BNR="\\b(0b[01]+)";this.RSR="!|!=|!==|%|%=|&|&&|&=|\\*|\\*=|\\+|\\+=|,|\\.|-|-=|/|/=|:|;|<|<<|<<=|<=|=|==|===|>|>=|>>|>>=|>>>|>>>=|\\?|\\[|\\{|\\(|\\^|\\^=|\\||\\|=|\\|\\||~";this.ER="(?![\\s\\S])";this.BE={b:"\\\\.",r:0};this.ASM={cN:"string",b:"'",e:"'",i:"\\n",c:[this.BE],r:0};this.QSM={cN:"string",b:'"',e:'"',i:"\\n",c:[this.BE],r:0};this.CLCM={cN:"comment",b:"//",e:"$"};this.CBLCLM={cN:"comment",b:"/\\*",e:"\\*/"};this.HCM={cN:"comment",b:"#",e:"$"};this.NM={cN:"number",b:this.NR,r:0};this.CNM={cN:"number",b:this.CNR,r:0};this.BNM={cN:"number",b:this.BNR,r:0};this.inherit=function(r,s){var p={};for(var q in r){p[q]=r[q]}if(s){for(var q in s){p[q]=s[q]}}return p}}();hljs.LANGUAGES.cpp=function(){var a={keyword:{"false":1,"int":1,"float":1,"while":1,"private":1,"char":1,"catch":1,"export":1,virtual:1,operator:2,sizeof:2,dynamic_cast:2,typedef:2,const_cast:2,"const":1,struct:1,"for":1,static_cast:2,union:1,namespace:1,unsigned:1,"long":1,"throw":1,"volatile":2,"static":1,"protected":1,bool:1,template:1,mutable:1,"if":1,"public":1,friend:2,"do":1,"return":1,"goto":1,auto:1,"void":2,"enum":1,"else":1,"break":1,"new":1,extern:1,using:1,"true":1,"class":1,asm:1,"case":1,typeid:1,"short":1,reinterpret_cast:2,"default":1,"double":1,register:1,explicit:1,signed:1,typename:1,"try":1,"this":1,"switch":1,"continue":1,wchar_t:1,inline:1,"delete":1,alignof:1,char16_t:1,char32_t:1,constexpr:1,decltype:1,noexcept:1,nullptr:1,static_assert:1,thread_local:1,restrict:1,_Bool:1,complex:1},built_in:{std:1,string:1,cin:1,cout:1,cerr:1,clog:1,stringstream:1,istringstream:1,ostringstream:1,auto_ptr:1,deque:1,list:1,queue:1,stack:1,vector:1,map:1,set:1,bitset:1,multiset:1,multimap:1,unordered_set:1,unordered_map:1,unordered_multiset:1,unordered_multimap:1,array:1,shared_ptr:1}};return{dM:{k:a,i:"</",c:[hljs.CLCM,hljs.CBLCLM,hljs.QSM,{cN:"string",b:"'\\\\?.",e:"'",i:"."},{cN:"number",b:"\\b(\\d+(\\.\\d*)?|\\.\\d+)(u|U|l|L|ul|UL|f|F)"},hljs.CNM,{cN:"preprocessor",b:"#",e:"$"},{cN:"stl_container",b:"\\b(deque|list|queue|stack|vector|map|set|bitset|multiset|multimap|unordered_map|unordered_set|unordered_multiset|unordered_multimap|array)\\s*<",e:">",k:a,r:10,c:["self"]}]}}}();hljs.LANGUAGES.r={dM:{c:[hljs.HCM,{cN:"number",b:"\\b0[xX][0-9a-fA-F]+[Li]?\\b",e:hljs.IMMEDIATE_RE,r:0},{cN:"number",b:"\\b\\d+(?:[eE][+\\-]?\\d*)?L\\b",e:hljs.IMMEDIATE_RE,r:0},{cN:"number",b:"\\b\\d+\\.(?!\\d)(?:i\\b)?",e:hljs.IMMEDIATE_RE,r:1},{cN:"number",b:"\\b\\d+(?:\\.\\d*)?(?:[eE][+\\-]?\\d*)?i?\\b",e:hljs.IMMEDIATE_RE,r:0},{cN:"number",b:"\\.\\d+(?:[eE][+\\-]?\\d*)?i?\\b",e:hljs.IMMEDIATE_RE,r:1},{cN:"keyword",b:"(?:tryCatch|library|setGeneric|setGroupGeneric)\\b",e:hljs.IMMEDIATE_RE,r:10},{cN:"keyword",b:"\\.\\.\\.",e:hljs.IMMEDIATE_RE,r:10},{cN:"keyword",b:"\\.\\.\\d+(?![\\w.])",e:hljs.IMMEDIATE_RE,r:10},{cN:"keyword",b:"\\b(?:function)",e:hljs.IMMEDIATE_RE,r:2},{cN:"keyword",b:"(?:if|in|break|next|repeat|else|for|return|switch|while|try|stop|warning|require|attach|detach|source|setMethod|setClass)\\b",e:hljs.IMMEDIATE_RE,r:1},{cN:"literal",b:"(?:NA|NA_integer_|NA_real_|NA_character_|NA_complex_)\\b",e:hljs.IMMEDIATE_RE,r:10},{cN:"literal",b:"(?:NULL|TRUE|FALSE|T|F|Inf|NaN)\\b",e:hljs.IMMEDIATE_RE,r:1},{cN:"identifier",b:"[a-zA-Z.][a-zA-Z0-9._]*\\b",e:hljs.IMMEDIATE_RE,r:0},{cN:"operator",b:"<\\-(?!\\s*\\d)",e:hljs.IMMEDIATE_RE,r:2},{cN:"operator",b:"\\->|<\\-",e:hljs.IMMEDIATE_RE,r:1},{cN:"operator",b:"%%|~",e:hljs.IMMEDIATE_RE},{cN:"operator",b:">=|<=|==|!=|\\|\\||&&|=|\\+|\\-|\\*|/|\\^|>|<|!|&|\\||\\$|:",e:hljs.IMMEDIATE_RE,r:0},{cN:"operator",b:"%",e:"%",i:"\\n",r:1},{cN:"identifier",b:"`",e:"`",r:0},{cN:"string",b:'"',e:'"',c:[hljs.BE],r:0},{cN:"string",b:"'",e:"'",c:[hljs.BE],r:0},{cN:"paren",b:"[[({\\])}]",e:hljs.IMMEDIATE_RE,r:0}]}};
+hljs.initHighlightingOnLoad();
+</script>
+
+
+
+
+</head>
+
+<body>
+<h1>Linear Models of Relationships</h1>
+
+<pre><code class="r">library(mosaic, quietly = TRUE)
+trellis.par.set(theme = col.mosaic())
+</code></pre>
+
+<p>Rather than treating linear relationships abstractly, use them as models.</p>
+
+<h2>Swimming World Records</h2>
+
+<p>These are world records in the 100m freestyle.</p>
+
+<pre><code class="r">swim = fetchData(&quot;swim100m.csv&quot;)
+</code></pre>
+
+<pre><code>## Retrieving data from http://www.mosaic-web.org/go/datasets/swim100m.csv
+</code></pre>
+
+<pre><code class="r">xyplot(time ~ year, data = swim)
+mod = fitModel(time ~ A + B * year, data = swim)
+plotFun(mod(year) ~ year, add = TRUE)
+</code></pre>
+
+<p><img src="data:image/png;base64,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" alt="plot of chunk swim1"/> </p>
+
+<h4>Questions:</h4>
+
+<ol>
+<li>What does the model tell you about how world records change?\</li>
+<li>According to the model, what will be the world record in 2020? Answer: <code>42.2903</code></li>
+<li>According to the model, what was the hypothetical world record in year 0?  Why is this not a realistic proposition?</li>
+<li>What obvious features about the data does the model fail to capture?</li>
+</ol>
+
+<h3>An elaboration</h3>
+
+<p>Men&#39;s and women&#39;s world records are different.  Let&#39;s model them separately.</p>
+
+<pre><code class="r">modF = fitModel(time ~ A + B * year, data = subset(swim, sex == &quot;F&quot;))
+modM = fitModel(time ~ A + B * year, data = subset(swim, sex == &quot;M&quot;))
+xyplot(time ~ year, group = sex, data = swim)
+plotFun(modF(year) ~ year, add = TRUE, col = &quot;red&quot;)
+plotFun(modM(year) ~ year, add = TRUE, col = &quot;blue&quot;)
+</code></pre>
+
+<p><img src="data:image/png;base64,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" alt="plot of chunk swim2"/> </p>
+
+<h4>QUESTIONS</h4>
+
+<ol>
+<li>How much faster are women&#39;s records improving than men&#39;s?</li>
+<li>According to the model, when will the women&#39;s record be better than the men&#39;s?</li>
+<li>What broad features are in the data are not represented by the model?</li>
+</ol>
+
+<h3>Further elaboration</h3>
+
+<p>For a later example, model this as an exponential decay along with a linear improvement.  What does this say about how the records are going to change into the future.  The fit is numerically difficult.  Reasonable initial guesses about the parameters need to be provided for the fitter to work.</p>
+
+<pre><code class="r">modF2 = fitModel(time ~ A + B * year + C * exp(-k * (year - 1900)), 
+    start = list(A = 40, B = -1, C = 30, k = log(2)/10), data = subset(swim, 
+        sex == &quot;F&quot;))
+modM2 = fitModel(time ~ A + B * year + C * exp(-k * (year - 1900)), 
+    start = list(A = 40, B = -1, C = 30, k = log(2)/10), data = subset(swim, 
+        sex == &quot;M&quot;))
+xyplot(time ~ year, group = sex, data = swim)
+plotFun(modF2(year) ~ year, add = TRUE, col = &quot;red&quot;)
+plotFun(modM2(year) ~ year, add = TRUE, col = &quot;blue&quot;)
+</code></pre>
+
+<p><img src="data:image/png;base64,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" alt="plot of chunk swim3"/> </p>
+
+<h4>Questions:</h4>
+
+<ol>
+<li>According to the model, when will the women&#39;s record beat the men&#39;s?</li>
+<li>Compare this model to an exponential model without the linear trend.  Which model is preferred?  Are your reasons related just to the match with the data or is there a more fundamental reason for your preference?</li>
+</ol>
+
+<h2>Natural Gas Use versus Temperature</h2>
+
+<p>The data in <code>utilities.csv</code> are about the utility use in a home in St. Paul, Minnesota.  What&#39;s the relationship between <code>thermsPerDay</code> and temperature <code>temp</code>?</p>
+
+<h2>Wage versus Education</h2>
+
+<p>The data in <code>cps.csv</code> gives information about hourly wages in the 1970s.  1. What&#39;s the relationship between wage and education level?<br/><br/>
+2. Is this relationship evident by eye from a plot?<br/>
+3. What other variables might influence wage? Try including them and seeing how the relationship with education level chages.<br/>
+4. Does it make sense to talk about there being a particular relationship when it depends on what other variables are being considered? </p>
+
+</body>
+
+</html>
+
