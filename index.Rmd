@@ -81,13 +81,13 @@ This is where we will post materials from our 2012 MAA PREP Workshop.  Stay tune
  * `r I(displayFile("Topics/Functions/WorldPopulation", "World Population"))`
  * `r I(displayFile("Topics/Functions/Contour Plots", "Contour Plots"))`
  * `r I(displayFile("Topics/OrangeJuiceFlow/OrangeJuice", "Orange Juice"))`
- * `r I(displayFile("Topics/Functions/integratin-problem201", "An Integration Problem"))`
+ * `r I(displayFile("Topics/Functions/integration-problem201", "An Integration Problem"))`
 
 #### Other Resources
 
- * [StartR in Calculus](https://dl.dropbox.com/u/5098197/PREP2012/StartR-master.pdf)
- * [R/mosaic Pocket Guide](https://dl.dropbox.com/u/5098197/PREP2012/pocketguide.pdf)
- * [Functions for Modeling](http://rpubs.com/dtkaplan/584)
+ * StartR in Calculus [[pdf]](https://dl.dropbox.com/u/5098197/PREP2012/StartR-master.pdf)
+ * R/mosaic Pocket Guide[[pdf]](https://dl.dropbox.com/u/5098197/PREP2012/pocketguide.pdf)
+ * Functions for Modeling[[html]](http://rpubs.com/dtkaplan/584)
  * `r I(displayFile("Topics/Limits/notes-on-limits", "Notes on Limits"))`
 
 
