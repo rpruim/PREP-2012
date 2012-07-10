@@ -106,6 +106,7 @@ This is where we will post materials from our 2012 MAA PREP Workshop.  Stay tune
   * Linear Approximation in Max Heart Rate [[pdf]](https://dl.dropbox.com/u/5098197/PREP2012/max-hr.pdf)
   
 #### Block 4: Work Block
+ * Airline Pricing [[html]](http://www.macalester.edu/~kaplan/Math135/HTML/cost-curves1.html?access=AC3)
 
 
 #### Additional Examples
