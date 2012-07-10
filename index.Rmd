@@ -62,14 +62,42 @@ This is where we will post materials from our 2012 MAA PREP Workshop.  Stay tune
  
 ### Tuesday: *Calculus in 1 Variable*
 
+#### Primary Examples
+ * `r I(displayFile("Topics/Functions/SnowTreeCricket", "Snow Tree Crickets"))`
  * `r I(displayFile("Topics/Tides/tides-hawaii", "Tides in Hawaii"))`
+ * `r I(displayFile("Topics/Functions/hillFunctions", "Hill Funcitons"))`
+ * `r I(displayFile("Topics/Functions/footArch", "Foot Arch"))`
+ * `r I(displayFile("Topics/Integration/Traffic-Light", "Traffic Light"))`
+
+
+
+
+#### Additional Examples
+
  * `r I(displayFile("Topics/Optimization/Dog-Calculus", "Dog Calculus is Economics"))`
+ * `r I(displayFile("Topics/Cooling/CoolingCoffee", "Cooling Coffee"))`
+ * `r I(displayFile("Topics/Functions/LinearFunctions", "Linear Functions"))`
+ * `r I(displayFile("Topics/Functions/Toronto-Ball", "Toronoto Ball"))`
+ * `r I(displayFile("Topics/Functions/WorldPopulation", "World Population"))`
+ * `r I(displayFile("Topics/Functions/Contour Plots", "Contour Plots"))`
+ * `r I(displayFile("Topics/OrangeJuiceFlow/OrangeJuice", "Orange Juice"))`
+ * `r I(displayFile("Topics/Functions/integratin-problem201", "An Integration Problem"))`
+
+#### Other Resources
+
+ * [StartR in Calculus](https://dl.dropbox.com/u/5098197/PREP2012/StartR-master.pdf)
+ * [R/mosaic Pocket Guide](https://dl.dropbox.com/u/5098197/PREP2012/pocketguide.pdf)
+ * [Functions for Modeling](http://rpubs.com/dtkaplan/584)
+ * `r I(displayFile("Topics/Limits/notes-on-limits", "Notes on Limits"))`
+
+
+ 
 
 ### Wednesday: *Calculus in Multiple Variables* 
 
 ### Thursday: *Dynamics and Differential Equations*
 
-### Friday: Show and Tell
+### Friday: *Show and Tell*
 
  * Workshop ends with lunch; the work contintues...
 
