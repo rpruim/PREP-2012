@@ -1,0 +1,578 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0014)about:internet -->
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+<title>Modeling with Limits and Series</title>
+
+<base target="_blank"/>
+
+<style type="text/css">
+body, td {
+   font-family: sans-serif;
+   background-color: white;
+   font-size: 12px;
+   margin: 8px;
+}
+
+tt, code, pre {
+   font-family: 'DejaVu Sans Mono', 'Droid Sans Mono', 'Lucida Console', Consolas, Monaco, monospace;
+}
+
+h1 { 
+   font-size:2.2em; 
+}
+
+h2 { 
+   font-size:1.8em; 
+}
+
+h3 { 
+   font-size:1.4em; 
+}
+
+h4 { 
+   font-size:1.0em; 
+}
+
+h5 { 
+   font-size:0.9em; 
+}
+
+h6 { 
+   font-size:0.8em; 
+}
+
+a:visited {
+   color: rgb(50%, 0%, 50%);
+}
+
+pre {	
+   margin-top: 0;
+   max-width: 95%;
+   border: 1px solid #ccc;
+}
+
+pre code {
+   display: block; padding: 0.5em;
+}
+
+code.r {
+   background-color: #F8F8F8;
+}
+
+table, td, th {
+  border: none;
+}
+
+blockquote {
+   color:#666666;
+   margin:0;
+   padding-left: 1em;
+   border-left: 0.5em #EEE solid;
+}
+
+hr {
+   height: 0px;
+   border-bottom: none;
+   border-top-width: thin;
+   border-top-style: dotted;
+   border-top-color: #999999;
+}
+
+@media print {
+   * { 
+      background: transparent !important; 
+      color: black !important; 
+      filter:none !important; 
+      -ms-filter: none !important; 
+   }
+
+   body { 
+      font-size:12pt; 
+      max-width:100%; 
+   }
+       
+   a, a:visited { 
+      text-decoration: underline; 
+   }
+
+   hr { 
+      visibility: hidden;
+      page-break-before: always;
+   }
+
+   pre, blockquote { 
+      padding-right: 1em; 
+      page-break-inside: avoid; 
+   }
+
+   tr, img { 
+      page-break-inside: avoid; 
+   }
+
+   img { 
+      max-width: 100% !important; 
+   }
+
+   @page :left { 
+      margin: 15mm 20mm 15mm 10mm; 
+   }
+     
+   @page :right { 
+      margin: 15mm 10mm 15mm 20mm; 
+   }
+
+   p, h2, h3 { 
+      orphans: 3; widows: 3; 
+   }
+
+   h2, h3 { 
+      page-break-after: avoid; 
+   }
+}
+
+</style>
+
+<!-- Styles for R syntax highlighter -->
+<style type="text/css">
+   pre .operator,
+   pre .paren {
+     color: rgb(104, 118, 135)
+   }
+
+   pre .literal {
+     color: rgb(88, 72, 246)
+   }
+
+   pre .number {
+     color: rgb(0, 0, 205);
+   }
+
+   pre .comment {
+     color: rgb(76, 136, 107);
+   }
+
+   pre .keyword {
+     color: rgb(0, 0, 255);
+   }
+
+   pre .identifier {
+     color: rgb(0, 0, 0);
+   }
+
+   pre .string {
+     color: rgb(3, 106, 7);
+   }
+</style>
+
+<!-- R syntax highlighter -->
+<script type="text/javascript">
+var hljs=new function(){function m(p){return p.replace(/&/gm,"&amp;").replace(/</gm,"&lt;")}function f(r,q,p){return RegExp(q,"m"+(r.cI?"i":"")+(p?"g":""))}function b(r){for(var p=0;p<r.childNodes.length;p++){var q=r.childNodes[p];if(q.nodeName=="CODE"){return q}if(!(q.nodeType==3&&q.nodeValue.match(/\s+/))){break}}}function h(t,s){var p="";for(var r=0;r<t.childNodes.length;r++){if(t.childNodes[r].nodeType==3){var q=t.childNodes[r].nodeValue;if(s){q=q.replace(/\n/g,"")}p+=q}else{if(t.childNodes[r].nodeName=="BR"){p+="\n"}else{p+=h(t.childNodes[r])}}}if(/MSIE [678]/.test(navigator.userAgent)){p=p.replace(/\r/g,"\n")}return p}function a(s){var r=s.className.split(/\s+/);r=r.concat(s.parentNode.className.split(/\s+/));for(var q=0;q<r.length;q++){var p=r[q].replace(/^language-/,"");if(e[p]){return p}}}function c(q){var p=[];(function(s,t){for(var r=0;r<s.childNodes.length;r++){if(s.childNodes[r].nodeType==3){t+=s.childNodes[r].nodeValue.length}else{if(s.childNodes[r].nodeName=="BR"){t+=1}else{if(s.childNodes[r].nodeType==1){p.push({event:"start",offset:t,node:s.childNodes[r]});t=arguments.callee(s.childNodes[r],t);p.push({event:"stop",offset:t,node:s.childNodes[r]})}}}}return t})(q,0);return p}function k(y,w,x){var q=0;var z="";var s=[];function u(){if(y.length&&w.length){if(y[0].offset!=w[0].offset){return(y[0].offset<w[0].offset)?y:w}else{return w[0].event=="start"?y:w}}else{return y.length?y:w}}function t(D){var A="<"+D.nodeName.toLowerCase();for(var B=0;B<D.attributes.length;B++){var C=D.attributes[B];A+=" "+C.nodeName.toLowerCase();if(C.value!==undefined&&C.value!==false&&C.value!==null){A+='="'+m(C.value)+'"'}}return A+">"}while(y.length||w.length){var v=u().splice(0,1)[0];z+=m(x.substr(q,v.offset-q));q=v.offset;if(v.event=="start"){z+=t(v.node);s.push(v.node)}else{if(v.event=="stop"){var p,r=s.length;do{r--;p=s[r];z+=("</"+p.nodeName.toLowerCase()+">")}while(p!=v.node);s.splice(r,1);while(r<s.length){z+=t(s[r]);r++}}}}return z+m(x.substr(q))}function j(){function q(x,y,v){if(x.compiled){return}var u;var s=[];if(x.k){x.lR=f(y,x.l||hljs.IR,true);for(var w in x.k){if(!x.k.hasOwnProperty(w)){continue}if(x.k[w] instanceof Object){u=x.k[w]}else{u=x.k;w="keyword"}for(var r in u){if(!u.hasOwnProperty(r)){continue}x.k[r]=[w,u[r]];s.push(r)}}}if(!v){if(x.bWK){x.b="\\b("+s.join("|")+")\\s"}x.bR=f(y,x.b?x.b:"\\B|\\b");if(!x.e&&!x.eW){x.e="\\B|\\b"}if(x.e){x.eR=f(y,x.e)}}if(x.i){x.iR=f(y,x.i)}if(x.r===undefined){x.r=1}if(!x.c){x.c=[]}x.compiled=true;for(var t=0;t<x.c.length;t++){if(x.c[t]=="self"){x.c[t]=x}q(x.c[t],y,false)}if(x.starts){q(x.starts,y,false)}}for(var p in e){if(!e.hasOwnProperty(p)){continue}q(e[p].dM,e[p],true)}}function d(B,C){if(!j.called){j();j.called=true}function q(r,M){for(var L=0;L<M.c.length;L++){if((M.c[L].bR.exec(r)||[null])[0]==r){return M.c[L]}}}function v(L,r){if(D[L].e&&D[L].eR.test(r)){return 1}if(D[L].eW){var M=v(L-1,r);return M?M+1:0}return 0}function w(r,L){return L.i&&L.iR.test(r)}function K(N,O){var M=[];for(var L=0;L<N.c.length;L++){M.push(N.c[L].b)}var r=D.length-1;do{if(D[r].e){M.push(D[r].e)}r--}while(D[r+1].eW);if(N.i){M.push(N.i)}return f(O,M.join("|"),true)}function p(M,L){var N=D[D.length-1];if(!N.t){N.t=K(N,E)}N.t.lastIndex=L;var r=N.t.exec(M);return r?[M.substr(L,r.index-L),r[0],false]:[M.substr(L),"",true]}function z(N,r){var L=E.cI?r[0].toLowerCase():r[0];var M=N.k[L];if(M&&M instanceof Array){return M}return false}function F(L,P){L=m(L);if(!P.k){return L}var r="";var O=0;P.lR.lastIndex=0;var M=P.lR.exec(L);while(M){r+=L.substr(O,M.index-O);var N=z(P,M);if(N){x+=N[1];r+='<span class="'+N[0]+'">'+M[0]+"</span>"}else{r+=M[0]}O=P.lR.lastIndex;M=P.lR.exec(L)}return r+L.substr(O,L.length-O)}function J(L,M){if(M.sL&&e[M.sL]){var r=d(M.sL,L);x+=r.keyword_count;return r.value}else{return F(L,M)}}function I(M,r){var L=M.cN?'<span class="'+M.cN+'">':"";if(M.rB){y+=L;M.buffer=""}else{if(M.eB){y+=m(r)+L;M.buffer=""}else{y+=L;M.buffer=r}}D.push(M);A+=M.r}function G(N,M,Q){var R=D[D.length-1];if(Q){y+=J(R.buffer+N,R);return false}var P=q(M,R);if(P){y+=J(R.buffer+N,R);I(P,M);return P.rB}var L=v(D.length-1,M);if(L){var O=R.cN?"</span>":"";if(R.rE){y+=J(R.buffer+N,R)+O}else{if(R.eE){y+=J(R.buffer+N,R)+O+m(M)}else{y+=J(R.buffer+N+M,R)+O}}while(L>1){O=D[D.length-2].cN?"</span>":"";y+=O;L--;D.length--}var r=D[D.length-1];D.length--;D[D.length-1].buffer="";if(r.starts){I(r.starts,"")}return R.rE}if(w(M,R)){throw"Illegal"}}var E=e[B];var D=[E.dM];var A=0;var x=0;var y="";try{var s,u=0;E.dM.buffer="";do{s=p(C,u);var t=G(s[0],s[1],s[2]);u+=s[0].length;if(!t){u+=s[1].length}}while(!s[2]);if(D.length>1){throw"Illegal"}return{r:A,keyword_count:x,value:y}}catch(H){if(H=="Illegal"){return{r:0,keyword_count:0,value:m(C)}}else{throw H}}}function g(t){var p={keyword_count:0,r:0,value:m(t)};var r=p;for(var q in e){if(!e.hasOwnProperty(q)){continue}var s=d(q,t);s.language=q;if(s.keyword_count+s.r>r.keyword_count+r.r){r=s}if(s.keyword_count+s.r>p.keyword_count+p.r){r=p;p=s}}if(r.language){p.second_best=r}return p}function i(r,q,p){if(q){r=r.replace(/^((<[^>]+>|\t)+)/gm,function(t,w,v,u){return w.replace(/\t/g,q)})}if(p){r=r.replace(/\n/g,"<br>")}return r}function n(t,w,r){var x=h(t,r);var v=a(t);var y,s;if(v){y=d(v,x)}else{return}var q=c(t);if(q.length){s=document.createElement("pre");s.innerHTML=y.value;y.value=k(q,c(s),x)}y.value=i(y.value,w,r);var u=t.className;if(!u.match("(\\s|^)(language-)?"+v+"(\\s|$)")){u=u?(u+" "+v):v}if(/MSIE [678]/.test(navigator.userAgent)&&t.tagName=="CODE"&&t.parentNode.tagName=="PRE"){s=t.parentNode;var p=document.createElement("div");p.innerHTML="<pre><code>"+y.value+"</code></pre>";t=p.firstChild.firstChild;p.firstChild.cN=s.cN;s.parentNode.replaceChild(p.firstChild,s)}else{t.innerHTML=y.value}t.className=u;t.result={language:v,kw:y.keyword_count,re:y.r};if(y.second_best){t.second_best={language:y.second_best.language,kw:y.second_best.keyword_count,re:y.second_best.r}}}function o(){if(o.called){return}o.called=true;var r=document.getElementsByTagName("pre");for(var p=0;p<r.length;p++){var q=b(r[p]);if(q){n(q,hljs.tabReplace)}}}function l(){if(window.addEventListener){window.addEventListener("DOMContentLoaded",o,false);window.addEventListener("load",o,false)}else{if(window.attachEvent){window.attachEvent("onload",o)}else{window.onload=o}}}var e={};this.LANGUAGES=e;this.highlight=d;this.highlightAuto=g;this.fixMarkup=i;this.highlightBlock=n;this.initHighlighting=o;this.initHighlightingOnLoad=l;this.IR="[a-zA-Z][a-zA-Z0-9_]*";this.UIR="[a-zA-Z_][a-zA-Z0-9_]*";this.NR="\\b\\d+(\\.\\d+)?";this.CNR="\\b(0[xX][a-fA-F0-9]+|(\\d+(\\.\\d*)?|\\.\\d+)([eE][-+]?\\d+)?)";this.BNR="\\b(0b[01]+)";this.RSR="!|!=|!==|%|%=|&|&&|&=|\\*|\\*=|\\+|\\+=|,|\\.|-|-=|/|/=|:|;|<|<<|<<=|<=|=|==|===|>|>=|>>|>>=|>>>|>>>=|\\?|\\[|\\{|\\(|\\^|\\^=|\\||\\|=|\\|\\||~";this.ER="(?![\\s\\S])";this.BE={b:"\\\\.",r:0};this.ASM={cN:"string",b:"'",e:"'",i:"\\n",c:[this.BE],r:0};this.QSM={cN:"string",b:'"',e:'"',i:"\\n",c:[this.BE],r:0};this.CLCM={cN:"comment",b:"//",e:"$"};this.CBLCLM={cN:"comment",b:"/\\*",e:"\\*/"};this.HCM={cN:"comment",b:"#",e:"$"};this.NM={cN:"number",b:this.NR,r:0};this.CNM={cN:"number",b:this.CNR,r:0};this.BNM={cN:"number",b:this.BNR,r:0};this.inherit=function(r,s){var p={};for(var q in r){p[q]=r[q]}if(s){for(var q in s){p[q]=s[q]}}return p}}();hljs.LANGUAGES.r={dM:{c:[hljs.HCM,{cN:"number",b:"\\b0[xX][0-9a-fA-F]+[Li]?\\b",e:hljs.IMMEDIATE_RE,r:0},{cN:"number",b:"\\b\\d+(?:[eE][+\\-]?\\d*)?L\\b",e:hljs.IMMEDIATE_RE,r:0},{cN:"number",b:"\\b\\d+\\.(?!\\d)(?:i\\b)?",e:hljs.IMMEDIATE_RE,r:1},{cN:"number",b:"\\b\\d+(?:\\.\\d*)?(?:[eE][+\\-]?\\d*)?i?\\b",e:hljs.IMMEDIATE_RE,r:0},{cN:"number",b:"\\.\\d+(?:[eE][+\\-]?\\d*)?i?\\b",e:hljs.IMMEDIATE_RE,r:1},{cN:"keyword",b:"(?:tryCatch|library|setGeneric|setGroupGeneric)\\b",e:hljs.IMMEDIATE_RE,r:10},{cN:"keyword",b:"\\.\\.\\.",e:hljs.IMMEDIATE_RE,r:10},{cN:"keyword",b:"\\.\\.\\d+(?![\\w.])",e:hljs.IMMEDIATE_RE,r:10},{cN:"keyword",b:"\\b(?:function)",e:hljs.IMMEDIATE_RE,r:2},{cN:"keyword",b:"(?:if|in|break|next|repeat|else|for|return|switch|while|try|stop|warning|require|attach|detach|source|setMethod|setClass)\\b",e:hljs.IMMEDIATE_RE,r:1},{cN:"literal",b:"(?:NA|NA_integer_|NA_real_|NA_character_|NA_complex_)\\b",e:hljs.IMMEDIATE_RE,r:10},{cN:"literal",b:"(?:NULL|TRUE|FALSE|T|F|Inf|NaN)\\b",e:hljs.IMMEDIATE_RE,r:1},{cN:"identifier",b:"[a-zA-Z.][a-zA-Z0-9._]*\\b",e:hljs.IMMEDIATE_RE,r:0},{cN:"operator",b:"<\\-(?!\\s*\\d)",e:hljs.IMMEDIATE_RE,r:2},{cN:"operator",b:"\\->|<\\-",e:hljs.IMMEDIATE_RE,r:1},{cN:"operator",b:"%%|~",e:hljs.IMMEDIATE_RE},{cN:"operator",b:">=|<=|==|!=|\\|\\||&&|=|\\+|\\-|\\*|/|\\^|>|<|!|&|\\||\\$|:",e:hljs.IMMEDIATE_RE,r:0},{cN:"operator",b:"%",e:"%",i:"\\n",r:1},{cN:"identifier",b:"`",e:"`",r:0},{cN:"string",b:'"',e:'"',c:[hljs.BE],r:0},{cN:"string",b:"'",e:"'",c:[hljs.BE],r:0},{cN:"paren",b:"[[({\\])}]",e:hljs.IMMEDIATE_RE,r:0}]}};
+hljs.initHighlightingOnLoad();
+</script>
+
+
+<!-- MathJax scripts -->
+<script type="text/javascript" src="https://c328740.ssl.cf1.rackcdn.com/mathjax/2.0-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+
+</head>
+
+<body>
+<h1>Modeling with Limits and Series</h1>
+
+<p>Danny Kaplan</p>
+
+<p>Judging from college catalog descriptions of calculus courses, limits and series are a standard part of the first-year college calculus curriculum.  In informal surveys of mathematics instructors, they are identified as central components of calculus, along with derivatives and integrals.</p>
+
+<p>In teaching calculus in a modeling-based way, it&#39;s worth thinking about why limits and series are included.  Of course there are benefits to teaching about limits and series &mdash; more knowledge is better! &mdash; but there are also costs.  In particular, the emphasis on limits and infinite series can divert students <br/>
+from important modeling concepts such a &ldquo;big&rdquo; and &ldquo;small&rdquo; and &ldquo;close.&rdquo;</p>
+
+<p>The mathematical approach to &ldquo;big&rdquo; and &ldquo;small&rdquo; corresponds to \( \lim_{x\rightarrow \infty} \) and \( \lim_{x\rightarrow 0} \), but in modeling it&#39;s almost always necessary to talk about big and small <em>compared</em> to something else.  The mathematical take on series is about convergence, whereas in modeling it&#39;s about approximation.  Insofar as calculus is taught as an approach to exactitude and equality, it may interfere with the development of an understanding of approximation, &ldquo;good enough&rdquo;, and the relevant physical domain of a model.  Traditionally, calculus pushes things to the limit, but in practice you may need &ldquo;small, but not too small.&rdquo; </p>
+
+<p>Despite these pitfalls when modeling is a goal, teaching about limits and infinite series may have advantages.</p>
+
+<ul>
+<li>As a technique used in modeling and applications<br/></li>
+<li>As a prelude to teaching other techniques, such as integrals and derivatives</li>
+</ul>
+
+<h2>Limits </h2>
+
+<p>I&#39;ll stipulate that there are no applications of limits that are general enough to make them worthwhile to teach as a modeling technique.  One way to back up such a statement is to ask non-mathematics colleagues how they use limits in their work.  The typical answer will be, &ldquo;I don&#39;t.&rdquo;  But it&#39;s hard to prove a negative of this sort, so I invite dissent and examples of limits in modeling.  </p>
+
+<p>It&#39;s risky to assume that teaching about limits in the traditional way will somehow translate into a better student understanding of modeling; as mentioned above, there are important ways in which the mathematical concept of limits conflicts with modeling. Nonetheless, even if limits aren&#39;t used directly in modeling, they may support understanding concepts and techniques that are important to modeling.  </p>
+
+<p>In strategizing about how and why to teach limits in calculus, it is helpful to distinguish between two sorts of limits: limits in the middle and limits at infinity</p>
+
+<h2>Limits in the middle</h2>
+
+<p>Calculus textbooks often show functions with point holes in the domain, as in the picture:<br/>
+<img src="data:image/png;base64,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" alt="plot of chunk unnamed-chunk-2"/> </p>
+
+<p>The main instance of this is a derivative:<br/>
+\[  \frac{df}{dx} \approx \frac{f(x+h)-f(x)}{h} . \]<br/>
+It&#39;s rare to find modeling functions that have a hole in the domain, and \( df/dx \) does not generally have a hole when considered as a function of \( x \).  It&#39;s as a function of \( h \) that \( df/dx \) has a hole: the division by \( h \) means that when \( h=0 \) the function is undefined by virtue of division<br/>
+by zero.</p>
+
+<p>To illustrate, consider the derivative of \( A \cos(\frac{2\pi}{p} t) \) at \( t=1 \) with some specific values of the parameters \( A \) and \( p \), say, \( A=2 \) and \( p=5 \):</p>
+
+<pre><code class="r">f = makeFun(A * sin(2 * pi * t/p) ~ t, A = 2, p = 5)
+dfdx = makeFun((f(t + h) - f(t))/h ~ t)
+plotFun(dfdx(t = 1, h) ~ h, h.lim = range(-0.1, 0.1), lwd = 2)
+</code></pre>
+
+<p><img src="data:image/png;base64,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" alt="plot of chunk unnamed-chunk-3"/> </p>
+
+<p>Where&#39;s the hole in the graph? We know the function \( df/dx \) is undefined when \( h=0 \), but the graph doesn&#39;t show it.</p>
+
+<p>It&#39;s not that the plotting software knows about limits and has done the appropriate calculation of the limit.  The computer recognizes that the ratio being plotted is undefined for \( h=0 \) and will return an indication of this.</p>
+
+<pre><code class="r">dfdx(t = 1, h = 0)
+</code></pre>
+
+<pre><code>## [1] NaN
+</code></pre>
+
+<p>The plotting software is arranged so that it ignores points at which <code>NaN</code> is the value. Drawing a simple linear interpolation between the points at which the function is defined gives a sensible read-out of the function.  Picking any small value of \( h \) will give a very close approximation to the derivative:</p>
+
+<pre><code class="r">fprime = D(f(t) ~ t)
+fprime(t = 1)
+</code></pre>
+
+<pre><code>## [1] 0.7766
+</code></pre>
+
+<pre><code class="r">dfdx(t = 1, h = 1e-04)
+</code></pre>
+
+<pre><code>## [1] 0.7765
+</code></pre>
+
+<pre><code class="r">dfdx(t = 1, h = 1e-06)
+</code></pre>
+
+<pre><code>## [1] 0.7766
+</code></pre>
+
+<pre><code class="r">dfdx(t = 1, h = 1e-08)
+</code></pre>
+
+<pre><code>## [1] 0.7766
+</code></pre>
+
+<p>Since we can&#39;t define the derivative using \( h=0 \), we need to choose some other value of \( h \). There are aesthetic reasons for choosing to define the derivative as a limit \( h \rightarrow 0 \) &mdash; you would be rightly repulsed at the idea of defining a basic concept like the derivative with a specific, non-zero \( h \), for instance, \( h=0.000001 \).</p>
+
+<p>But the practical reason to define the derivative in terms of the limit \( h \rightarrow 0 \) is to be able to leave \( h \) out of the conversation entirely.  By using the limit, we get the advantages of making \( h \) small without the need to define what &ldquo;small&rdquo;&ldquo; means.</p>
+
+<p>From a modeling perspective, the meaning of &quot;small&rdquo; is important and we should engage it directly when teaching about derivatives.  Why?</p>
+
+<ul>
+<li>Often the purpose for which a derivative is used is to indicate the rate of change of a quantity &mdash; how the output changes as the input is changed.  In practice, the input will always be changed by a finite amount and so the output will change accordingly.  Using the derivative defined in terms of the limit will give only an approximation to the change over a necessarily finite change in the input. </li>
+<li>Measurements of derivatives are often made from discrete measurements.  How fast does the grass grow?  The sensible thing is to measure the length one day, then come back the next day.  Would you ever want to measure the length one instant and then measure it again after one second or one millisecond, etc?  Each measurement invariably has error.  The derivative you measure is really
+\[ \widehat{df/dt} = f(t+h)+\epsilon_1 - (f(t)+\epsilon_2)/h \]
+where \( \epsilon_1 \) and \( \epsilon_2 \) are random errors.  Re-arranging shows the problem:
+\[ \widehat{df/dt} = \frac{f(t+h)-f(t)}{h} + \frac{\epsilon_1-\epsilon_2}{h}. \]</li>
+</ul>
+
+<p>In practice, \( \epsilon_1 - \epsilon_2 \neq 0 \).  Making \( h \) big helps to reduce the influence of measurement error on the result, even if it introduces a systematic bias into the value of \( \frac{f(t+h)-f(t)}{h} \) compared to the theoretical derivative based on the limit.</p>
+
+<p>In the context of computer arithmetic, the errors of rounding in floating point calculations introduce non-zero \( \epsilon_1 \) and \( \epsilon_2 \).  The result is that numerical calculations of finite-difference derivatives are done with an \( h \) of moderate size: proportional to \( \sqrt{|\epsilon_1|} \).  </p>
+
+<p>In the context of measurements made in the field or lab, there are additional sources of error.  These argue for a finite \( h \).  Why emphasize the limit to the exclusion of teaching some sensible about defining &ldquo;small&rdquo;.</p>
+
+<blockquote>
+  * Body temperature varies slowly and systematically by about \( \pm 1 \) F over the course of the day: a so-called &ldquo;circadian rhythm.&rdquo;  Suppose you wanted to measure the rate of change of body temperature at 6am.  What factors would influence your choice of \( h \)?  
+
+ANS: Precision of the thermometer.  Typically, you can measure body temperature to a precision of about 0.1 F.  So in choosing \( h \) you would want to have a time interval over which the change in body temperature is bigger than 0.1 F.
+</blockquote>
+
+<p>Separating the measurements by a good span of time serves to make the influence of the error smaller.</p>
+
+<h3>Limits at Infinity</h3>
+
+<p>One of the principles learned by many, perhaps most, students is that &ldquo;you can&#39;t divide by zero.&rdquo;  Yet from time to time one is forced to deal with an expression that involves division by a quantity that might be zero.  In the case of derivatives, the quantity is the step \( h \).  The notation \( h \rightarrow 0 \) reminds the user to make \( h \) small but to make sure \( h\neq 0 \).  </p>
+
+<p>The algebraic techniques undercut this message of &ldquo;small but not zero.&rdquo;  The basic algebraic process is to manipulate the expression symbolically, treating \( h \) as if it were not zero (to avoid violating the can&#39;t-divide-by-zero principle).  Then, when one finally arrives at an expression that doesn&#39;t involve any division by \( h \), feel free to plug in zero.</p>
+
+<p>With respect to derivatives, the student will soon move on to the symbolic transformations that implement differentiation and can forget all about limits.  The facts that will remain are rules like \( x^2 \rightarrow 2 x \) and &ldquo;a derivative is a slope or tangent&rdquo; (sic).  </p>
+
+<p>But there are times when division by zero occurs.  For instance, in September 1997, a crew member on a US Navy missile cruiser, the USS Yorkdown, entered a zero into a database field.<a href="http://en.wikipedia.org/wiki/USS_Yorktown_(CG-48">ref</a>)  Subsequently, this value was used as the denominator in a division calculation.  The divide by zero produced a machine error which cascaded into the failure of a computer network on the ship.  This caused the ship&#39;s propulsion to fail.  The Yorktown was dead in the water for 2 hours and 45 minutes.</p>
+
+<p>Computer engineers have overcome the objections of third-grade teachers and recognized that division by zero is not really an error but a situation that needs to be acknowledged.  The IEEE floating point standard, the arithmetic standard used on most computers today, treats division by zero as an &ldquo;exception&rdquo; not an error; a valid result is returned.</p>
+
+<pre><code class="r">1/0
+</code></pre>
+
+<pre><code>## [1] Inf
+</code></pre>
+
+<p>You can do arithmetic with <code>Inf</code> just as if it were a number.</p>
+
+<pre><code class="r">1/Inf
+</code></pre>
+
+<pre><code>## [1] 0
+</code></pre>
+
+<pre><code class="r">3 + Inf
+</code></pre>
+
+<pre><code>## [1] Inf
+</code></pre>
+
+<pre><code class="r">-4 * Inf
+</code></pre>
+
+<pre><code>## [1] -Inf
+</code></pre>
+
+<p>There are indeterminate cases that are treated sensibly by the standard, signalled by a value of <code>NaN</code> &mdash; &ldquo;not a number&rdquo;.</p>
+
+<pre><code class="r">0 * Inf
+</code></pre>
+
+<pre><code>## [1] NaN
+</code></pre>
+
+<pre><code class="r">Inf - Inf
+</code></pre>
+
+<pre><code>## [1] NaN
+</code></pre>
+
+<pre><code class="r">Inf/Inf
+</code></pre>
+
+<pre><code>## [1] NaN
+</code></pre>
+
+<pre><code class="r">0/0
+</code></pre>
+
+<pre><code>## [1] NaN
+</code></pre>
+
+<p>Since such arithmetic is an element of the technical life of our students, something they can and will invoke often in their quantitative studies, perhaps a good application for limits is to explain why it makes sense to set up the rules this way.  </p>
+
+<p>There are other times when multiplication by infinity needs to be considered.  For instance, one form of &ldquo;surge&rdquo; function is \( f(t) = A t \exp(-kt) \).  In the long run, as \( t \) becomes large, what will happen to this function?  It is a product of two functions: \( t \) increases steadily while \( \exp(-kt) \) goes to zero as \( t \) increases. The simple arithmetic rules are indeterminate:</p>
+
+<pre><code class="r">t = Inf
+t * exp(-t)
+</code></pre>
+
+<pre><code>## [1] NaN
+</code></pre>
+
+<p>A plot resolves the problem:</p>
+
+<pre><code class="r">plotFun(A * t * exp(-k * t) ~ t, t.lim = c(0, 100), k = 0.1, A = 2)
+</code></pre>
+
+<p><img src="data:image/png;base64,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" alt="plot of chunk surge-plot"/> </p>
+
+<p>The function goes to zero on a time scale that&#39;s determined by \( k \), not \( A \).  Perhaps even introduce an interactive script to allow students to vary the parameters and see which ones are important.</p>
+
+<pre><code class="r">require(manipulate)
+manipulate(plotFun(A * t * exp(-k * t) ~ t, t.lim = c(0, 10^n), k = k, 
+    A = A, npts = 10000), n = slider(0, 5, step = 0.1, initial = 2, label = &quot;Set t-max&quot;), 
+    k = slider(0, 0.2, step = 0.001, initial = 0.1), A = slider(-100, 100, step = 1, 
+        initial = 3))
+</code></pre>
+
+<p>The traditional way to show that the surge function goes to zero as \( t \rightarrow \infty \) is by l&#39;Hospital&#39;s rule.  First published in 1696, the Rule seems mainly to provide a mechanism, a pseudo-application, for having students take derivatives of a variety of functions and spotting singularities, places where the input to a function would cause a violation of the no-division-by-zero rule.  Whether this is a help to students or a distraction is a matter of dispute, but the textbook cases are appropriately handled by the rules for computer arithmetic and the conventions of the plotting program.</p>
+
+<h4>Exercises: Functions at zero and infinity</h4>
+
+<ul>
+<li>\( \displaystyle \lim_{x \to 1} \frac{\ln x}{x-1} \)</li>
+<li>\( \displaystyle \lim_{x \to 1} \frac{x^2-1}{2*x^2+1} \)</li>
+<li>\( \displaystyle \lim_{x \to \infty} \frac{e^x}{x^2} \)</li>
+<li>\( \displaystyle \lim_{x \to \infty} \frac{\ln x}{\sqrt[3]{x}} \)</li>
+<li>\( \displaystyle \lim_{x \to 0^+} \frac{x}{1/\ln x} \)</li>
+<li>A counter-example from Stewart where l&#39;Hospital&#39;s rule shouldn&#39;t be applied: \( \displaystyle \lim_{x \to \pi^-} \frac{\sin x}{1 - \cos x} \)</li>
+</ul>
+
+<p>Show that in each of these cases, the computer arithmetic results in <code>NaN</code> at the singularity, but the plot shows the limit reasonably.</p>
+
+<h4>Summary: Teaching limits in a modeling-based way:</h4>
+
+<ul>
+<li>When introducing the derivative, \( h \rightarrow 0 \) means that \( h \) should be small.  Discuss what &ldquo;small&rdquo; means and how it depends on context.  Two important contexts: the length scale over which the function shows visible curvature; the amount of measurement (or round-off) noise in an evaluation of the function.</li>
+<li>The idea that division by zero is prohibited and how the computer deals with a division by zero.  Quantities that make sense near zero (or near infinity) are reasonably interpreted in the limit.</li>
+</ul>
+
+<h2>Series</h2>
+
+<p>Sequences and series are often motivated by Zeno&#39;s paradoxes.<br/><br/>
+The problem with this motivation is that, when the interest is in describing the world, the paradoxes not very motivating.  Everyone knows from childhood that the quicker runner will overtake the slower and that the arrow will reach its target.<br/>
+Similarly, everyone knows that a circle has an area and that it&#39;s sensible to speak of the slope of a curve or the area under a curve. Proving such things is not on the modeler&#39;s agenda.</p>
+
+<p>Reserve Zeno&#39;s paradoxes for demonstrating that there are situations where simple logic that sounds compelling is wrong and where a formal and precise approach is needed to avoid error.  Zeno provides a cautionary lesson in critical thinking, but calculus has more important uses than demonstrating errors in informal logic.  If you want an example where wrong thinking leads to trouble, you need not appeal to the arrows and races of antiquity but to current reasoning about money and debt and the tempting logic that a country&#39;s finances are similar to a family&#39;s. </p>
+
+<p>Much of modeling concerns approximation.  The relationship to series does not involve infinite series but <em>finite</em> series.  The concern is not whether the infinite series will converge but whether the finite series is close enough.</p>
+
+<p>The modeling goals of teaching series might be considered to be:</p>
+
+<ol>
+<li>You can usefully break things into components, and it can happen that considering only a few of the components is enough to get the job done.</li>
+<li>Mastering the most common general techniques for dividing things into parts, e.g. polynomial approximation.</li>
+<li>In refining the understanding of (2), knowing that there are situations where taking just a few parts doesn&#39;t accomplish what&#39;s wanted. </li>
+</ol>
+
+<p>To illustrate the difference between convergence of series and modeling, consider a gambler heading off to a casino to play roulette.  The gambler has decided on a simple play &mdash; always bet on red &mdash; and is seeking a strategy that will guarantee this. Reading the literature, the gambler is tempted by the doubling-down strategy:</p>
+
+<blockquote>
+When you win, walk away a winner.  Until then, when you lose, double your bet in the next round.
+</blockquote>
+
+<p>A single bet on red will win 10 out of 21 times, giving an expectation value of \( -0.053 \) for every dollar bet.  But the doubling-down strategy is a sure win.  If you lose $1 in the first round, your bet of $2 in the second will yield a net win of $1 if you win.  If you happen to lose the second round, your doubled bet of $4 in the third round will yield a net win of $1 &mdash; the 4 dollars you win in that round minus the 3 you lost in the two previous rounds.  And so on, ad infinitum.  Eventually the ball must land on red. When it does, you will clear $1.  A sure win!  Indeed, if rather than betting on red, the gambler always bet on number 7, the sure win would be $35.</p>
+
+<p>The above paragraph is an analysis of a model of the gambling session.  Like all models, it leaves some things out.  Sensibly, the model neglects the possibility that the casino will be hit by an asteroid, wiping out your potential win.  Not so sensibly, the model assumes that you can always double-down, which requires your having access to an infinite amount of money.  It also assumes that there is no cap by the casino on the amount of a bet, that the casino is willing to accept a bet of an arbitrary amount of money.</p>
+
+<p>The process can&#39;t go out to infinity because either you will run out of money or the casino will step in.  The probability of losing is small.  How small? It depends on the amount of money you have and the house limit on bets.  But it is not zero.  And if you lose, you may lose big.  So the guaranteed win is really nothing of the kind.  The idealization of an infinite process misses the essential feature that causes the strategy to fail.</p>
+
+<h4>Where Series Fit in Calculus</h4>
+
+<p>The best-selling calculus textbook is Stewart.  Here&#39;s the table of contents for the 2nd edition, often used as the single text for a three-semester sequence of calculus.</p>
+
+<ol>
+<li>Functions and Models</li>
+<li>Limits and Derivatives</li>
+<li>Differentiation Rules</li>
+<li>Applications of Differentiation</li>
+<li>Integrals</li>
+<li>Applications of Integration</li>
+<li>Differential Equations </li>
+<li><strong>Infinite Sequences and Series</strong></li>
+<li>Vectors and the Geometry of Space</li>
+<li>Vector Functions</li>
+<li>Partial Derivatives</li>
+<li>Multiple Integrals</li>
+<li>Vector Calculus</li>
+</ol>
+
+<p>Note that &ldquo;Infinite Sequences and Series&rdquo; comes after differential and integral calculus, suggesting that the material is not needed to introduce differentiation and integration.  Anecdotally, instructors often report not being able to reach sequences and series in the first year of calculus.  More than three quarters of students who study calculus never reach past the first year, suggesting that the point of sequences and series is not to illuminate integration and differentiation.</p>
+
+<p>Are there applications of sequences and series that are important? Economists rightly point to the concept of &ldquo;net present value,&rdquo; the equivalent in today&#39;s money of a stream of income and expenditure in the future.  A mathematically similar problem is that of the distance travelled by a bouncing ball: a ball that bounces each time to a fixed fraction of its peak height on the last bounce.  Both of these examples relate to exponentials and sums of exponentials.</p>
+
+<h4>Net Present Value</h4>
+
+<p>In March 2012, a group of investors, including basketball star Magic Johnson, bought the Los Angeles Dodgers at auction for $2 billion. A news commentator, trying to give an idea of how much money this is, calculated that this is enough to buy season tickets for 308,000 years. </p>
+
+<p>It&#39;s easy to see where this estimate comes from.  The Dodger&#39;s web site lists the most expensive season ticket at $80 per game; the least expensive is $5 per game.  Given that there are 81 home games in a season, the season ticket cost $6480 in the expensive seats and $405 in the cheap seats.  So with two billion dollars, one could buy 308,642 expensive tickets or 4,938,272 cheap season tickets.</p>
+
+<p>But this is the wrong calculation.  It ignores several important factors:</p>
+
+<ul>
+<li>The interest that the money can earn.</li>
+<li>Inflation
+As of this writing, 30-year US treasury bonds are earning approximately 3% per year.  Inflation runs at about 2%.  Taken together, a dollar this year will buy goods worth about 1.01 dollars next year, and so on cumulatively.  Put another way, buying a season ticket in \( n \) years will cost roughly \( 1.01^{-n}6480 \) dollars in today&#39;s money.  To put aside enough money to fund the purchase of a season ticket each year for 300,000 years will involve about $648,000. \[ \sum_{n=1}^{300000} 6480 \frac{1}{1.01}^n \approx 648000 . \]
+A substantial sum, but not close to $2 billion.  Actually, the $648000 will buy season tickets not just for 300,000 years, but for an infinite time in the future. Season tickets far in the future are very cheap in today&#39;s money.  Based on the interest and inflation rates assumed here, to buy an infinite sequence of season tickets starting just 2000 years in the future costs less than a quarter of a cent in today&#39;s money.</li>
+</ul>
+
+<p>The important mathematics here is not that the sequence of present values of future season tickets converges.  What&#39;s important is the time scale on which the present value becomes trivial.  At 1\% discount per year, the half-life is about 72 years.  Ten half lives corresponds to a decrease by a factor of 1000.  So an estimate that&#39;s good to 0.1\% need not look forward more than 1000 years.</p>
+
+<p>Indeed, there&#39;s little point in worrying about what it&#39;s going to cost after even 100 years.  The assumptions about interest yields and inflation rates, to say nothing of the very existence of a baseball season or the Dodgers themselves, introduce a much larger error.</p>
+
+<p>The exponential process guarantees convergence.  It&#39;s the time scale of the process that needs emphasis.</p>
+
+<p>Let&#39;s turn the problem around and imaging that Magic Johnson and his co-investors decided to use the two-billion dollars fund college tuition for one person each year until the money runs out.  College tuition has, for the past 60 years, been rising at an average rate of about 6% per year.  Currently, for the most expensive colleges, it&#39;s rising at about 4.5% per year.  Given the 3% return on long-term treasury bonds, paying for a year of college far in the future will cost <em>more</em> in today&#39;s money than paying for a sooner year.  Using $50,000 per year as the cost of an elite college, the money will run out when<br/>
+\[  50,000 \times \sum_{n=1}^{k} 1.015^k = 2,000,000,000. \]<br/>
+Solving for \( k \) involves looking at finite sums, not the convergence of the series.  Trial and error works reasonably well:</p>
+
+<pre><code class="r">50000 * sum(1.015^(1:500))  # more than 2 billion
+</code></pre>
+
+<pre><code>## [1] 5.782e+09
+</code></pre>
+
+<pre><code class="r">50000 * sum(1.015^(1:250))  # less than 2 billion
+</code></pre>
+
+<pre><code>## [1] 136528791
+</code></pre>
+
+<pre><code class="r">50000 * sum(1.015^(1:400))  # less than 2 billion
+</code></pre>
+
+<pre><code>## [1] 1.302e+09
+</code></pre>
+
+<pre><code class="r">50000 * sum(1.015^(1:450))  # more than 2 billion
+</code></pre>
+
+<pre><code>## [1] 2.745e+09
+</code></pre>
+
+<pre><code class="r">50000 * sum(1.015^(1:425))  # Close!
+</code></pre>
+
+<pre><code>## [1] 1.891e+09
+</code></pre>
+
+<p>So, the two-billion dollars will pay for one student to attend college each year for the next roughly 425 years.  There&#39;s no point in worrying about the solution more precisely, since the inflation and interest rates influence the calculation sensitively.  For instance, if the two-billion dollars can be invested in a way that earns 4% yearly rather than the assumed 3%, the money will pay for 1060 years of college.  On the other hand, if tuition costs rise at 5% in face of 3% investment returns, the two-billion dollars will cover only 185 years of college.  </p>
+
+<p>Of course, nobody who understands exponential growth believes that the college tuition system can continue this way.  Even 20 years is beyond the tuition and investment planning horizon of administrators in higher education.</p>
+
+<h4>Approximation with Polynomials</h4>
+
+<p>Another topic encountered is Taylor polynomials and other, related approximations.[<sup>1]</sup></p>
+
+<p>Representation of arbitrary functions with polynomials.  Low order &hellip; things work well.[<sup>3]</sup>  High order &hellip; pathologies:</p>
+
+<p>[<sup>1]:</sup> <br/>
+  testing a footnote</p>
+
+<p>[<sup>3]:</sup><br/>
+  Another footnote.</p>
+
+<p>And a table:</p>
+
+<table><thead>
+<tr>
+<th>Item</th>
+<th>Value</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Computer</td>
+<td>$1600</td>
+</tr>
+<tr>
+<td>Phone</td>
+<td>$12</td>
+</tr>
+<tr>
+<td>Pipe</td>
+<td>$1</td>
+</tr>
+</tbody></table>
+
+<ul>
+<li>quadratic or higher runs off to \( \pm \infty \) very quickly.  Not useful for extrapolation.</li>
+<li>Estimation becomes hard with high-order polynomials, due to non-orthogonality.<br/></li>
+<li>Selection of model order: use anova, so that you look at the incremental improvement of adding a new term</li>
+<li>Parameter estimation: variance inflation due to collinearity.</li>
+</ul>
+
+<p>The general lessons of experience in science is: </p>
+
+<ul>
+<li>Use first or at most second order.<br/></li>
+<li>Use multiple variables rather than high-order in a single variable.<br/></li>
+<li>Try to make the multiple variables orthogonal (by randomization or orthogonal assignment) to avoid variance inflation.<br/>
+The important concept is orthogonality, not convergence.</li>
+</ul>
+
+<p>&ldquo; You stole my net present value example.&rdquo;</p>
+
+</body>
+
+</html>
+
