@@ -2,12 +2,9 @@ Modeling with Limits
 ========================================================
 Danny Kaplan
 
-```{r echo=FALSE,results="hide",label="options"}
+```{r warning=FALSE,message=FALSE,echo=FALSE,results="hide",label="options"}
 require(knitr, quietly=TRUE)
 opts_chunk$set(fig.width=3,fig.height=3,out.width="3in")
-```
-
-```{r warning=FALSE,error=FALSE,message=FALSE,results="hide"}
 library(mosaic,quietly=TRUE)
 trellis.par.set(theme=col.mosaic())
 ```
