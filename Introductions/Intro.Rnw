@@ -363,7 +363,7 @@ pdftitle={},%
 \end{frame}
 
 \begin{frame}
-	\frametitle{This is not a picutre of Randy Pruim }
+	\frametitle{This is not a picture of Randy Pruim }
 	\begin{center}
 	\includegraphics[width=.95\textwidth]{InchWormMedium}
 	\end{center}
