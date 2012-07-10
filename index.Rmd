@@ -97,7 +97,11 @@ This is where we will post materials from our 2012 MAA PREP Workshop.  Stay tune
 #### Block 3: Optimization, Least Squares, Series
  * __Examples__
   * `r I(displayFile("Topics/Optimization/beach-population", "__Beach Population__"))`
-  
+  * `r I(displayFile("Topics/Optimization/QALY1", "Optimization of Quality Adjusted Life Years"))`
+ * __Notes__
+  * `r I(displayFile("Topics/Optimization/One-Variable-Optimization"))`
+  * `r I(displayFile("Topics/Series/notes-on-series", "Series"))`
+  * Do Dogs Know Calculus? [[pdf]](http://www.maa.org/features/elvisdog.pdf)
 
 #### Additional Examples
 
