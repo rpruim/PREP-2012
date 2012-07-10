@@ -66,19 +66,35 @@ This is where we will post materials from our 2012 MAA PREP Workshop.  Stay tune
 
 
 #### Mathematics and Modeling
-[Our Definitions of Modeling](http://rpubs.com/dtkaplan/818)
-[Introduction to Modeling](http://rpubs.com/dtkaplan/808)
+ * Our Definitions of Modeling [[html]](http://rpubs.com/dtkaplan/818)
+ * Introduction to Modeling [[html]](http://rpubs.com/dtkaplan/808)
 
 =======
-#### Primary Examples
- * `r I(displayFile("Topics/Functions/SnowTreeCricket", "Snow Tree Crickets"))`
- * `r I(displayFile("Topics/Functions/WorldPopulation", "World Population"))` 
- * `r I(displayFile("Topics/Functions/footStretch", "Foot Arch"))`
- * `r I(displayFile("Topics/Tides/tides-hawaii", "Tides in Hawaii"))`
- * `r I(displayFile("Topics/Functions/hillFunctions", "Hill Funcitons"))`
- * `r I(displayFile("Topics/Integration/Traffic-Light-Capacity", "Traffic Light Capacity"))`
 
-
+#### Block 1: Functions, Parameters, Limits
+ * __Examples__
+  * `r I(displayFile("Topics/Functions/SnowTreeCricket", "__Snow Tree Crickets__"))`
+  * `r I(displayFile("Topics/Functions/WorldPopulation", "__World Population__"))` 
+  * `r I(displayFile("Topics/Tides/tides-hawaii", "Tides in Hawaii"))`
+  * `r I(displayFile("Topics/Functions/hillFunctions", "Hill Funcitons"))`
+ * __Notes__
+  * StartR in Calculus [[pdf]](https://dl.dropbox.com/u/5098197/PREP2012/StartR-master.pdf)
+  * R/mosaic Pocket Guide[[pdf]](https://dl.dropbox.com/u/5098197/PREP2012/pocketguide.pdf)
+  * Functions for Modeling[[html]](http://rpubs.com/dtkaplan/584)
+  * `r I(displayFile("Topics/Limits/notes-on-limits", "Notes on Limits"))`
+ 
+ 
+#### Block 2: Derivatives and Integrals
+ * __Examples__
+  * `r I(displayFile("Topics/Functions/footStretch", "__Foot Arch__"))`
+  * `r I(displayFile("Topics/Integration/Traffic-Light-Capacity", "Traffic Light Capacity"))`
+  * Missile Accepleration[[pdf]](https://dl.dropbox.com/u/5098197/PREP2012/missile-launch.pdf)
+  * `r I(displayFile("Topics/OrangeJuiceFlow/OrangeJuice", "Orange Juice"))`
+ * __Notes__
+  * `r I(displayFile("Schedule-Outline/Derivatives", "__Function/Derivative Pairs__"))`
+  * `r I(displayFile("Schedule-Outline/Integrals", "Integration"))`
+ 
+#### Block 3: Optimization, Least Squares, Series
 
 
 #### Additional Examples
@@ -88,16 +104,7 @@ This is where we will post materials from our 2012 MAA PREP Workshop.  Stay tune
  * `r I(displayFile("Topics/Functions/LinearFunctions", "Linear Functions"))`
  * `r I(displayFile("Topics/Functions/Toronto-Ball", "Toronto Ball"))`
  * `r I(displayFile("Topics/Functions/ContourPlots", "Contour Plots"))`
- * `r I(displayFile("Topics/OrangeJuiceFlow/OrangeJuice", "Orange Juice"))`
  * `r I(displayFile("Topics/Integration/Integration-problem201", "An Integration Problem"))`
-
-#### Other Resources
-
- * StartR in Calculus [[pdf]](https://dl.dropbox.com/u/5098197/PREP2012/StartR-master.pdf)
- * R/mosaic Pocket Guide[[pdf]](https://dl.dropbox.com/u/5098197/PREP2012/pocketguide.pdf)
- * Functions for Modeling[[html]](http://rpubs.com/dtkaplan/584)
- * `r I(displayFile("Topics/Limits/notes-on-limits", "Notes on Limits"))`
-
 
  
 
