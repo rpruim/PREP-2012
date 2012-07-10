@@ -1,0 +1,324 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0014)about:internet -->
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+<title>Related Rates</title>
+
+<base target="_blank"/>
+
+<style type="text/css">
+body, td {
+   font-family: sans-serif;
+   background-color: white;
+   font-size: 12px;
+   margin: 8px;
+}
+
+tt, code, pre {
+   font-family: 'DejaVu Sans Mono', 'Droid Sans Mono', 'Lucida Console', Consolas, Monaco, monospace;
+}
+
+h1 { 
+   font-size:2.2em; 
+}
+
+h2 { 
+   font-size:1.8em; 
+}
+
+h3 { 
+   font-size:1.4em; 
+}
+
+h4 { 
+   font-size:1.0em; 
+}
+
+h5 { 
+   font-size:0.9em; 
+}
+
+h6 { 
+   font-size:0.8em; 
+}
+
+a:visited {
+   color: rgb(50%, 0%, 50%);
+}
+
+pre {	
+   margin-top: 0;
+   max-width: 95%;
+   border: 1px solid #ccc;
+}
+
+pre code {
+   display: block; padding: 0.5em;
+}
+
+code.r {
+   background-color: #F8F8F8;
+}
+
+table, td, th {
+  border: none;
+}
+
+blockquote {
+   color:#666666;
+   margin:0;
+   padding-left: 1em;
+   border-left: 0.5em #EEE solid;
+}
+
+hr {
+   height: 0px;
+   border-bottom: none;
+   border-top-width: thin;
+   border-top-style: dotted;
+   border-top-color: #999999;
+}
+
+@media print {
+   * { 
+      background: transparent !important; 
+      color: black !important; 
+      filter:none !important; 
+      -ms-filter: none !important; 
+   }
+
+   body { 
+      font-size:12pt; 
+      max-width:100%; 
+   }
+       
+   a, a:visited { 
+      text-decoration: underline; 
+   }
+
+   hr { 
+      visibility: hidden;
+      page-break-before: always;
+   }
+
+   pre, blockquote { 
+      padding-right: 1em; 
+      page-break-inside: avoid; 
+   }
+
+   tr, img { 
+      page-break-inside: avoid; 
+   }
+
+   img { 
+      max-width: 100% !important; 
+   }
+
+   @page :left { 
+      margin: 15mm 20mm 15mm 10mm; 
+   }
+     
+   @page :right { 
+      margin: 15mm 10mm 15mm 20mm; 
+   }
+
+   p, h2, h3 { 
+      orphans: 3; widows: 3; 
+   }
+
+   h2, h3 { 
+      page-break-after: avoid; 
+   }
+}
+
+</style>
+
+<!-- Styles for R syntax highlighter -->
+<style type="text/css">
+   pre .operator,
+   pre .paren {
+     color: rgb(104, 118, 135)
+   }
+
+   pre .literal {
+     color: rgb(88, 72, 246)
+   }
+
+   pre .number {
+     color: rgb(0, 0, 205);
+   }
+
+   pre .comment {
+     color: rgb(76, 136, 107);
+   }
+
+   pre .keyword {
+     color: rgb(0, 0, 255);
+   }
+
+   pre .identifier {
+     color: rgb(0, 0, 0);
+   }
+
+   pre .string {
+     color: rgb(3, 106, 7);
+   }
+</style>
+
+<!-- R syntax highlighter -->
+<script type="text/javascript">
+var hljs=new function(){function m(p){return p.replace(/&/gm,"&amp;").replace(/</gm,"&lt;")}function f(r,q,p){return RegExp(q,"m"+(r.cI?"i":"")+(p?"g":""))}function b(r){for(var p=0;p<r.childNodes.length;p++){var q=r.childNodes[p];if(q.nodeName=="CODE"){return q}if(!(q.nodeType==3&&q.nodeValue.match(/\s+/))){break}}}function h(t,s){var p="";for(var r=0;r<t.childNodes.length;r++){if(t.childNodes[r].nodeType==3){var q=t.childNodes[r].nodeValue;if(s){q=q.replace(/\n/g,"")}p+=q}else{if(t.childNodes[r].nodeName=="BR"){p+="\n"}else{p+=h(t.childNodes[r])}}}if(/MSIE [678]/.test(navigator.userAgent)){p=p.replace(/\r/g,"\n")}return p}function a(s){var r=s.className.split(/\s+/);r=r.concat(s.parentNode.className.split(/\s+/));for(var q=0;q<r.length;q++){var p=r[q].replace(/^language-/,"");if(e[p]){return p}}}function c(q){var p=[];(function(s,t){for(var r=0;r<s.childNodes.length;r++){if(s.childNodes[r].nodeType==3){t+=s.childNodes[r].nodeValue.length}else{if(s.childNodes[r].nodeName=="BR"){t+=1}else{if(s.childNodes[r].nodeType==1){p.push({event:"start",offset:t,node:s.childNodes[r]});t=arguments.callee(s.childNodes[r],t);p.push({event:"stop",offset:t,node:s.childNodes[r]})}}}}return t})(q,0);return p}function k(y,w,x){var q=0;var z="";var s=[];function u(){if(y.length&&w.length){if(y[0].offset!=w[0].offset){return(y[0].offset<w[0].offset)?y:w}else{return w[0].event=="start"?y:w}}else{return y.length?y:w}}function t(D){var A="<"+D.nodeName.toLowerCase();for(var B=0;B<D.attributes.length;B++){var C=D.attributes[B];A+=" "+C.nodeName.toLowerCase();if(C.value!==undefined&&C.value!==false&&C.value!==null){A+='="'+m(C.value)+'"'}}return A+">"}while(y.length||w.length){var v=u().splice(0,1)[0];z+=m(x.substr(q,v.offset-q));q=v.offset;if(v.event=="start"){z+=t(v.node);s.push(v.node)}else{if(v.event=="stop"){var p,r=s.length;do{r--;p=s[r];z+=("</"+p.nodeName.toLowerCase()+">")}while(p!=v.node);s.splice(r,1);while(r<s.length){z+=t(s[r]);r++}}}}return z+m(x.substr(q))}function j(){function q(x,y,v){if(x.compiled){return}var u;var s=[];if(x.k){x.lR=f(y,x.l||hljs.IR,true);for(var w in x.k){if(!x.k.hasOwnProperty(w)){continue}if(x.k[w] instanceof Object){u=x.k[w]}else{u=x.k;w="keyword"}for(var r in u){if(!u.hasOwnProperty(r)){continue}x.k[r]=[w,u[r]];s.push(r)}}}if(!v){if(x.bWK){x.b="\\b("+s.join("|")+")\\s"}x.bR=f(y,x.b?x.b:"\\B|\\b");if(!x.e&&!x.eW){x.e="\\B|\\b"}if(x.e){x.eR=f(y,x.e)}}if(x.i){x.iR=f(y,x.i)}if(x.r===undefined){x.r=1}if(!x.c){x.c=[]}x.compiled=true;for(var t=0;t<x.c.length;t++){if(x.c[t]=="self"){x.c[t]=x}q(x.c[t],y,false)}if(x.starts){q(x.starts,y,false)}}for(var p in e){if(!e.hasOwnProperty(p)){continue}q(e[p].dM,e[p],true)}}function d(B,C){if(!j.called){j();j.called=true}function q(r,M){for(var L=0;L<M.c.length;L++){if((M.c[L].bR.exec(r)||[null])[0]==r){return M.c[L]}}}function v(L,r){if(D[L].e&&D[L].eR.test(r)){return 1}if(D[L].eW){var M=v(L-1,r);return M?M+1:0}return 0}function w(r,L){return L.i&&L.iR.test(r)}function K(N,O){var M=[];for(var L=0;L<N.c.length;L++){M.push(N.c[L].b)}var r=D.length-1;do{if(D[r].e){M.push(D[r].e)}r--}while(D[r+1].eW);if(N.i){M.push(N.i)}return f(O,M.join("|"),true)}function p(M,L){var N=D[D.length-1];if(!N.t){N.t=K(N,E)}N.t.lastIndex=L;var r=N.t.exec(M);return r?[M.substr(L,r.index-L),r[0],false]:[M.substr(L),"",true]}function z(N,r){var L=E.cI?r[0].toLowerCase():r[0];var M=N.k[L];if(M&&M instanceof Array){return M}return false}function F(L,P){L=m(L);if(!P.k){return L}var r="";var O=0;P.lR.lastIndex=0;var M=P.lR.exec(L);while(M){r+=L.substr(O,M.index-O);var N=z(P,M);if(N){x+=N[1];r+='<span class="'+N[0]+'">'+M[0]+"</span>"}else{r+=M[0]}O=P.lR.lastIndex;M=P.lR.exec(L)}return r+L.substr(O,L.length-O)}function J(L,M){if(M.sL&&e[M.sL]){var r=d(M.sL,L);x+=r.keyword_count;return r.value}else{return F(L,M)}}function I(M,r){var L=M.cN?'<span class="'+M.cN+'">':"";if(M.rB){y+=L;M.buffer=""}else{if(M.eB){y+=m(r)+L;M.buffer=""}else{y+=L;M.buffer=r}}D.push(M);A+=M.r}function G(N,M,Q){var R=D[D.length-1];if(Q){y+=J(R.buffer+N,R);return false}var P=q(M,R);if(P){y+=J(R.buffer+N,R);I(P,M);return P.rB}var L=v(D.length-1,M);if(L){var O=R.cN?"</span>":"";if(R.rE){y+=J(R.buffer+N,R)+O}else{if(R.eE){y+=J(R.buffer+N,R)+O+m(M)}else{y+=J(R.buffer+N+M,R)+O}}while(L>1){O=D[D.length-2].cN?"</span>":"";y+=O;L--;D.length--}var r=D[D.length-1];D.length--;D[D.length-1].buffer="";if(r.starts){I(r.starts,"")}return R.rE}if(w(M,R)){throw"Illegal"}}var E=e[B];var D=[E.dM];var A=0;var x=0;var y="";try{var s,u=0;E.dM.buffer="";do{s=p(C,u);var t=G(s[0],s[1],s[2]);u+=s[0].length;if(!t){u+=s[1].length}}while(!s[2]);if(D.length>1){throw"Illegal"}return{r:A,keyword_count:x,value:y}}catch(H){if(H=="Illegal"){return{r:0,keyword_count:0,value:m(C)}}else{throw H}}}function g(t){var p={keyword_count:0,r:0,value:m(t)};var r=p;for(var q in e){if(!e.hasOwnProperty(q)){continue}var s=d(q,t);s.language=q;if(s.keyword_count+s.r>r.keyword_count+r.r){r=s}if(s.keyword_count+s.r>p.keyword_count+p.r){r=p;p=s}}if(r.language){p.second_best=r}return p}function i(r,q,p){if(q){r=r.replace(/^((<[^>]+>|\t)+)/gm,function(t,w,v,u){return w.replace(/\t/g,q)})}if(p){r=r.replace(/\n/g,"<br>")}return r}function n(t,w,r){var x=h(t,r);var v=a(t);var y,s;if(v){y=d(v,x)}else{return}var q=c(t);if(q.length){s=document.createElement("pre");s.innerHTML=y.value;y.value=k(q,c(s),x)}y.value=i(y.value,w,r);var u=t.className;if(!u.match("(\\s|^)(language-)?"+v+"(\\s|$)")){u=u?(u+" "+v):v}if(/MSIE [678]/.test(navigator.userAgent)&&t.tagName=="CODE"&&t.parentNode.tagName=="PRE"){s=t.parentNode;var p=document.createElement("div");p.innerHTML="<pre><code>"+y.value+"</code></pre>";t=p.firstChild.firstChild;p.firstChild.cN=s.cN;s.parentNode.replaceChild(p.firstChild,s)}else{t.innerHTML=y.value}t.className=u;t.result={language:v,kw:y.keyword_count,re:y.r};if(y.second_best){t.second_best={language:y.second_best.language,kw:y.second_best.keyword_count,re:y.second_best.r}}}function o(){if(o.called){return}o.called=true;var r=document.getElementsByTagName("pre");for(var p=0;p<r.length;p++){var q=b(r[p]);if(q){n(q,hljs.tabReplace)}}}function l(){if(window.addEventListener){window.addEventListener("DOMContentLoaded",o,false);window.addEventListener("load",o,false)}else{if(window.attachEvent){window.attachEvent("onload",o)}else{window.onload=o}}}var e={};this.LANGUAGES=e;this.highlight=d;this.highlightAuto=g;this.fixMarkup=i;this.highlightBlock=n;this.initHighlighting=o;this.initHighlightingOnLoad=l;this.IR="[a-zA-Z][a-zA-Z0-9_]*";this.UIR="[a-zA-Z_][a-zA-Z0-9_]*";this.NR="\\b\\d+(\\.\\d+)?";this.CNR="\\b(0[xX][a-fA-F0-9]+|(\\d+(\\.\\d*)?|\\.\\d+)([eE][-+]?\\d+)?)";this.BNR="\\b(0b[01]+)";this.RSR="!|!=|!==|%|%=|&|&&|&=|\\*|\\*=|\\+|\\+=|,|\\.|-|-=|/|/=|:|;|<|<<|<<=|<=|=|==|===|>|>=|>>|>>=|>>>|>>>=|\\?|\\[|\\{|\\(|\\^|\\^=|\\||\\|=|\\|\\||~";this.ER="(?![\\s\\S])";this.BE={b:"\\\\.",r:0};this.ASM={cN:"string",b:"'",e:"'",i:"\\n",c:[this.BE],r:0};this.QSM={cN:"string",b:'"',e:'"',i:"\\n",c:[this.BE],r:0};this.CLCM={cN:"comment",b:"//",e:"$"};this.CBLCLM={cN:"comment",b:"/\\*",e:"\\*/"};this.HCM={cN:"comment",b:"#",e:"$"};this.NM={cN:"number",b:this.NR,r:0};this.CNM={cN:"number",b:this.CNR,r:0};this.BNM={cN:"number",b:this.BNR,r:0};this.inherit=function(r,s){var p={};for(var q in r){p[q]=r[q]}if(s){for(var q in s){p[q]=s[q]}}return p}}();hljs.LANGUAGES.cpp=function(){var a={keyword:{"false":1,"int":1,"float":1,"while":1,"private":1,"char":1,"catch":1,"export":1,virtual:1,operator:2,sizeof:2,dynamic_cast:2,typedef:2,const_cast:2,"const":1,struct:1,"for":1,static_cast:2,union:1,namespace:1,unsigned:1,"long":1,"throw":1,"volatile":2,"static":1,"protected":1,bool:1,template:1,mutable:1,"if":1,"public":1,friend:2,"do":1,"return":1,"goto":1,auto:1,"void":2,"enum":1,"else":1,"break":1,"new":1,extern:1,using:1,"true":1,"class":1,asm:1,"case":1,typeid:1,"short":1,reinterpret_cast:2,"default":1,"double":1,register:1,explicit:1,signed:1,typename:1,"try":1,"this":1,"switch":1,"continue":1,wchar_t:1,inline:1,"delete":1,alignof:1,char16_t:1,char32_t:1,constexpr:1,decltype:1,noexcept:1,nullptr:1,static_assert:1,thread_local:1,restrict:1,_Bool:1,complex:1},built_in:{std:1,string:1,cin:1,cout:1,cerr:1,clog:1,stringstream:1,istringstream:1,ostringstream:1,auto_ptr:1,deque:1,list:1,queue:1,stack:1,vector:1,map:1,set:1,bitset:1,multiset:1,multimap:1,unordered_set:1,unordered_map:1,unordered_multiset:1,unordered_multimap:1,array:1,shared_ptr:1}};return{dM:{k:a,i:"</",c:[hljs.CLCM,hljs.CBLCLM,hljs.QSM,{cN:"string",b:"'\\\\?.",e:"'",i:"."},{cN:"number",b:"\\b(\\d+(\\.\\d*)?|\\.\\d+)(u|U|l|L|ul|UL|f|F)"},hljs.CNM,{cN:"preprocessor",b:"#",e:"$"},{cN:"stl_container",b:"\\b(deque|list|queue|stack|vector|map|set|bitset|multiset|multimap|unordered_map|unordered_set|unordered_multiset|unordered_multimap|array)\\s*<",e:">",k:a,r:10,c:["self"]}]}}}();hljs.LANGUAGES.r={dM:{c:[hljs.HCM,{cN:"number",b:"\\b0[xX][0-9a-fA-F]+[Li]?\\b",e:hljs.IMMEDIATE_RE,r:0},{cN:"number",b:"\\b\\d+(?:[eE][+\\-]?\\d*)?L\\b",e:hljs.IMMEDIATE_RE,r:0},{cN:"number",b:"\\b\\d+\\.(?!\\d)(?:i\\b)?",e:hljs.IMMEDIATE_RE,r:1},{cN:"number",b:"\\b\\d+(?:\\.\\d*)?(?:[eE][+\\-]?\\d*)?i?\\b",e:hljs.IMMEDIATE_RE,r:0},{cN:"number",b:"\\.\\d+(?:[eE][+\\-]?\\d*)?i?\\b",e:hljs.IMMEDIATE_RE,r:1},{cN:"keyword",b:"(?:tryCatch|library|setGeneric|setGroupGeneric)\\b",e:hljs.IMMEDIATE_RE,r:10},{cN:"keyword",b:"\\.\\.\\.",e:hljs.IMMEDIATE_RE,r:10},{cN:"keyword",b:"\\.\\.\\d+(?![\\w.])",e:hljs.IMMEDIATE_RE,r:10},{cN:"keyword",b:"\\b(?:function)",e:hljs.IMMEDIATE_RE,r:2},{cN:"keyword",b:"(?:if|in|break|next|repeat|else|for|return|switch|while|try|stop|warning|require|attach|detach|source|setMethod|setClass)\\b",e:hljs.IMMEDIATE_RE,r:1},{cN:"literal",b:"(?:NA|NA_integer_|NA_real_|NA_character_|NA_complex_)\\b",e:hljs.IMMEDIATE_RE,r:10},{cN:"literal",b:"(?:NULL|TRUE|FALSE|T|F|Inf|NaN)\\b",e:hljs.IMMEDIATE_RE,r:1},{cN:"identifier",b:"[a-zA-Z.][a-zA-Z0-9._]*\\b",e:hljs.IMMEDIATE_RE,r:0},{cN:"operator",b:"<\\-(?!\\s*\\d)",e:hljs.IMMEDIATE_RE,r:2},{cN:"operator",b:"\\->|<\\-",e:hljs.IMMEDIATE_RE,r:1},{cN:"operator",b:"%%|~",e:hljs.IMMEDIATE_RE},{cN:"operator",b:">=|<=|==|!=|\\|\\||&&|=|\\+|\\-|\\*|/|\\^|>|<|!|&|\\||\\$|:",e:hljs.IMMEDIATE_RE,r:0},{cN:"operator",b:"%",e:"%",i:"\\n",r:1},{cN:"identifier",b:"`",e:"`",r:0},{cN:"string",b:'"',e:'"',c:[hljs.BE],r:0},{cN:"string",b:"'",e:"'",c:[hljs.BE],r:0},{cN:"paren",b:"[[({\\])}]",e:hljs.IMMEDIATE_RE,r:0}]}};
+hljs.initHighlightingOnLoad();
+</script>
+
+
+<!-- MathJax scripts -->
+<script type="text/javascript" src="https://c328740.ssl.cf1.rackcdn.com/mathjax/2.0-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+
+</head>
+
+<body>
+<h1>Related Rates</h1>
+
+<p>Here&#39;s a classic related rates problem:</p>
+
+<p><em>A ladder 10 ft long rests against a vertical wall.  If the bottom of the ladder slides away from the wall at a rate of 1 ft/s, how fast is the top of te ladder sliding down the wall when the bottom of the ladder is 6 ft from the wall?</em></p>
+
+<h3>Algebraic Solution</h3>
+
+<p>The standard solution is about algebra. <br/>
+1. Express the relationship between the horizontal \( x \) and vertical \( y \) positions: \( x^2 + y^2 = 10^2 \).<br/><br/>
+2. Differentiate the expression with respect to time:<br/>
+\( 2x \frac{dx}{dt} + 2y \frac{dy}{dt} = 0 \).  This is perhaps a bit confusing, because there are <strong>four</strong> functions involved: \( x(t) \) and \( y(t) \), as well as \( x^2 + y^2 \) and \( 10 \).<br/>
+3. Solve with respect to the desired rate: \( \frac{dy}{dt} = - \frac{x}{y}\frac{dx}{dt} \).<br/>
+4. Plug in the values for \( x \) (which is known from the problem statement) and \( y \) (which needs to be figured out from the relationship between \( x \) and \( y \)) and find \( \frac{dy}{dt} \)</p>
+
+<h3>Graphing the relationship</h3>
+
+<p>Once students know how to deal with functions of two variables, a different approach is feasible.<br/>
+1. Write down the <strong>state</strong> of the system: \( x \) and \( y \).<br/>
+2. Write down the constraint function.  Or, in otherwords, write down the relationship between \( x \) and \( y \) and the length of the ladder: \( x^2 + y^2 = h^2 \).<br/>
+3. Plot out the constraint function as a function of the state:</p>
+
+<pre><code class="r">g = makeFun(x^2 + y^2 - h^2 ~ x + y)
+plotFun(g(x, y, h = 10) ~ x + y, x.lim = c(0, 10), y.lim = c(0, 10))
+</code></pre>
+
+<p><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAANgAAADYCAMAAAC+/t3fAAABd1BMVEUAAAAAAA4AABUAABsAACYAADoAAGYACx0AFCUAFP8AKAAAKJAAMjUAMyUAOgAAOpAARP8ASAAASLYAWy4AZgAAZjoAZrYAZtsAdf8AgWYAgf8AnJAAnLYAnP8Ao/8AtbYAtdsAtf8A5f8A/ywE/wALHSwXAAAXkAAcAP8lFAAoAAAsHQssMzMzJRQzLB0zMzM02wA0/wA52wA6AAA6AA46ABs6ADo6AGY6OpA6gDk6kNs8AAA8tgBIZgBI/wBMAP9UOgBU2wBXkABX/wBltgBl/wBmAABmACZmAGZmZmZmnV5mokJmtv9qZgBq/wCAkACA/wCQMgCQOgCQOjqQvl6Qw0KQ2/+V/wC2WQC2WwC2ZgC2nV6223q23V6240K2/7a2///F/wDbfRXbgA7bhwbbkDrbtmbb3V7b40Lb/9vb////ohv/rAv/tmb/wyX/23r/25D/3Jb/3UP/3VH/3V7/4LP/4y7/40L/8Rz//wD//7b//9v///957e8jAAAACXBIWXMAAAsSAAALEgHS3X78AAAHw0lEQVR4nO3de3vURBQG8EFti4CXCtSliCUWVKg1xitWBUVbab2jWLsqKriC4EqtxV1KP7yTzeYy15wkM0lmn/M+/mUIuz/OzMlk9kb2JzSk6SdgKwhzLQhzLQhzLQhzLQhzLQhzLQhzLQhzLQhzLQhzLQhzLQhzLQhzLQgDnqQ+VN9JkMMGHw5hlU+CHDb4cAirfBLksMGHcwBGWhKDsPHf6AtZVWWTz2/ZPEgyTOP7g3F2o9wb5Z8o9+P4el6pigVB/LxzfaVgMU0Lu2+yYgmMC6R+cJ+f0lhbjIt8dcBEXxWYsmiNwUZJx2d52GAQy1oEY2oX6Asnsz1IijZkhuM9fqo1AsvgSsKG/DxrDyxTuDKwITfP6oCd0UVqC4KgSOH4FjLYWXvsZx7XMCzGlYClsrtk40YoaxtMMt1AsJi2RTZ2d0NZozA5UT4ipe2fmW3jom09cXt350d2qrUDluAKwihtaeY2lb0rXNHaAws0A1JzuT531h/DbpBHvmslTKgaCPbXQd//+81ruztrR27tfPqTTdiiMgAjvyLRX9VC2e/05uSzwX9rR+kV7YeNZDi2DRbRisCia/XWUXqp/vebNsNYGgRGZa++dZ3Cbhy51QxMrwS1kU3pGstfClvI3QPX0ubYSpjQ+/Ngw+WZVwY3D1wbtB5GL9Xy/qiADW8S8uj1gV3YC9IU9+X1R240cvcxLYbl9Ud+DcLex1SGdcnU95ZgOf1R0vV9c7D+U3fofwBYDlPhK1Q0ZjRWhW1fuNOfi/90FJOwwkVLYVU3TPuELZjZirEyyGg0VbHe3P72O78y53iZVPJlaNDhmO5eVYat7O9dsQwrMhyTeVYV9vAqIZ+z55iHFRmOsczCdcwCLNo/jmFfEfJRbgOxDBNS1Ccp2vknv95870tJ0ZgXmpyBJT3k/DEq+uJ9Hcx3CxbJPjgWjsYPNbDoJYu6YRpi/myjz/i1Fy/Sql2mo1G63E9r5hSMypZeoq5PRs1DDRtagqUv8JmGBf7yzMerl8nrqhu0dDRagPlCOiZ8Y9kSXQBe1F7RopJZgHWSZHGGYJn1lQ42HFqFib7qsFTWPIzDSQemBieMRqFows5cjbAMrypMHI3Nw2JbNZgwGlsB6yinG8h2RrhDU0yz+mFKWwFYVtYmmHxIFoGt8vOsPTDaQjhaIdgqN8/qgD0tBlw1jS93NLK4yrAeIXPM/ygAk9KgMGXXNwMLNxW7zKZHIVhEKwdbtQrrracVG+9RSmBaYl7VBFvmzlO9uKq6Ydqlql5uxfS1y2mQOpivhlWtGEX1V6rBxAEJhAUWYf2CFVMRoUVb5BdXgWKameiKTMFKwqBFE2DSVaMJmHhOSVgkO33ocMhaINMgGD/NrMIez6QYblSz2WnPO0Hmj097Glj2Os2/XhHZWgWLZCfmZ8m85x2fBsECxQKkXbBOPM9m6YBceB4Ik16nLcPYAHz0aS6Fs2z2WVozMnUKsAapBttbm9P8OXMwKjt3dgRbIIe9BelwVE2zkhXrE/79AVZgHW/5oO+dnHqOPBP6ZMNRtc4vPxTFV/mKwTS+LC3cE52fDV2nD8170ubIT7NAGI1w2PYbYcW412WtwMKJdnI67CHHD3sQmGyawecY9+YAmzAqW6LNwzsxdQoKE6ZZrV0RDPP85Rlar5ELApP0jyZgCh5bMzrRpmULR75/sJ2x/bAOsySeJJiXleXDxvsEVmEvZ1IFl5FJF/r6lVWLYZ2JhXmJDADjO6NlGIyosikaCGjJaADW47YGzME68gZSE6zP73kYhHWKwXyTsO0Lf8Sw8R6lHJbjU0015gXQImvhqhumdFHcB1WsNEycZqC1cOUN0/Cfhd0wNQqTTbNaYPv8RnAOTONT2Er2j/bDpNfpWmD8OeZh4nV6ImCyBYgCllnkNwST2ZT9oyN2xkW+gbgK4xvIhMDEzqiCpbdlFmCX4lTFyaaZap6ll7Lx6gNhjsCSjm8TdglChE01+FrYMZik408MDLgWrheW44N0fcBamJlkzsAAa2GEGYepbJp5Jlt+6GFjGcIQZg2WyGqBhS9Lc59c18JUOM21TNPx5febI5mFd5hOBixM/La+8R6lNZjY8TVbHwa+w7TPvdk5FyazgaaZCia7lFWvWJd7y86EwB5e5d/RYhEm7FdZhHXFLe5SMM0008BSnIWhKJyDsEmEyWyAjp/sEOhhoQxhCLMJk6yDEYYwhEFhAk4DE5ZVCGspTHmzycJWrXztBRAmxSEMYQhDGMIswAKEwUjADdN6YOZ/9Kkl0T/JEjDdSepD9Z0EOWzw4RBW+STIYYMPh7DKJ0EOG3w4F2AuBGGuBWGuBWGuxShMfBNPJtznITMH+O+WSyL8TEeBGIWJb+LJHCMKmPok8Wc6CsT4UOzJYZnPQ/InrKsqlv2ZjsIxDVM8E/HzkEnE75ZL/zL1wM6NYRj/Jp444uch00PCd8slR4Sf6SgQw81D87U0qoqJ3y0XR/yZjgIxChPfxJOJCiZ+t1wc0Bf4qILXMdeCMNeCMNeCMNeCMNeCMNeCMNfSCKy7Et5E2k0jsL0rv5S+gYSmmaHYU96OGkszsO23S+8XQtMMrLtue4o1A9u+8Oe3tkvWBCzczCq/xQsMXsdcC8JcC8JcC8JcC8JcC8Jcy/8sJOqdB0KFHgAAAABJRU5ErkJggg==" alt="plot of chunk constraint"/> </p>
+
+<ol>
+<li>The constraint is satisfied when the constraint function has a value of 0.
+Look at the zero contour on the plot.</li>
+<li>Find the point on the zero contour where \( x=6 \).  What&#39;s \( y \)?  If you change \( x \) from 6 to 7, what happens to \( y \)?  To see this in detail, it helps to zoom in on the plot:</li>
+</ol>
+
+<pre><code class="r">plotFun(g(x, y, h = 10) ~ x + y, x.lim = c(6, 7), y.lim = c(6.5, 
+    8.5))
+</code></pre>
+
+<p><img src="data:image/png;base64,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" alt="plot of chunk constraint-zoom"/> </p>
+
+<p>You can see that a change in \( x \) from 6 to 7 leads to a change in \( y \) from 8 to 7.25.  That the contour is approximately linear over this finite range means that the finite difference is a reasonable approximation.</p>
+
+<p>The core mathematics here is about implicit functions.  Given a function of \( x \) and \( y \) that&#39;s constant, there is implicitly a functional relationship between \( x \) and \( y \) (over some small domain).  The length of the ladder is constant, which imposes a relationship between the ends of the ladder.  </p>
+
+<h3>A Textbook Example</h3>
+
+<p>Here&#39;s a problem from Stewart, <em>Calculus: Concepts and Contexts</em> 2/e p. 269</p>
+
+<p><em>Two carts, A and B, are connected by a rope 39 feet long that pases over a pully \( P \).  The point \( Q \) is on the floor 12 ft directly beneath \( P \) and between the carts.  Cart A is being pulled away from \( Q \) at a speed of 2 ft/s.  How fast is cart B moving toward Q at the instant when cart A is 5 feet from Q?</em></p>
+
+<p>The state is the position of the two carts, \( A \) and \( B \), which we can define to be measured as the distance from \( Q \).  The constraint function is the length of the rope.  Given \( A \) and \( B \), the rope length \( L \) is:</p>
+
+<pre><code class="r">rope = makeFun(sqrt(A^2 + H^2) + sqrt(B^2 + H^2) - L ~ A + B, H = 12, 
+    L = 39)
+</code></pre>
+
+<p>QUESTION: How could you confirm that this is really the constraint function?</p>
+
+<p>Plot out the constraint function and look for the zero contour, which is the set of values of \( A \) and \( B \) where the constraint is satisfied.  In setting the plotting limits, you&#39;ll have to think about both the value of \( A \) of interest (\( A=5 \)) and what this implies about \( B \).   Or you can just take a guess and refine it.</p>
+
+<pre><code class="r">plotFun(rope(A = A, B = B) ~ A + B, A.lim = c(0, 10), B.lim = c(0, 
+    40))
+</code></pre>
+
+<p><img src="data:image/png;base64,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" alt="plot of chunk carts"/> </p>
+
+<p>QUESTIONS:<br/>
+1. Let cart A move from \( A=5 \) to \( A=7 \) in one second.  How far does cart B move in that time?<br/>
+2. Is the relationship from \( A=5 \) to \( A=7 \) sufficiently linear that you will tolerate the approximation?  Let \( A \) change from \( A=5 \) to \( A=5.2 \) in one-tenth of a second.  How far does cart B move in this time?  What&#39;s the velocity of B over this second?</p>
+
+<h3>Another kind of Problem</h3>
+
+<p><a href="http://en.wikipedia.org/wiki/Related_rates">A problem from Wikipedia</a>:<br/>
+<em>One vehicle is heading West toward an intersection at 80 miles per hour while another is heading North away from the intersection at 60 miles per hour. One can ask whether the vehicles are getting closer or further apart and at what rate at the moment when the North bound vehicle is 3 miles North of the intersection and the West bound vehicle is 4 miles East of the intersection.</em></p>
+
+<p>The state is the positions of the two vehicles, call them \( W \) and \( N \).  The distance between them is \( \sqrt{N^2 + W^2} \).  There is no constraint, just the distance function:</p>
+
+<pre><code class="r">dist = makeFun(sqrt(N^2 + W^2) ~ N + W)
+plotFun(dist(N = N, W = W) ~ N + W, N.lim = c(2.5, 3.5), W.lim = c(-4.5, 
+    -3.5))
+plotPoints(c(-4, -3.978) ~ c(3, 3 + 1/60), add = TRUE, pch = 20)
+</code></pre>
+
+<p><img src="data:image/png;base64,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" alt="plot of chunk car-problem"/> </p>
+
+<p>The work here is in figuring out what are the relevant values of \( N \) and \( W \) given the statement in the word problem.  Pick a relatively short time interval, say 1 seconds.  The Northbound car moves 1/60 mile north during this time.  The Westbound car moves \( 80/3600 = 0.022 \) miles west.  How much does the distance between the cars change in 10 seconds?  Convert this to miles per hour. </p>
+
+<p>Dots have been plotted at the position of the vehicles at the two instants.  It&#39;s evident that they are at different distances: 5 miles initially to about 4.9  miles after 1 seconds.  The distances can be calculated from positions:</p>
+
+<pre><code class="r">dist(N = 3, W = -4)
+</code></pre>
+
+<pre><code>## [1] 5
+</code></pre>
+
+<pre><code class="r">dist(N = 3 + 1/60, W = -4 + 80/3600)
+</code></pre>
+
+<pre><code>## [1] 4.992
+</code></pre>
+
+<p>So, in 1 second, the cars move about 0.00771 miles closer, giving a closing speed of \( 0.00771\times 3600 \approx 28 \) mph or about 40 feet per second.</p>
+
+<h3>An Exercise</h3>
+
+<p>A problem from Stewart, <em>Calculus: Concepts and Contexts</em> 2/e p. 269:</p>
+
+<p><em>The altitude of a triangle is increasing at a rate of 1 cm/min while the area of the triangle is increasing at a rate of 2 cm<sup>2</sup> /min.  At what rate is the base of the triangle changing when the altitude is 10 cm and the area is 100 cm<sup>2</sup> ?</em></p>
+
+<h4>Approach</h4>
+
+<ol>
+<li>What are the known quantities? Area \( A \), altitude \( h \)</li>
+<li>What is the quantity whose rate of change is stated? \( h \)</li>
+<li>What is the quantity whose rate of change it is desired to know? base \( b \)</li>
+<li>What is the relationship between the quantities? \( A = \frac{1}{2}b h \)</li>
+<li>Turn the relationship into a constraint function. \( A - \frac{1}{2} b h \)</li>
+<li>Plot the constraint function as a function of the quantity whose rate of change is known and whose rate it is desired to know, that is, \( b \) and \( h \). Use the other known and fixed quantities as parameters. In this case, \( A=100 \) cm<sup>2</sup> .</li>
+<li>Using the zero contour of the constraint function, locate a point where \( h=10 \) cm and figure out the corresponding value of \( b \).</li>
+<li>Finite-difference technique.  Plug in \( h=10.2 \) as the value of \( h \) after 1/10 of a minute.  Find the corresponding value of \( b \).  Multiply the change in \( b \) by 10 to convert it to cm/sec.</li>
+<li>Implicit function technique.  To be written.</li>
+</ol>
+
+<pre><code class="r">constraint = makeFun(A - b * h/2 ~ b + h, A = 100)
+plotFun(constraint(b = b, h = h) ~ h + b, h.lim = c(9, 11), b.lim = c(19, 
+    21))
+</code></pre>
+
+<p><img src="data:image/png;base64,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" alt="plot of chunk stewart-triange"/> </p>
+
+<h3>It&#39;s not always Pythagorean!</h3>
+
+<p>Write an example which doesn&#39;t have the Pythagorean relationship involved.  For instance, imagine that the ladder is up on the side of a half-pipe.  Describe the shape of the half pipe as a function parameterized in \( x \). Let the state of the system &mdash; the end-points of the ladder &mdash; be \( x_1 \) and \( x_2 \).  The constraint function is the length of the ladder as a function of \( x_1 \) and \( x_2 \).  </p>
+
+</body>
+
+</html>
+
