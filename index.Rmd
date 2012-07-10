@@ -98,6 +98,8 @@ This is where we will post materials from our 2012 MAA PREP Workshop.  Stay tune
  * R/mosaic Pocket Guide[[pdf]](https://dl.dropbox.com/u/5098197/PREP2012/pocketguide.pdf)
  * Functions for Modeling[[html]](http://rpubs.com/dtkaplan/584)
  * `r I(displayFile("Topics/Limits/notes-on-limits", "Notes on Limits"))`
+ * [_Do Dogs Know Calculus?_](http://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=1&ved=0CEoQFjAA&url=http%3A%2F%2Fwww.maa.org%2Ffeatures%2Felvisdog.pdf&ei=tGP8T8KzCPPE2QXvkNXvBg&usg=AFQjCNFq_1VGUyACLss9-q2zAZEq2jxBsA)
+ * [_Dogs Don't Need Calculus_](http://www.jstor.org/discover/10.4169/074683410X475074?uid=20072&uid=3739728&uid=2129&uid=2&uid=70&uid=3&uid=67&uid=20071&uid=62&uid=3739256&sid=56300677663)
 
 
  
