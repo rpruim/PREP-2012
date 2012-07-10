@@ -73,11 +73,10 @@ This is where we will post materials from our 2012 MAA PREP Workshop.  Stay tune
 #### Primary Examples
  * `r I(displayFile("Topics/Functions/SnowTreeCricket", "Snow Tree Crickets"))`
  * `r I(displayFile("Topics/Functions/WorldPopulation", "World Population"))` 
- * `r I(displayFile("Topics/Functions/footStretch", "Foot Arch"))
+ * `r I(displayFile("Topics/Functions/footStretch", "Foot Arch"))`
  * `r I(displayFile("Topics/Tides/tides-hawaii", "Tides in Hawaii"))`
  * `r I(displayFile("Topics/Functions/hillFunctions", "Hill Funcitons"))`
- * `r I(displayFile("Topics/Functions/footArch", "Foot Arch"))`
- * `r I(displayFile("Topics/Integration/Traffic-Light", "Traffic Light"))`
+ * `r I(displayFile("Topics/Integration/Traffic-Light-Capacity", "Traffic Light Capacity"))`
 
 
 
@@ -88,9 +87,9 @@ This is where we will post materials from our 2012 MAA PREP Workshop.  Stay tune
  * `r I(displayFile("Topics/Cooling/CoolingCoffee", "Cooling Coffee"))`
  * `r I(displayFile("Topics/Functions/LinearFunctions", "Linear Functions"))`
  * `r I(displayFile("Topics/Functions/Toronto-Ball", "Toronto Ball"))`
- * `r I(displayFile("Topics/Functions/Contour Plots", "Contour Plots"))`
+ * `r I(displayFile("Topics/Functions/ContourPlots", "Contour Plots"))`
  * `r I(displayFile("Topics/OrangeJuiceFlow/OrangeJuice", "Orange Juice"))`
- * `r I(displayFile("Topics/Functions/integration-problem201", "An Integration Problem"))`
+ * `r I(displayFile("Topics/Integration/Integration-problem201", "An Integration Problem"))`
 
 #### Other Resources
 
