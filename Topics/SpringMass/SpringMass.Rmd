@@ -1,0 +1,30 @@
+Spring-Mass data from Vernier
+========================================================
+Tim and Danny
+
+```r
+require(mosaic)
+```
+
+```{r}
+spring = read.csv("Topics/SpringMass/SpringVernier.csv")
+plotPoints( pos ~ time, data=spring)
+posfun = fitModel( pos ~ A*sin(2*pi*(time-T0)/P) + B,
+  start=list(P=2*pi/11,T0=-.65,B=.72,A=.02), data=spring)
+plotFun( posfun(t)~t, add=TRUE)
+```
+
+```{r}
+vel = numD(posfun(t)~t)
+accel = numD(vel(t)~t)
+plotFun(accel(t)~t, t.lim=c(0,5))
+plotFun(vel(t)~t, add=TRUE,col="green")
+plotFun(posfun(t)~t, add=TRUE, col="red")
+```
+
+Calculate simple derivatives numerically:
+```{r}
+vdata = c(NA,with(spring,diff(pos)/diff(time)))
+adata = c(NA,with(spring,diff(vdata)/diff(time)))
+plotPoints(vdata~time, data=spring,add=TRUE,col="green")
+plotPoints(adata~time, data=spring,add=TRUE, col="blue")
