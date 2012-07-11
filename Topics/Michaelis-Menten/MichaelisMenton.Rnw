@@ -1,8 +1,10 @@
 
-\documentclass{article}
+\documentclass[11pt]{article}
+
+\usepackage[papersize={3in,4in},landscape,margin=.2in]{geometry}
 
 % things for all PREP workshop materials
-\usepackage{../../include/mosaic}   % mosaic defaults and macros
+%\usepackage{../../include/mosaic}   % mosaic defaults and macros
 \usepackage{../../include/sfsect}   % san serif font for section titles
 \usepackage{../../include/language} % consistent formatting of languages elements
 
@@ -23,6 +25,9 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{document}
+\pagestyle{empty}
+\parindent=0pt
+\title{The Michaelis-Menton Model}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Standard Sweave Set-up
@@ -47,26 +52,64 @@ options(scipen=1,digits=3)
 @
 
 
+\section{The Michaelis-Mentil Model}
 
-\title{\large \sf The Michaelis-Menten Model}
+Image from Biostats Book
 
-\section{The Model}
-In biochemistry, Michaelis–Menten kinetics is one of the simplest and
+
+\vfill
+Where does this come from?
+
+
+\newpage
+
+\subsection{Some background}
+In biochemistry, Michaelis-Menten kinetics is one of the simplest and
 best-known models of enzyme kinetics. It is named after German biochemist
 Leonor Michaelis and Canadian physician Maud Menten. 
-The model can be illustrated as
+The reaction can be illustrated as
+\[
+\ce{
+E + S <=> ES -> E + P
+}
+\]
+where $E$ is the enzime, $S$ is the substrate, $ES$ is the enzyme binding to
+the substrate, and $P$ is a product.
+
+
+\bigskip
+
+\textbf{Question:} How can we model this?
+
+\newpage
+
+%\subsection{The Chemical Model}
+
+\subsection{Building a Mathematical Model}
+\[
+\ce{
+E + S <=> ES -> E + P
+}
+\]
+\begin{itemize}
+	\item $\frac{d [E]}{dt} $ depends on ??
+	\item $\frac{d [S]}{dt} $ depends on ??
+	\item $\frac{d [ES]}{dt} $ depends on ??
+	\item $\frac{d [P]}{dt} $ depends on ??
+\end{itemize}
+
+\newpage
+
+This leads to the following system of differential equations:
 \[
 \ce{
 E + S <=>C[k_f][k_r] ES ->C[k_{cat}] E + P
 }
 \]
-Where $E$ is the enzime, $S$ is the substrate, $ES$ is the enzyme binding to
-the substrate, and $P$ is a product.
 
-This leads to the following system of differential equations:
 
 \begin{align}
-	\frac{d[S]}{dt} & = -k_f [E] [S] + k_r [ES] ]
+	\frac{d[S]}{dt} & = -k_f [E] [S] + k_r [ES] 
 	\label{dSdt}
 	\\
 	\frac{d[E]}{dt} & = -k_f [E] [S] + k_r [ES] + k_{cat} [ES]
@@ -77,8 +120,9 @@ This leads to the following system of differential equations:
 	\\
 	\frac{d[P]}{dt} & = \phantom{-k_f [E] [S] + k_r [ES] + \;} k_{cat} [ES]
 	\label{dPdt}
-	\\
 \end{align}
+
+\newpage
 
 \section{Simplifying the Model}
 Now we make some simplifications:
@@ -178,6 +222,7 @@ mmSlopes <- data.frame(S=as.numeric(levels(mmno$S)),
 )
 mmSlopes
 @
+
 
 \subsection{Fitting with Ordinary Least Squares}
 Now we can fit our Michaelis-Menten model:
