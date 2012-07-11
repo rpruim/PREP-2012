@@ -3,7 +3,7 @@ The Snowy Tree Cricket
 
 Here's an example from the "What is a Function?" introductory chapter of *Applied Calculus* by Hughes-Hallett et al. 4/e (p.3).
 
-<image src="AppliedCalcSnowCricket.png" width=450>
+<image src="AppliedCalcSnowCricket.png" width=550>
 
 *Applied Calculus* is a very nice text.  It's exercises are particularly good.  
 

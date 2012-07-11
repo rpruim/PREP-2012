@@ -1,0 +1,114 @@
+
+```{r, setup, echo=FALSE, resuts="hide", message=FALSE, warning=FALSE}
+set.seed(12345)
+options(show.signif.stars=FALSE)
+require(mosaic)
+trellis.par.set(theme=col.mosaic())
+options(scipen=1,digits=3)
+```
+
+
+
+The Michaelis-Menten Model
+==========================
+
+The Model
+---------
+In biochemistry, Michaelis–Menten kinetics is one of the simplest and
+best-known models of enzyme kinetics. It is named after German biochemist
+Leonor Michaelis and Canadian physician Maud Menten. 
+The model can be illustrated as
+$$latex
+\ce{
+E + S <=>C[k_f][k_r] ES ->C[k_{cat}] E + P
+}
+$$
+Where $latex E$ is the enzime, $latex S$ is the substrate, $latex ES$ is the enzyme binding to
+the substrate, and $latex P$ is a product.  This says that when there is (free) enzyme and substrate around,
+there is a chance that they could become bound together.  The resulting $latex ES$ complex can either dissassociate
+into enzyme and substrate again, or it can be converted into enzyme and a product.
+
+
+To model this situation, we to make some assumptions about how things move back and forth 
+between the left and middle and also from the middle to the right.  (Notice that there
+is no movement back from the right to the middle.)  First the easy bits.
+
+ * We assume that at any moment each $latex ES$ complex has some probability of 
+being converted into $latex E + S$, some probability of being converted into $latex E + P$,
+and otherwise remains $latex ES$.  This is indicated by the rate constants $latex k_r$ and $latex k_{cat}$.
+
+The tricier bit is to figure out how quickly $latex E + S$ is converted into $latex ES$.  The model for this
+is based on the idea that $latex E$ and $latex S$ molecules are moving around and that each time an $latex E$ encounters
+an $latex S$, there is some probability that they form $latex ES$.  So the rate is proportional to the number
+potential encounters, i.e., $latex [E]\cdot [S]$.
+
+
+This leads to the following system of differential equations:
+
+$$latex 
+\begin{align}
+	\frac{d[S]}{dt} & = -k_f [E] [S] + k_r [ES] ]
+	\label{dSdt}
+	\\
+	\frac{d[E]}{dt} & = -k_f [E] [S] + k_r [ES] + k_{cat} [ES]
+	\label{dEdt}
+	\\
+	\frac{d[ES]}{dt} & = \phantom{-}k_f [E] [S] - k_r [ES] - k_{cat} [ES]
+	\label{dESdt}
+	\\
+	\frac{d[P]}{dt} & = \phantom{-k_f [E] [S] + k_r [ES] + \;} k_{cat} [ES]
+	\label{dPdt}
+	\\
+\end{align}
+$$
+
+Simplifying the Model
+---------------------
+Now we make some simplifications:
+
+ * If the enzyme is conserved, then $[E] + [ES] = [E]_0$ is a constant.
+ * In situations where $\frac{d[P]}{dt}$ is constant 
+(\ref{dESdt}) and (\ref{dPdt}) imply that $\frac{d[ES]}{dt} = 0$.
+This is often used as an approximation when $\frac{d[P]}{dt}$ 
+is nearly constant.
+ * From this it follows that 
+	$$latex
+  \begin{align*}
+	k_f [E] [S] & = ( k_r + k_{cat} ) [ES] 
+	\\
+	k_f ([E]_0 - [ES]) [S] & = ( k_r + k_{cat} ) [ES] 
+	\\
+	([E]_0 - [ES]) [S] & =  \frac{k_r + k_{cat}}{k_f}  [ES] 
+	\\
+	[E]_0 [S] & = \left( \frac{k_r + k_{cat}}{k_f} + [S] \right)  [ES] 
+	\\
+	[ES] & = \frac{ [E]_0 [S] }{ \frac{k_r + k_{cat}}{k_f} + [S] }  
+	\\
+	k_{cat} [ES] & = \frac{k_{cat} [E]_0 [S]}{ \frac{k_r + k_{cat}}{k_f} + [S]}  
+	\\
+	v = \frac{d[P]}{dt}& = \frac{k_{cat} [E]_0 [S]}{\frac{k_r + k_{cat}}{k_f} + [S]}
+  $$
+	
+ * Ignoring the meaning of the constants (for the moment) 
+	and focusing on the form, we now have 
+	the following sort of relationship between $v$ and $[S]$
+  
+$$latex
+	\begin{align}
+	v = \frac{ \alpha [S] }{ \beta + [S] }
+	\label{eq:MichMent}
+\end{align}
+$$
+    That is, the ``velocity'' of the reaction (rate at which the product is produced)
+	is determined by the concentration of the substrate and constants that do 
+	not depend on $latex v$ or $latex [S]$.
+
+Equation (\ref{eq:MichMent}) is not in our favorite linear form, but we can
+use transforamtions to get into a linear form:
+$$latex 
+\frac{1}v
+= \frac {\beta + [S] }{ \alpha [S] } 
+= \frac{1}{\alpha} + \frac{\beta}{\alpha} \frac{1}{[S]} 
+$$
+
+
