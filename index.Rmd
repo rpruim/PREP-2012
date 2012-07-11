@@ -94,16 +94,18 @@ This is where we will post materials from our 2012 MAA PREP Workshop.  Stay tune
  * __Notes__
   * `r I(displayFile("Schedule-Outline/Derivatives", "Function/Derivative Pairs"))`
   * `r I(displayFile("Schedule-Outline/Integrals", "Integration"))`
- 
+  * __Resources__
+  * [Prevalence and incidence of HIV](http://dl.dropbox.com/u/5098197/Math135/In-Class/hiv-graph.pdf)
+  * Sommer Gentry's (USNA) exercise on [derivatives and the economy](http://www.mosaic-web.org/Repository/SommerGentry/secondDerivativeInTheNews.pdf)
+  
 #### Block 3: Optimization, Least Squares, Series
  * __Examples__
   * `r I(displayFile("Topics/Optimization/beach-population", "Beach Population"))`
   * `r I(displayFile("Topics/Optimization/QALY1", "Optimization of Quality Adjusted Life Years"))`
   * `r I(displayFile("Topics/Functions/Toronto-Ball", "Toronto Ball"))`
- * __Notes__
-  * `r I(displayFile("Topics/Optimization/One-Variable-Optimization", "Optimization"))`
+ * __Notes__: `r I(displayFile("Topics/Optimization/One-Variable-Optimization", "Optimization"))` including the oil-can example and multiple objectives
   * `r I(displayFile("Topics/Series/notes-on-series", "Series"))`
-  * Do Dogs Know Calculus? [[pdf]](http://www.maa.org/features/elvisdog.pdf)
+  * Do Dogs Know Calculus? [[pdf of MAA article]](http://www.maa.org/features/elvisdog.pdf)
   * `r I(displayFile("Topics/Optimization/Dog-Calculus", "Dog Calculus is Economics"))`
   * Linear Approximation in Max Heart Rate [[pdf]](https://dl.dropbox.com/u/5098197/PREP2012/max-hr.pdf)
   
@@ -120,14 +122,62 @@ This is where we will post materials from our 2012 MAA PREP Workshop.  Stay tune
 
 #### Other Resources
 
- * [_Dogs Don't Need Calculus_](http://www.jstor.org/discover/10.4169/074683410X475074?uid=20072&uid=3739728&uid=2129&uid=2&uid=70&uid=3&uid=67&uid=20071&uid=62&uid=3739256&sid=56300677663)
+ * [_Dogs Don't Need Calculus_](http://www.jstor.org/discover/10.4169/074683410X475074?uid=20072&uid=3739728&uid=2129&uid=2&uid=70&uid=3&uid=67&uid=20071&uid=62&uid=3739256&sid=56300677663) and a [commentary on how the dog might do it](Topics/Optimization/Dog-Calculus.html).
  * [_Rising above the Gathering Storm_](http://www.uic.edu/home/Chancellor/risingabove.pdf)
-
 
 
 ### Wednesday: *Calculus in Multiple Variables* 
 
+#### Block 1: From Single to Multi-variable Calculus
+ * Tree Rotation Example [[pdf]](Topics/TreeHarvest/treerot_sage.pdf) [[sws]](Topics/TreeHarvest/treerot.sws)
+  * Forest Opt [[pdf]](Topics/TreeHarvest/forest_opt.pdf)
+
+ * `r I(displayFile("Topics/TwoVariables/TwoVariablesIntro","The contour plot approach to two variables"))`
+ * Exercises: [Walking up and down the hill]([Eye-balling partial derivatives](http://dl.dropbox.com/u/5098197/Exercises/HTML/AC-Reading-Partial-Derivatives-102/AC-Reading-Partial-Derivatives-102-A.html?access=AC7), [eye-balling partial derivatives](http://dl.dropbox.com/u/5098197/Exercises/HTML/AC-Reading-Partial-Derivatives-102/AC-Reading-Partial-Derivatives-102-A.html?access=AC7), [the gradient vector](http://dl.dropbox.com/u/5098197/Exercises/HTML/AC-Gradient-Direction-101/AC-Gradient-Direction-101-A.html?access=AC7)
+ * `r I(displayFile("Topic/RelatedRates/RelatedRatesIntro", "Related rates as change along a path"))`
+ * An activity on pressure, volume and temperature in the [ideal gas law](http://dl.dropbox.com/u/5098197/Math135/In-Class/ideal-gas-activity1.pdf)
+ * Modeling production `r I(displayFile("Topics/Cobb-Douglas/cobb-douglas","with the Cobb-Douglas function"))`
+
+ * Related Resources
+  * Some contour plots: [mountain-shaped](http://dl.dropbox.com/u/5098197/Math135/Figures/cairo-solar.png), [hillside-shaped](http://dl.dropbox.com/u/5098197/Math135/Figures/1000px-Body_mass_index_chart.png)
+  * Acid Rain in [1955](http://www.emc.maricopa.edu/faculty/farabee/biobk/acidrain_1.gif) and [1980](http://www.emc.maricopa.edu/faculty/farabee/biobk/acidrain_1.gif)
+  * Exercise on [drawing contours by eye](http://dl.dropbox.com/u/5098197/Math135/In-Class/findingContours.pdf)
+  * The [zero-emissions heat engine](http://dl.dropbox.com/u/5098197/Math135/In-Class/backyard-engine.pdf)
+
+#### Block 2: Polynomial Approximation and Modeling
+
+* __Examples__
+  * Application in Model Building: Enzyme kinetics `r I(displayFile("Topics/Michaelis-Menten/MichaelisMenten", "Michaelis-Mention dynamics", type=c('pdf','Rnw')))`
+  * `r I(displayFile("Topics/Polynomials/notes-on-polynomials","Notes on polynomials as models."))`
+  * [Selecting model terms](http://dl.dropbox.com/u/5098197/Math135/In-Class/poly2d.pdf) from first principles.
+
+
+* __Additional Resources__
+  * Exercise: [Eyeballing interactions](http://dl.dropbox.com/u/5098197/Math135/In-Class/eyeball-partials.pdf)
+  * [Celebrity Divorce](http://dl.dropbox.com/u/5098197/Math135/In-Class/celebrity-divorce.pdf)
+  * A ```mosaicManip``` applet for visualizing quadratic approximation in two variables. [html](http://dl.dropbox.com/u/5098197/Math135/In-Class/poly2-approx.pdf)
+
+#### Block 3: Optimization
+ * Unconstrained Optimization
+  * Demo on blind search in two dimensions. (```mGradSearch``` to be posted to ```mosaicManip``` package.)
+  * Nonlinear least squares: `r I(displayFile("Topics/Michaelis-Menton/MichaelisMenten", "Michaelis-Menten dynamics"))`
+
+ * Constrained Optimization
+  * `r I(displayFile("Topics/Optimization/lagrange-multipliers","Constrained optimization analytically vs geometrically"))`
+  * `r I(displayFile("Topics/Optimization/constrainedOptimization.html","Solving constrained optimization geometrically"))`
+  * `r I(displayFile("Topics/Optimization/ConstraintsIntroduction", "Some computer exercises on the geometry of constraints"))` and some [exercises done by eye](http://dl.dropbox.com/u/5098197/Math135/In-Class/constraints-activity.pdf).
+  * Quality-Adjusted Life Years: the `r I(displayFile("Topics/Optimization/QALY1.html","match the derivatives approach"))`, `r I(displayFile("Topics/Optimization/QALY2.html","optimizing total QALYs with constraints"))`, `r I(displayFile("Topics/Optimization/QALY3", "QALYs from expert opinion and politics"))`
+
+
 ### Thursday: *Dynamics and Differential Equations*
+
+<!-- 
+* AlgebraAndIntroDE
+* Newton's Law of Cooling
+* The Logistic System
+* May's Cows
+* Rowing and Differential Equations Topics/DiffEQ/RowingProblem
+* [Love and Differential Equations](http://opinionator.blogs.nytimes.com/2009/05/26/guest-column-loves-me-loves-me-not-do-the-math/) -->
 
 ### Friday: *Show and Tell*
 

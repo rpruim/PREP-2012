@@ -1,10 +1,12 @@
 
-\documentclass{article}
+\documentclass[11pt]{article}
+
+\usepackage[papersize={3in,4in},landscape,margin=.2in]{geometry}
 
 % things for all PREP workshop materials
-\usepackage{mosaic}   % mosaic defaults and macros
-\usepackage{sfsect}   % san serif font for section titles
-\usepackage{language} % consistent formatting of languages elements
+%\usepackage{../../include/mosaic}   % mosaic defaults and macros
+\usepackage{../../include/sfsect}   % san serif font for section titles
+\usepackage{../../include/language} % consistent formatting of languages elements
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Stuff particular to this document
@@ -23,6 +25,9 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{document}
+\pagestyle{empty}
+\parindent=0pt
+\title{The Michaelis-Menton Model}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Standard Sweave Set-up
@@ -47,26 +52,64 @@ options(scipen=1,digits=3)
 @
 
 
+\section{The Michaelis-Mentil Model}
 
-\title{\large \sf The Michaelis-Menten Model}
+Image from Biostats Book
 
-\section{The Model}
-In biochemistry, Michaelis–Menten kinetics is one of the simplest and
+
+\vfill
+Where does this come from?
+
+
+\newpage
+
+\subsection{Some background}
+In biochemistry, Michaelis-Menten kinetics is one of the simplest and
 best-known models of enzyme kinetics. It is named after German biochemist
 Leonor Michaelis and Canadian physician Maud Menten. 
-The model can be illustrated as
+The reaction can be illustrated as
+\[
+\ce{
+E + S <=> ES -> E + P
+}
+\]
+where $E$ is the enzime, $S$ is the substrate, $ES$ is the enzyme binding to
+the substrate, and $P$ is a product.
+
+
+\bigskip
+
+\textbf{Question:} How can we model this?
+
+\newpage
+
+%\subsection{The Chemical Model}
+
+\subsection{Building a Mathematical Model}
+\[
+\ce{
+E + S <=> ES -> E + P
+}
+\]
+\begin{itemize}
+	\item $\frac{d [E]}{dt} $ depends on ??
+	\item $\frac{d [S]}{dt} $ depends on ??
+	\item $\frac{d [ES]}{dt} $ depends on ??
+	\item $\frac{d [P]}{dt} $ depends on ??
+\end{itemize}
+
+\newpage
+
+This leads to the following system of differential equations:
 \[
 \ce{
 E + S <=>C[k_f][k_r] ES ->C[k_{cat}] E + P
 }
 \]
-Where $E$ is the enzime, $S$ is the substrate, $ES$ is the enzyme binding to
-the substrate, and $P$ is a product.
 
-This leads to the following system of differential equations:
 
 \begin{align}
-	\frac{d[S]}{dt} & = -k_f [E] [S] + k_r [ES] ]
+	\frac{d[S]}{dt} & = -k_f [E] [S] + k_r [ES] 
 	\label{dSdt}
 	\\
 	\frac{d[E]}{dt} & = -k_f [E] [S] + k_r [ES] + k_{cat} [ES]
@@ -77,8 +120,9 @@ This leads to the following system of differential equations:
 	\\
 	\frac{d[P]}{dt} & = \phantom{-k_f [E] [S] + k_r [ES] + \;} k_{cat} [ES]
 	\label{dPdt}
-	\\
 \end{align}
+
+\newpage
 
 \section{Simplifying the Model}
 Now we make some simplifications:
@@ -90,6 +134,7 @@ In situations where $\frac{d[P]}{dt}$ is constant
 (\ref{dESdt}) and (\ref{dPdt}) imply that $\frac{d[ES]}{dt} = 0$.
 This is often used as an approximation when $\frac{d[P]}{dt}$ 
 is nearly constant.
+
 
 \item
 	From this it follows that 
@@ -109,17 +154,22 @@ is nearly constant.
 	v = \frac{d[P]}{dt}& = \frac{k_{cat} [E]_0 [S]}{\frac{k_r + k_{cat}}{k_f} + [S]}  
 	\end{align*}
 \item
-	Ignoring the meaning of the constants (for the moment) 
+	From
+	\[
+	v = \frac{d[P]}{dt} = \frac{k_{cat} [E]_0 [S]}{\frac{k_r + k_{cat}}{k_f} + [S]}  
+	\]
+	ignoring the meaning of the constants (for the moment) 
 	and focusing on the form, we now have 
 	the following sort of relationship between $v$ and $[S]$
 	\begin{align}
 	v = \frac{ \alpha [S] }{ \beta + [S] }
 	\label{eq:MichMent}
-\end{align}
+	\end{align}
     That is, the ``velocity'' of the reaction (rate at which the product is produced)
 	is determined by the concentration of the substrate and constants that do 
 	not depend on $v$ or $[S]$.
 \end{itemize}
+
 
 Equation (\ref{eq:MichMent}) is not in our favorite linear form, but we can
 use transforamtions to get into a linear form:
@@ -179,6 +229,7 @@ mmSlopes <- data.frame(S=as.numeric(levels(mmno$S)),
 mmSlopes
 @
 
+
 \subsection{Fitting with Ordinary Least Squares}
 Now we can fit our Michaelis-Menten model:
 <<mmModel,out.width=".47\\textwidth">>=
@@ -200,7 +251,7 @@ data to the least squares regression line, the fit doesn't look nearly as good a
 back-transforming to the original scales.  In particular, errors are much larger for larger
 values of $S$.  Or thought about the other way around, the way we have fit the model 
 has forced the fit to be extremely good for small values of $S$ at the cost of allowing
-much poorer fits for larger values of $S$.  This is becuase the transformations
+much poorer fits for larger values of $S$.  This is because the transformations
 transform the scale for the residuals as well as for the inputs.  Note too that the distribution of values of $1/S$ is not nearly as uniform as it is for $S$.
 
 \subsection{Fitting with Nonlinear Least Squares}

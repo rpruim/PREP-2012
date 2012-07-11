@@ -1,0 +1,189 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0014)about:internet -->
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+<title>Rowing with Calculus</title>
+
+<base target="_blank"/>
+
+<style type="text/css">
+body, td {
+   font-family: sans-serif;
+   background-color: white;
+   font-size: 12px;
+   margin: 8px;
+}
+
+tt, code, pre {
+   font-family: 'DejaVu Sans Mono', 'Droid Sans Mono', 'Lucida Console', Consolas, Monaco, monospace;
+}
+
+h1 { 
+   font-size:2.2em; 
+}
+
+h2 { 
+   font-size:1.8em; 
+}
+
+h3 { 
+   font-size:1.4em; 
+}
+
+h4 { 
+   font-size:1.0em; 
+}
+
+h5 { 
+   font-size:0.9em; 
+}
+
+h6 { 
+   font-size:0.8em; 
+}
+
+a:visited {
+   color: rgb(50%, 0%, 50%);
+}
+
+pre {	
+   margin-top: 0;
+   max-width: 95%;
+   border: 1px solid #ccc;
+}
+
+pre code {
+   display: block; padding: 0.5em;
+}
+
+code.r {
+   background-color: #F8F8F8;
+}
+
+table, td, th {
+  border: none;
+}
+
+blockquote {
+   color:#666666;
+   margin:0;
+   padding-left: 1em;
+   border-left: 0.5em #EEE solid;
+}
+
+hr {
+   height: 0px;
+   border-bottom: none;
+   border-top-width: thin;
+   border-top-style: dotted;
+   border-top-color: #999999;
+}
+
+@media print {
+   * { 
+      background: transparent !important; 
+      color: black !important; 
+      filter:none !important; 
+      -ms-filter: none !important; 
+   }
+
+   body { 
+      font-size:12pt; 
+      max-width:100%; 
+   }
+       
+   a, a:visited { 
+      text-decoration: underline; 
+   }
+
+   hr { 
+      visibility: hidden;
+      page-break-before: always;
+   }
+
+   pre, blockquote { 
+      padding-right: 1em; 
+      page-break-inside: avoid; 
+   }
+
+   tr, img { 
+      page-break-inside: avoid; 
+   }
+
+   img { 
+      max-width: 100% !important; 
+   }
+
+   @page :left { 
+      margin: 15mm 20mm 15mm 10mm; 
+   }
+     
+   @page :right { 
+      margin: 15mm 10mm 15mm 20mm; 
+   }
+
+   p, h2, h3 { 
+      orphans: 3; widows: 3; 
+   }
+
+   h2, h3 { 
+      page-break-after: avoid; 
+   }
+}
+
+</style>
+
+
+
+<!-- MathJax scripts -->
+<script type="text/javascript" src="https://c328740.ssl.cf1.rackcdn.com/mathjax/2.0-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+
+</head>
+
+<body>
+<h1>Rowing with Calculus</h1>
+
+<p>Here&#39;s a problem from Stewart, <em>Calculus: Concepts and Contexts</em> 2/e p. 311 that is the analog of Pennings&#39;s dog-fetch problem.</p>
+
+<p>This problem states parenthetically, &ldquo;We assume the speed of the water is negligible compared with the speed at which the man rows.&rdquo;</p>
+
+<h3>QUESTIONS</h3>
+
+<ul>
+<li>What kind of river is 3 km wide?  Over what length do rivers this wide have straight banks?</li>
+<li>Do a little research about river speeds and rowing speeds.  Is it reasonable to assume that the speed of a river is negligible compared to the rowing speed?</li>
+<li>What criteria would be appropriate to define negligible.</li>
+</ul>
+
+<h2>A New Problem</h2>
+
+<p>Let&#39;s modify the problem a bit to make it about rowing and rivers rather than about the Pythagorean Theorem.  Specifically, suppose the river is 200m wide and the rower wants to cross directly. Suppose that the oarsman has a compass and can maintain a heading of direction \( \theta \) (with \( \theta=0 \) meaning straight across and \( \theta=90 \)deg meaning straight upriver).</p>
+
+<p>Assuming that the oarsman adopts a constant heading, what should it be so that he will reach the other side of the river directly across from his starting point?</p>
+
+<p>HINT: You can solve this simple problem with trigonometry.</p>
+
+<h2>More realism</h2>
+
+<p>Now let&#39;s make it a bit more realistic.  As everyone who paddles or rows on a river knows, the current is not constant.  It&#39;s faster in the middle and slow near the shore.</p>
+
+<p>Construct an appropriate model of the velocity profile as a function of position across the river. </p>
+
+<p>HINT: Given the river velocity and the rower velocity and heading, you can use trigonometry to find the instantaneous velocity components along and across the river as a function of position.  Then you can integrate this up to find how far down the river the rower will move as a function of \( \theta \).  That is, let the state be the across- and along-river positions be the state and set up a differential equation.  Solve the equation to find when the across-river position is the width of the river.  Read the along-river position at that time.</p>
+
+<p>Give a specific numerical answer for reasonable guesses about the rowing and river speed.</p>
+
+<h2>Extra Credit</h2>
+
+<p>The oarsman doesn&#39;t necessarily have to adopt a constant heading.  Think about what the shape of a sensible function of heading versus position would be and find a way to parameterize it (or an approximation to it) with one or two parameters.  Then find the optimal values of these parameters to minimize the time it takes to cross the river.  Is a constant heading best after all?</p>
+
+</body>
+
+</html>
+
