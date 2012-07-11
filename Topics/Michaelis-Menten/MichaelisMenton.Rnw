@@ -2,9 +2,9 @@
 \documentclass{article}
 
 % things for all PREP workshop materials
-\usepackage{mosaic}   % mosaic defaults and macros
-\usepackage{sfsect}   % san serif font for section titles
-\usepackage{language} % consistent formatting of languages elements
+\usepackage{../../include/mosaic}   % mosaic defaults and macros
+\usepackage{../../include/sfsect}   % san serif font for section titles
+\usepackage{../../include/language} % consistent formatting of languages elements
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Stuff particular to this document

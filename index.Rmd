@@ -132,6 +132,7 @@ This is where we will post materials from our 2012 MAA PREP Workshop.  Stay tune
 #### Polynomial Approximation and Modeling
 * `r I(displayFile("Topics/Polynomials/notes-on-polynomials","Notes on polynomials as models."))`
 * [Selecting model terms](http://dl.dropbox.com/u/5098197/Math135/In-Class/poly2d.pdf) from first principles.
+* Application: Production with enzymes `r I(displayFile("Topics/Michaelis-Menton/MichaelisMenton", "Michaelis-Mention dynamics"))`
 
 ##### Additional Resources
 * [Celebrity Divorce](http://dl.dropbox.com/u/5098197/Math135/In-Class/celebrity-divorce.pdf)
