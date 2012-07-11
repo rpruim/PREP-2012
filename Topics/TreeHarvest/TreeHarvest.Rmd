@@ -1,0 +1,45 @@
+Tree Harvests in RStudio using the mosaic package
+========================================================
+
+This is an RStudio Markdown document to accompany Eric Marland's presentation on the Tree Harvest data at the MAA Prep Workshop July 2012.
+
+We start with some setup
+
+```{r results='hide', warning=FALSE, error=FALSE, message=FALSE}
+require(mosaic)
+trellis.par.set(theme=col.mosaic())
+```
+```{r}
+trees = fetchData("TreeHarvest.csv")
+names(trees)
+```
+
+We can calculate some summary statistics by species.
+```{r}
+mean(rate ~ species, data=trees)
+favstats(rate ~ species, data=trees)
+```
+
+Next we plot the relationship between rate and time, separately for each species.
+```{r fig.width=7, fig.height=6}
+plotPoints(rate ~ time | species, data=trees, layout=c(1,3))
+```
+
+Let's focus on the mountain ponderosa pine species.
+```{r fig.width=7, fig.height=6}
+plotPoints(rate ~ time, data=subset(trees, species=="mountain pond"))
+```
+
+
+We can fit two models (one spline, one smoother) to these data, and compare the fit to the observed values.  We also add the average value (in purple).
+```{r fig.width=7, fig.height=6}
+mp.spline = spliner(rate~time, data=subset(trees, species=="mountain pond"))
+mp.smooth = smoother(rate~time, data=subset(trees, species=="mountain pond"))
+plotFun(mp.spline(time) ~ time, time.lim = c(5, 155))
+plotFun(mp.smooth(time) ~ time, add=TRUE, col="red")
+plotPoints(rate ~ time, add=TRUE, data=subset(trees, species=="mountain pond"))
+# calculate average value
+F <- antiD(mp.smooth(x) ~ x)
+average <- makeFun( 1/x * F(x) ~ x)
+plotFun(average(x) ~ x, add=TRUE, xlim=c(0, 155), col="purple")
+```
