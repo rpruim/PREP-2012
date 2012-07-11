@@ -136,6 +136,7 @@ This is where we will post materials from our 2012 MAA PREP Workshop.  Stay tune
  * Exercises: [Walking up and down the hill]([Eye-balling partial derivatives](http://dl.dropbox.com/u/5098197/Exercises/HTML/AC-Reading-Partial-Derivatives-102/AC-Reading-Partial-Derivatives-102-A.html?access=AC7), [eye-balling partial derivatives](http://dl.dropbox.com/u/5098197/Exercises/HTML/AC-Reading-Partial-Derivatives-102/AC-Reading-Partial-Derivatives-102-A.html?access=AC7), [the gradient vector](http://dl.dropbox.com/u/5098197/Exercises/HTML/AC-Gradient-Direction-101/AC-Gradient-Direction-101-A.html?access=AC7)
  * `r I(displayFile("Topic/RelatedRates/RelatedRatesIntro", "Related rates as change along a path"))`
  * An activity on pressure, volume and temperature in the [ideal gas law](http://dl.dropbox.com/u/5098197/Math135/In-Class/ideal-gas-activity1.pdf)
+ * Modeling production `r I(displayFile("Topics/Cobb-Douglas/cobb-douglas",with the Cobb-Douglas function"))`
 
  * Related Resources
   * Some contour plots: [mountain-shaped](http://dl.dropbox.com/u/5098197/Math135/Figures/cairo-solar.png), [hillside-shaped](http://dl.dropbox.com/u/5098197/Math135/Figures/1000px-Body_mass_index_chart.png)
