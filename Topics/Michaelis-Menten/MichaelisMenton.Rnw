@@ -200,7 +200,7 @@ data to the least squares regression line, the fit doesn't look nearly as good a
 back-transforming to the original scales.  In particular, errors are much larger for larger
 values of $S$.  Or thought about the other way around, the way we have fit the model 
 has forced the fit to be extremely good for small values of $S$ at the cost of allowing
-much poorer fits for larger values of $S$.  This is becuase the transformations
+much poorer fits for larger values of $S$.  This is because the transformations
 transform the scale for the residuals as well as for the inputs.  Note too that the distribution of values of $1/S$ is not nearly as uniform as it is for $S$.
 
 \subsection{Fitting with Nonlinear Least Squares}
