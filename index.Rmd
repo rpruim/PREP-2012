@@ -148,7 +148,8 @@ This is where we will post materials from our 2012 MAA PREP Workshop.  Stay tune
 #### Block 2: Polynomial Approximation and Modeling
 
 * __Examples__
-  * Application in Model Building: Enzyme kinetics `r I(displayFile("Topics/Michaelis-Menten/MichaelisMenten", "Michaelis-Mention dynamics", type=c('pdf','Rnw')))`
+
+  * Application in Model Building: Enzyme kinetics `r I(displayFile("Topics/Michaelis-Menten/MichaelisMenten", "Michaelis-Menten dynamics", type=c('pdf','Rnw')))`
   * `r I(displayFile("Topics/Polynomials/notes-on-polynomials","Notes on polynomials as models."))`
   * [Selecting model terms](http://dl.dropbox.com/u/5098197/Math135/In-Class/poly2d.pdf) from first principles.
 
