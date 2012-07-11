@@ -135,6 +135,7 @@ In situations where $\frac{d[P]}{dt}$ is constant
 This is often used as an approximation when $\frac{d[P]}{dt}$ 
 is nearly constant.
 
+
 \item
 	From this it follows that 
 	\begin{align*}
@@ -153,17 +154,22 @@ is nearly constant.
 	v = \frac{d[P]}{dt}& = \frac{k_{cat} [E]_0 [S]}{\frac{k_r + k_{cat}}{k_f} + [S]}  
 	\end{align*}
 \item
-	Ignoring the meaning of the constants (for the moment) 
+	From
+	\[
+	v = \frac{d[P]}{dt} = \frac{k_{cat} [E]_0 [S]}{\frac{k_r + k_{cat}}{k_f} + [S]}  
+	\]
+	ignoring the meaning of the constants (for the moment) 
 	and focusing on the form, we now have 
 	the following sort of relationship between $v$ and $[S]$
 	\begin{align}
 	v = \frac{ \alpha [S] }{ \beta + [S] }
 	\label{eq:MichMent}
-\end{align}
+	\end{align}
     That is, the ``velocity'' of the reaction (rate at which the product is produced)
 	is determined by the concentration of the substrate and constants that do 
 	not depend on $v$ or $[S]$.
 \end{itemize}
+
 
 Equation (\ref{eq:MichMent}) is not in our favorite linear form, but we can
 use transforamtions to get into a linear form:
