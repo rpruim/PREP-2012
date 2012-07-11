@@ -1,7 +1,7 @@
 
 \documentclass[11pt]{article}
 
-\usepackage[papersize={3in,4in},landscape,margin=.2in]{geometry}
+\usepackage[papersize={3.5in,5.5in},landscape,margin=.2in]{geometry}
 
 % things for all PREP workshop materials
 %\usepackage{../../include/mosaic}   % mosaic defaults and macros
@@ -54,20 +54,24 @@ options(scipen=1,digits=3)
 
 \section{The Michaelis-Menten Model}
 
-From \emph{The Analysis of Biological Data} by Whitlock and Shluter, page 488--89
+From \emph{The Analysis of Biological Data} by Whitlock and Shluter, page 488--89:
 
 \begin{quote}
 The problem with the curve in the left panel of Figure 18.8-1 
 [using an interpolater like \Sexpr{"spliner()"}] is that it would probably do a 
 \textbf{terrible job of predicting} any \emph{new} observations obtained from the 
 same population \textbf{because the curve does not describe the general trend}.  
-Such a complicated curve is \textbf{hard to justify biologiclly}\dots
+Such a complicated curve is \textbf{hard to justify biologically}\dots
 \end{quote}
 
-\includegraphics[width=.8\textwidth]{WhitlockShluterP489}
+\centerline{\includegraphics[width=.5\textwidth, trim=0cm 6cm 0cm 0cm, clip=TRUE]{WhitlockShluterP489}}
 \newpage
 
-\begin{quote}
+\centerline{ \includegraphics[width=.70\textwidth]{WhitlockShluterP489} }
+
+\newpage
+
+%\begin{quote}
 	\textbf{Greater simplicity}, as demonstrated by the \textbf{fitted curve} in
 the right panel \dots solves both of these problems.
 The data are the same as in the left panel but this time 
@@ -76,14 +80,20 @@ we've fit the much simpler function,
 Y = \frac{ aX }{b + X}
 \]
 \textbf{This is the Michaelis-Menten equation used frequently in biochemistry.}
-\end{quote}
+%\end{quote}
 
+\medskip
 
-\includegraphics[width=.8\textwidth]{WhitlockShluterP489}
-
-
-\vfill
+Questions:
+\begin{itemize}
+	\item
 Where does this come from?
+\item
+	Where's the data?
+\end{itemize}
+
+
+
 
 
 \newpage
