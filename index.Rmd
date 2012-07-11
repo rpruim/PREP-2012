@@ -144,9 +144,9 @@ This is where we will post materials from our 2012 MAA PREP Workshop.  Stay tune
   * The [zero-emissions heat engine](http://dl.dropbox.com/u/5098197/Math135/In-Class/backyard-engine.pdf)
 
 #### Block 2: Polynomial Approximation and Modeling
-* Application in Model Building: Enzyme kinetics `r I(displayFile("Topics/Michaelis-Menton/MichaelisMenton", "Michaelis-Mention dynamics", type=c('pdf','Rnw')))`
-* `r I(displayFile("Topics/Polynomials/notes-on-polynomials","Notes on polynomials as models."))`
-* [Selecting model terms](http://dl.dropbox.com/u/5098197/Math135/In-Class/poly2d.pdf) from first principles.
+ * Application in Model Building: Enzyme kinetics `r I(displayFile("Topics/Michaelis-Menton/MichaelisMenton", "Michaelis-Mention dynamics", type=c('pdf','Rnw')))`
+ * `r I(displayFile("Topics/Polynomials/notes-on-polynomials","Notes on polynomials as models."))`
+ * [Selecting model terms](http://dl.dropbox.com/u/5098197/Math135/In-Class/poly2d.pdf) from first principles.
 
 
  * Additional Resources
