@@ -146,7 +146,7 @@ This is where we will post materials from our 2012 MAA PREP Workshop.  Stay tune
 #### Block 2: Polynomial Approximation and Modeling
 
 * __Examples__
-  * Application in Model Building: Enzyme kinetics `r I(displayFile("Topics/Michaelis-Mento/MichaelisMenton", "Michaelis-Mention dynamics", type=c('pdf','Rnw')))`
+  * Application in Model Building: Enzyme kinetics `r I(displayFile("Topics/Michaelis-Menten/MichaelisMenten", "Michaelis-Menten dynamics", type=c('pdf','Rnw')))`
   * `r I(displayFile("Topics/Polynomials/notes-on-polynomials","Notes on polynomials as models."))`
   * [Selecting model terms](http://dl.dropbox.com/u/5098197/Math135/In-Class/poly2d.pdf) from first principles.
 
@@ -159,7 +159,7 @@ This is where we will post materials from our 2012 MAA PREP Workshop.  Stay tune
 #### Block 3: Optimization
  * Unconstrained Optimization
   * Demo on blind search in two dimensions. (```mGradSearch``` to be posted to ```mosaicManip``` package.)
-  * Nonlinear least squares: `r I(displayFile("Topics/Michaelis-Menton/MichaelisMenton2", "Michaelis-Mention dynamics"))`
+  * Nonlinear least squares: `r I(displayFile("Topics/Michaelis-Menton/MichaelisMenten", "Michaelis-Menten dynamics"))`
 
  * Constrained Optimization
   * `r I(displayFile("Topics/Optimization/lagrange-multipliers","Constrained optimization analytically vs geometrically"))`
