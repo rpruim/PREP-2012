@@ -187,14 +187,12 @@ This is where we will post materials from our 2012 MAA PREP Workshop.  Stay tune
  * PRIMUS [pdf](Topics/PRIMUS/PRIMUS-MAA-PREP-2012.pdf)
  * [Taylor & Francis Online](http://tandfonline.com/toc/upri20/current)
 
-#### Block 3: Work Block
-
-#### Block 4: Modeling in the DE Course
+#### Block 3: Modeling in the DE Course
 
  * __Examples__
   * Washtenaw County Flu Data [[html]](http://www.ewashtenaw.org/government/departments/public_health/disease_control/ph_flusurveillance.html)
 
-
+#### Block 4: Work Block
 
 
 <!-- 
