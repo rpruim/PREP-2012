@@ -3,9 +3,6 @@ Algebra and Differential Equations
 
 
 
-
-
-
 Here's an AP Calculus exam question in differential equations:
 
 <img src="AP-diffeq-problem1.png" width=350>
@@ -164,17 +161,12 @@ Or,
 
 
 ```r
-findZeros(K/(1 - 0.2 * exp(-0.8 * t)) ~ t, K = 400, t.lim = c(0, 
+findZeros(K/(1 - 0.2 * exp(-0.8 * t)) - 450 ~ t, K = 400, t.lim = c(0, 
     1))
 ```
 
 ```
-## Warning: No zeros found.  You might try modifying your search window or
-## increasing npts.
-```
-
-```
-## numeric(0)
+## [1] 0.7347
 ```
 
 

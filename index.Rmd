@@ -176,22 +176,23 @@ This is where we will post materials from our 2012 MAA PREP Workshop.  Stay tune
 
  * __Examples__
   * `r I(displayFile("Topics/DiffEQ/AlgebraAndIntroDE", "Solving the Logistic DE, the AP Exam problem"))`
-  * `r I(displayFile("Topics/DiffEQ/RowingProblem", "A Rowing Problem"))`
+  * `r I(displayFile("Topics/DiffEQ/RowingProblem", "A Rowing Problem"))`  
 
 #### Block 2a: Impact on the Syllabus
+
+* [Notes on the discussion](https://docs.google.com/document/d/1w780A-KFDeCNiFGXjs0AzLXhPWDxCGJERPukAM7D_KE/edit) Participants can edit.
 
 #### Block 2b: Resources--Finding, Creating, Disseminating
 
  * PRIMUS [pdf](Topics/PRIMUS/PRIMUS-MAA-PREP-2012.pdf)
+ * [Taylor & Francis Online](http://tandfonline.com/toc/upri20/current)
 
-#### Block 3: Work Block
-
-#### Block 4: Modeling in the DE Course
+#### Block 3: Modeling in the DE Course
 
  * __Examples__
   * Washtenaw County Flu Data [[html]](http://www.ewashtenaw.org/government/departments/public_health/disease_control/ph_flusurveillance.html)
 
-
+#### Block 4: Work Block
 
 
 <!-- 
