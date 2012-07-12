@@ -172,6 +172,20 @@ This is where we will post materials from our 2012 MAA PREP Workshop.  Stay tune
 
 ### Thursday: *Dynamics and Differential Equations*
 
+#### Block 1: Differential Equations in an Introductory Course
+
+ * __Examples__
+  * `r I(displayFile("Topics/DiffEQ/AlgebraAndIntroDE", "Solving the Logistic DE"))`
+
+#### Block 2a: Impact on the Syllabus
+
+#### Block 2b: Resources--Finding, Creating, Disseminating
+
+#### Block 3: Modeling in the DE Course
+
+#### Block 4: Work Block
+
+
 <!-- 
 * AlgebraAndIntroDE
 * Newton's Law of Cooling
