@@ -221,6 +221,19 @@ This is where we will post materials from our 2012 MAA PREP Workshop.  Stay tune
 
 * The [Kansas-Indiana distance/time spreadsheet](https://docs.google.com/spreadsheet/viewform?formkey=dGViMHk5LTdBU05wMW5rTFpNb2xod3c6MQ)
 
+### Resources Produced by Workshop Participants
+
+Here are some of the topics participants worked on at the workshop.
+
+ * Comparing Major League Shortstops
+ * Oil Spills
+ * Mass Infertility Coming Soon?
+ * Cobb-Douglas Production Function
+ * Modeling an Ascillating Mass on a Spring
+ * Modeling Travel Time
+ 
+Workshop participants, as you finish up your projects, send us a link or the sources and we'll post it here.
+
 <!-- ### Files by topic -->
 ```{r, results='asis', echo=FALSE, eval=FALSE}
 directories <- dir('Topics')
