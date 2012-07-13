@@ -234,8 +234,8 @@ Here are some of the topics participants worked on at the workshop.
  * Estimating the Volume of a Lake from a Contour Plot (Topo Map)
  * Modeling Travel Time
    * The [Kansas-Indiana distance/time spreadsheet](https://docs.google.com/spreadsheet/viewform?formkey=dGViMHk5LTdBU05wMW5rTFpNb2xod3c6MQ)
+ * How Can We Improve Blood Testing by Pooling Blood Samples?
 
- 
  
 Workshop participants, as you finish up your projects, send us a link or the sources and we'll post it here.
 
