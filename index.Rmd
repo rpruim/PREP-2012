@@ -219,7 +219,7 @@ This is where we will post materials from our 2012 MAA PREP Workshop.  Stay tune
 
 * The [Macalester Applied Calculus course](http://test.causeweb.org/wiki/mosaic/index.php/Pub114) (day-by-day syllabus and notes from Spring 2012)
 
-* The [Kansas-Indiana distance/time spreadsheet](https://docs.google.com/spreadsheet/viewform?formkey=dGViMHk5LTdBU05wMW5rTFpNb2xod3c6MQ)
+* The [Kansas-Indiana distance/time spreadsheet](https://docs.google.com/spreadsheet/viewform?formkey=dGViMHk5LTdBU05wMW5rTFpNb2xod3c6MQ) and a quick data collection done during the conference * `r I(displayFile("Topics/TravelTimes/Indiana-Kansas", "from Hesston to Goshen"))`
 
 <!-- ### Files by topic -->
 ```{r, results='asis', echo=FALSE, eval=FALSE}

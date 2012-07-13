@@ -1,0 +1,20 @@
+Travel routes and the trade-off between time and distance
+========================================================
+
+```{r warning=FALSE,message=FALSE,echo=FALSE}
+require(mosaic, quietly=TRUE)
+```
+
+These are the data collected by the participants in 3 minutes from Google Maps, looking at various routes from Hesston College KS to Goshen College IN.  They entered distance and time via a Google form.  The data were then downloaded from Google and are plotted here.
+
+```{r}
+routes = read.csv("Indiana-Kansas.csv")
+plotPoints(Distance ~ Travel.Time, data=routes, pch=20,xlim=c(0,150),ylim=c(780,880))
+```
+
+Each dot is one possible route between Hesston and Goshen.
+
+### QUESTIONS:
+* Pick two different routes.  Which one is preferred in terms of time and in terms of distance?  
+* Are there any pairs of routes where one is preferred in terms of time and the other in terms of distance?
+* There's a diagonal streak in the middle of the graph.  Explain this.
