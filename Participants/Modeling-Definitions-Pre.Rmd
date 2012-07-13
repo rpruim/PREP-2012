@@ -1,0 +1,88 @@
+Modeling Definitions
+====================
+
+Definitions of modeling provided **before** the workshop by the PREP 2012 participants.
+
+* Modeling is the distillation of a complex phenomenon into **fundamental** and **quantifiable** pieces that allow us to make predictions.
+
+* Modeling is the best attempt to explain a process.
+
+* Representing or characterizing reality for some predictive purpose.
+
+* Modeling is physical phenomena (including chemistry, biology, etc.) expressed and analyzed through mathematics.
+
+* Using mathematics to combine what we have observed with what we are interested in finding out to give us information about how the world works.
+
+* Collecting, interpreting, and presenting data in a visual, concrete form using patterns (equations) that repeat in many instances.
+
+* Applying mathematics to solve an interesting or practical problem.
+
+* Identifying (or guessing) key factors in a real-world situation and coming up with a systematic way to make predictions based on those.
+
+* Using mathematics to describe phenomena (a situation) and to make predictions.
+
+* Using real-life problems to teach/demonstrate/conceptualize topics and ideas in calculus and mathematics.  Bringing the real-world into the classroom. 
+
+* Modeling is the process of finding a good mathematical explanation or representation for some observed phenomenon.
+
+* Modeling is the process of constructing, testing, and applying mathematical descriptions to physical and conceptual systems, with the intent of description and/or prediction.
+
+* All models are wrong, but some are useful.  How do we teach students to think in terms of models?
+
+* Modeling is using mathematics to match the past and predict the future.
+
+* Modeling is a mathematical framework for predicting outcomes of real-world problems.
+
+* Modeling is using mathematical theory to interpret phenomena of science and engineering.
+
+* Modeling is converting a real-world problem into a math problem.
+
+* Modeling is the process of creating a mathematical construct to solve a real-world problem.
+
+* Modeling is representing reality in a simple enough way to learn something useful.
+
+### A Modeling Definition WordCloud
+
+```{r label="wordcloud",message=FALSE,echo=FALSE,fig.out="6in"}
+set.seed(13)
+require(wordcloud)
+require(tm)
+us <- URISource("/Users/kaplan/kaplanfiles/github/PREP-2012/Participants/modeling-words-pre.txt")
+foo = Corpus(us)
+foo2 = tm_map(foo, removePunctuation)
+foo2 = tm_map(foo2, function(x)removeWords(x,stopwords()))
+tdm = TermDocumentMatrix(foo2)
+m <- as.matrix(tdm)
+v <- sort(rowSums(m),decreasing=TRUE)
+d = data.frame(word=names(v),freq=v)
+wordcloud(d$word, d$freq, min.freq=1)
+```
+### At the end of the workshop
+
+```{r label="wordcloud2",message=FALSE,echo=FALSE,fig.out="6in"}
+set.seed(128)
+us <- URISource("/Users/kaplan/kaplanfiles/github/PREP-2012/Participants/modeling-words-post.txt")
+foo = Corpus(us)
+foo2 = tm_map(foo, removePunctuation)
+foo2 = tm_map(foo2, function(x)removeWords(x,stopwords()))
+tdm = TermDocumentMatrix(foo2)
+m <- as.matrix(tdm)
+v <- sort(rowSums(m),decreasing=TRUE)
+d = data.frame(word=names(v),freq=v)
+wordcloud(d$word, d$freq, min.freq=1)
+```
+
+
+### Calculus Definitions
+
+* Calculus = approximation and limits to get accurate answers.
+
+* Modeling using small amounts of change.
+
+* Calculus -- the study of change and the summation of infinite quantities and their application.
+
+* Calculus is the study of how fast changing quantities change and/or accumulate.
+
+* Calculus is the study of change.
+
+* Calculus: study of change.
