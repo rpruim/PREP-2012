@@ -5,7 +5,7 @@ Travel routes and the trade-off between time and distance
 require(mosaic, quietly=TRUE)
 ```
 
-These are the data collected by the participants in 3 minutes from Google Maps, looking at various routes from Hesston College KS to Goshen College IN.  They entered distance and time via a Google form.  The data were then downloaded from Google and are plotted here.
+These are the data collected by the participants in 3 minutes from Google Maps, looking at various routes from Hesston College KS to Goshen College IN.  They entered distance (miles) and time (minutes longer than 14 hours) via a Google form.  The data were then downloaded from Google and are plotted here.
 
 ```{r}
 routes = read.csv("Indiana-Kansas.csv")
